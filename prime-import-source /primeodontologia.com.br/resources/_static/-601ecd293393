@@ -1,0 +1,1 @@
+.wp-block-group{box-sizing:border-box}:where(.wp-block-group.wp-block-group-is-layout-constrained){position:relative}:where(.wp-block-group.has-background){padding:var(--wp--style--block-background-padding,1.25em 2.375em)}

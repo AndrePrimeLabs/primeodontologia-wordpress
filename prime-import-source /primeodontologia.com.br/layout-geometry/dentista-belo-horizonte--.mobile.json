@@ -1,0 +1,146 @@
+{
+  "schema": "data-liberation/layout-geometry-capture/v1",
+  "observations": [
+    {
+      "wrapperIdentity": "mobile-wrapper-0",
+      "targetIdentity": "mobile-target-0",
+      "viewport": 402,
+      "state": "default",
+      "wrapper": {
+        "x": 0,
+        "y": 81,
+        "width": 402,
+        "height": 75
+      },
+      "target": {
+        "x": 0,
+        "y": 81,
+        "width": 402,
+        "height": 75
+      },
+      "simulated": {
+        "x": 0,
+        "y": 81,
+        "width": 402,
+        "height": 75
+      },
+      "facts": {
+        "display": "block",
+        "position": "relative",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "mobile-wrapper-1",
+      "targetIdentity": "mobile-target-1",
+      "viewport": 402,
+      "state": "default",
+      "wrapper": {
+        "x": 15,
+        "y": 1514.016,
+        "width": 372,
+        "height": 81.391
+      },
+      "target": {
+        "x": 15,
+        "y": 1514.016,
+        "width": 372,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 15,
+        "y": 1514.016,
+        "width": 372,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "mobile-wrapper-2",
+      "targetIdentity": "mobile-target-2",
+      "viewport": 402,
+      "state": "default",
+      "wrapper": {
+        "x": 15,
+        "y": 1553.406,
+        "width": 372,
+        "height": 42
+      },
+      "target": {
+        "x": 15,
+        "y": 1553.406,
+        "width": 372,
+        "height": 42
+      },
+      "simulated": {
+        "x": 15,
+        "y": 1553.406,
+        "width": 372,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "mobile-wrapper-3",
+      "targetIdentity": "mobile-target-3",
+      "viewport": 402,
+      "state": "default",
+      "wrapper": {
+        "x": 45.063,
+        "y": 355.188,
+        "width": 311.875,
+        "height": 52.797
+      },
+      "target": {
+        "x": 45.063,
+        "y": 355.188,
+        "width": 311.875,
+        "height": 52.797
+      },
+      "simulated": {
+        "x": 45.063,
+        "y": 355.188,
+        "width": 311.875,
+        "height": 52.797
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "hidden",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    }
+  ],
+  "omissions": {
+    "display_unproven": 6,
+    "runtime_or_semantics_unproven": 57,
+    "geometry_unproven": 7
+  }
+}

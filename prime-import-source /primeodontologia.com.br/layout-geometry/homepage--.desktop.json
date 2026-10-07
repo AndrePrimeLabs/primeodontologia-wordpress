@@ -1,0 +1,2187 @@
+{
+  "schema": "data-liberation/layout-geometry-capture/v1",
+  "observations": [
+    {
+      "wrapperIdentity": "desktop-wrapper-0",
+      "targetIdentity": "desktop-target-0",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 0,
+        "y": 56,
+        "width": 1440,
+        "height": 75
+      },
+      "target": {
+        "x": 0,
+        "y": 56,
+        "width": 1440,
+        "height": 75
+      },
+      "simulated": {
+        "x": 0,
+        "y": 56,
+        "width": 1440,
+        "height": 75
+      },
+      "facts": {
+        "display": "block",
+        "position": "relative",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-1",
+      "targetIdentity": "desktop-target-1",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 576.68,
+        "width": 1110,
+        "height": 37.391
+      },
+      "target": {
+        "x": 165,
+        "y": 576.68,
+        "width": 1110,
+        "height": 37.391
+      },
+      "simulated": {
+        "x": 165,
+        "y": 576.68,
+        "width": 1110,
+        "height": 37.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-2",
+      "targetIdentity": "desktop-target-2",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 2581.594,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 165,
+        "y": 2581.594,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 165,
+        "y": 2581.594,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-3",
+      "targetIdentity": "desktop-target-3",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 2620.984,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 165,
+        "y": 2620.984,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 165,
+        "y": 2620.984,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-4",
+      "targetIdentity": "desktop-target-4",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 2770.875,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 735,
+        "y": 2770.875,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 735,
+        "y": 2770.875,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-5",
+      "targetIdentity": "desktop-target-5",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 2810.266,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 735,
+        "y": 2810.266,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 735,
+        "y": 2810.266,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-6",
+      "targetIdentity": "desktop-target-6",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 2979.547,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 165,
+        "y": 2979.547,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 165,
+        "y": 2979.547,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-7",
+      "targetIdentity": "desktop-target-7",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 3018.938,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 165,
+        "y": 3018.938,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 165,
+        "y": 3018.938,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-8",
+      "targetIdentity": "desktop-target-8",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 2979.547,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 735,
+        "y": 2979.547,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 735,
+        "y": 2979.547,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-9",
+      "targetIdentity": "desktop-target-9",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 3018.938,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 735,
+        "y": 3018.938,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 735,
+        "y": 3018.938,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-10",
+      "targetIdentity": "desktop-target-10",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 3596.922,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 165,
+        "y": 3596.922,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 165,
+        "y": 3596.922,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-11",
+      "targetIdentity": "desktop-target-11",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 3636.313,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 165,
+        "y": 3636.313,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 165,
+        "y": 3636.313,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-12",
+      "targetIdentity": "desktop-target-12",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 3596.922,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 735,
+        "y": 3596.922,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 735,
+        "y": 3596.922,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-13",
+      "targetIdentity": "desktop-target-13",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 3636.313,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 735,
+        "y": 3636.313,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 735,
+        "y": 3636.313,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-14",
+      "targetIdentity": "desktop-target-14",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 3845.703,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 165,
+        "y": 3845.703,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 165,
+        "y": 3845.703,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-15",
+      "targetIdentity": "desktop-target-15",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 165,
+        "y": 3885.094,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 165,
+        "y": 3885.094,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 165,
+        "y": 3885.094,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-16",
+      "targetIdentity": "desktop-target-16",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 3821.906,
+        "width": 540,
+        "height": 81.391
+      },
+      "target": {
+        "x": 735,
+        "y": 3821.906,
+        "width": 540,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 735,
+        "y": 3821.906,
+        "width": 540,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-17",
+      "targetIdentity": "desktop-target-17",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 735,
+        "y": 3861.297,
+        "width": 540,
+        "height": 42
+      },
+      "target": {
+        "x": 735,
+        "y": 3861.297,
+        "width": 540,
+        "height": 42
+      },
+      "simulated": {
+        "x": 735,
+        "y": 3861.297,
+        "width": 540,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-18",
+      "targetIdentity": "desktop-target-18",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 195,
+        "y": 4733.906,
+        "width": 195,
+        "height": 81.391
+      },
+      "target": {
+        "x": 195,
+        "y": 4733.906,
+        "width": 195,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 195,
+        "y": 4733.906,
+        "width": 195,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-19",
+      "targetIdentity": "desktop-target-19",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 195,
+        "y": 4773.297,
+        "width": 195,
+        "height": 42
+      },
+      "target": {
+        "x": 195,
+        "y": 4773.297,
+        "width": 195,
+        "height": 42
+      },
+      "simulated": {
+        "x": 195,
+        "y": 4773.297,
+        "width": 195,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-20",
+      "targetIdentity": "desktop-target-20",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 480,
+        "y": 4757.703,
+        "width": 195,
+        "height": 81.391
+      },
+      "target": {
+        "x": 480,
+        "y": 4757.703,
+        "width": 195,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 480,
+        "y": 4757.703,
+        "width": 195,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-21",
+      "targetIdentity": "desktop-target-21",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 480,
+        "y": 4797.094,
+        "width": 195,
+        "height": 42
+      },
+      "target": {
+        "x": 480,
+        "y": 4797.094,
+        "width": 195,
+        "height": 42
+      },
+      "simulated": {
+        "x": 480,
+        "y": 4797.094,
+        "width": 195,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-22",
+      "targetIdentity": "desktop-target-22",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 765,
+        "y": 4539.438,
+        "width": 195,
+        "height": 81.391
+      },
+      "target": {
+        "x": 765,
+        "y": 4539.438,
+        "width": 195,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 765,
+        "y": 4539.438,
+        "width": 195,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-23",
+      "targetIdentity": "desktop-target-23",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 765,
+        "y": 4578.828,
+        "width": 195,
+        "height": 42
+      },
+      "target": {
+        "x": 765,
+        "y": 4578.828,
+        "width": 195,
+        "height": 42
+      },
+      "simulated": {
+        "x": 765,
+        "y": 4578.828,
+        "width": 195,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-24",
+      "targetIdentity": "desktop-target-24",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 1050,
+        "y": 4468.047,
+        "width": 195,
+        "height": 81.391
+      },
+      "target": {
+        "x": 1050,
+        "y": 4468.047,
+        "width": 195,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 1050,
+        "y": 4468.047,
+        "width": 195,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-25",
+      "targetIdentity": "desktop-target-25",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 1050,
+        "y": 4507.438,
+        "width": 195,
+        "height": 42
+      },
+      "target": {
+        "x": 1050,
+        "y": 4507.438,
+        "width": 195,
+        "height": 42
+      },
+      "simulated": {
+        "x": 1050,
+        "y": 4507.438,
+        "width": 195,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-26",
+      "targetIdentity": "desktop-target-26",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 1276,
+        "y": 5315.484,
+        "width": 556,
+        "height": 1
+      },
+      "target": {
+        "x": 1276,
+        "y": 5315.484,
+        "width": 556,
+        "height": 0
+      },
+      "simulated": {
+        "x": 1276,
+        "y": 5315.484,
+        "width": 556,
+        "height": 0
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-27",
+      "targetIdentity": "desktop-target-27",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 200,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "target": {
+        "x": 200,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "simulated": {
+        "x": 200,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-28",
+      "targetIdentity": "desktop-target-28",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 580,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "target": {
+        "x": 580,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "simulated": {
+        "x": 580,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-29",
+      "targetIdentity": "desktop-target-29",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 960,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "target": {
+        "x": 960,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "simulated": {
+        "x": 960,
+        "y": 8767.266,
+        "width": 280,
+        "height": 47.25
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-30",
+      "targetIdentity": "desktop-target-30",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 9703.891,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 9703.891,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 9703.891,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-31",
+      "targetIdentity": "desktop-target-31",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 9743.281,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 9743.281,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 9743.281,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-32",
+      "targetIdentity": "desktop-target-32",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 9969.672,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 9969.672,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 9969.672,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-33",
+      "targetIdentity": "desktop-target-33",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10009.063,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 10009.063,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10009.063,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-34",
+      "targetIdentity": "desktop-target-34",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10244.656,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 10244.656,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10244.656,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-35",
+      "targetIdentity": "desktop-target-35",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10284.047,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 10284.047,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10284.047,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-36",
+      "targetIdentity": "desktop-target-36",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10486.641,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 10486.641,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10486.641,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-37",
+      "targetIdentity": "desktop-target-37",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10526.031,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 10526.031,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10526.031,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-38",
+      "targetIdentity": "desktop-target-38",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10728.625,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 10728.625,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10728.625,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-39",
+      "targetIdentity": "desktop-target-39",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10768.016,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 10768.016,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10768.016,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-40",
+      "targetIdentity": "desktop-target-40",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 10970.609,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 10970.609,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 10970.609,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-41",
+      "targetIdentity": "desktop-target-41",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11010,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 11010,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11010,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-42",
+      "targetIdentity": "desktop-target-42",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11236.391,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 11236.391,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11236.391,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-43",
+      "targetIdentity": "desktop-target-43",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11275.781,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 11275.781,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11275.781,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-44",
+      "targetIdentity": "desktop-target-44",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11478.375,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 11478.375,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11478.375,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-45",
+      "targetIdentity": "desktop-target-45",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11517.766,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 11517.766,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11517.766,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-46",
+      "targetIdentity": "desktop-target-46",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11720.359,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 11720.359,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11720.359,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-47",
+      "targetIdentity": "desktop-target-47",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11759.75,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 11759.75,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11759.75,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-48",
+      "targetIdentity": "desktop-target-48",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 11962.344,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 11962.344,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 11962.344,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-49",
+      "targetIdentity": "desktop-target-49",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12001.734,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 12001.734,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12001.734,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-50",
+      "targetIdentity": "desktop-target-50",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12204.328,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 12204.328,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12204.328,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-51",
+      "targetIdentity": "desktop-target-51",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12243.719,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 12243.719,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12243.719,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-52",
+      "targetIdentity": "desktop-target-52",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12446.313,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 12446.313,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12446.313,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-53",
+      "targetIdentity": "desktop-target-53",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12485.703,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 12485.703,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12485.703,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-54",
+      "targetIdentity": "desktop-target-54",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12688.297,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 12688.297,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12688.297,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-55",
+      "targetIdentity": "desktop-target-55",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12727.688,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 12727.688,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12727.688,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-56",
+      "targetIdentity": "desktop-target-56",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12930.281,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 12930.281,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12930.281,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-57",
+      "targetIdentity": "desktop-target-57",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 12969.672,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 12969.672,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 12969.672,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-58",
+      "targetIdentity": "desktop-target-58",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 13172.266,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 13172.266,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 13172.266,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-59",
+      "targetIdentity": "desktop-target-59",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 13211.656,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 13211.656,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 13211.656,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-60",
+      "targetIdentity": "desktop-target-60",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 13414.25,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 13414.25,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 13414.25,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-61",
+      "targetIdentity": "desktop-target-61",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 13453.641,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 13453.641,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 13453.641,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-62",
+      "targetIdentity": "desktop-target-62",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 13656.234,
+        "width": 780,
+        "height": 81.391
+      },
+      "target": {
+        "x": 495,
+        "y": 13656.234,
+        "width": 780,
+        "height": 81.391
+      },
+      "simulated": {
+        "x": 495,
+        "y": 13656.234,
+        "width": 780,
+        "height": 81.391
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    },
+    {
+      "wrapperIdentity": "desktop-wrapper-63",
+      "targetIdentity": "desktop-target-63",
+      "viewport": 1440,
+      "state": "default",
+      "wrapper": {
+        "x": 495,
+        "y": 13695.625,
+        "width": 780,
+        "height": 42
+      },
+      "target": {
+        "x": 495,
+        "y": 13695.625,
+        "width": 780,
+        "height": 42
+      },
+      "simulated": {
+        "x": 495,
+        "y": 13695.625,
+        "width": 780,
+        "height": 42
+      },
+      "facts": {
+        "display": "block",
+        "position": "static",
+        "visibility": "visible",
+        "childCount": 1
+      },
+      "invariants": {
+        "runtime": true,
+        "semantics": true
+      }
+    }
+  ],
+  "omissions": {
+    "display_unproven": 51,
+    "runtime_or_semantics_unproven": 227,
+    "geometry_unproven": 40,
+    "candidate_limit": 1
+  }
+}
