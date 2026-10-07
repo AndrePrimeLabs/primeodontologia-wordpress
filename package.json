@@ -1,0 +1,13 @@
+{
+  "name": "primeodontologia-wordpress",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Prime Odontologia - WordPress Theme & Notion CMS Sync",
+  "scripts": {
+    "sync": "node prime-notion-bridge/notion_cms_sync.mjs",
+    "sync:watch": "node prime-notion-bridge/notion_cms_sync.mjs --watch",
+    "sync:force": "node prime-notion-bridge/notion_cms_sync.mjs --force",
+    "sync:dry-run": "node prime-notion-bridge/notion_cms_sync.mjs --dry-run",
+    "test": "node prime-notion-bridge/test_cms_sync.mjs && node --test prime-notion-bridge/test.mjs"
+  }
+}
