@@ -10,9 +10,10 @@ wp-config.php
 .env.*
 !.env.example
 
-# WordPress Uploads, Cache & Logs
+# WordPress Uploads, Cache, Languages & Logs
 /wp-content/uploads/
 /wp-content/upgrade/
+/wp-content/languages/
 /wp-content/debug.log
 *.log
 

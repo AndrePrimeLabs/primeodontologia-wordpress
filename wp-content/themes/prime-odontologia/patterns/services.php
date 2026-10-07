@@ -19,7 +19,7 @@
       <!-- /wp:heading -->
     </div>
     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.9375rem"}},"textColor":"secondary"} -->
-    <p class="has-secondary-color has-text-color" style="font-size:0.9375rem"><a href="https://wa.me/5531988887777" style="color:var(--wp--preset--color--accent);font-weight:600">Dúvidas? Fale com a equipe →</a></p>
+    <p class="has-secondary-color has-text-color" style="font-size:0.9375rem"><a href="https://wa.me/5531992893060" style="color:var(--wp--preset--color--accent);font-weight:600">Dúvidas? Fale com a equipe →</a></p>
     <!-- /wp:paragraph -->
   </div>
   <!-- /wp:group -->
@@ -38,7 +38,7 @@
       <p class="has-secondary-color has-text-color" style="font-size:0.9375rem;line-height:1.6">Desenvolvido especificamente para guiar o crescimento das arcadas dentárias e abrir espaço para a erupção dos dentes permanentes com total conforto.</p>
       <!-- /wp:paragraph -->
       <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"1.5rem"}}}} -->
-      <p style="margin-top:1.5rem"><a href="https://wa.me/5531988887777" style="color:var(--wp--preset--color--accent);font-weight:600;font-size:0.875rem">Agendar infantil →</a></p>
+      <p style="margin-top:1.5rem"><a href="https://wa.me/5531992893060" style="color:var(--wp--preset--color--accent);font-weight:600;font-size:0.875rem">Agendar infantil →</a></p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -55,7 +55,7 @@
       <p class="has-secondary-color has-text-color" style="font-size:0.9375rem;line-height:1.6">Alinhamento discreto com indicadores de uso e liberdade total para esportes, estudos e vida social, sem ferimentos de bráquetes metálicos.</p>
       <!-- /wp:paragraph -->
       <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"1.5rem"}}}} -->
-      <p style="margin-top:1.5rem"><a href="https://wa.me/5531988887777" style="color:var(--wp--preset--color--accent);font-weight:600;font-size:0.875rem">Agendar avaliação →</a></p>
+      <p style="margin-top:1.5rem"><a href="https://wa.me/5531992893060" style="color:var(--wp--preset--color--accent);font-weight:600;font-size:0.875rem">Agendar avaliação →</a></p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -72,7 +72,7 @@
       <p class="has-secondary-color has-text-color" style="font-size:0.9375rem;line-height:1.6">Alinhadores imperceptíveis em reuniões e fotos. Correção de apinhamentos, diastemas e mordidas com rotina simples e higiene impecável.</p>
       <!-- /wp:paragraph -->
       <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"1.5rem"}}}} -->
-      <p style="margin-top:1.5rem"><a href="https://wa.me/5531988887777" style="color:var(--wp--preset--color--accent);font-weight:600;font-size:0.875rem">Agendar consulta →</a></p>
+      <p style="margin-top:1.5rem"><a href="https://wa.me/5531992893060" style="color:var(--wp--preset--color--accent);font-weight:600;font-size:0.875rem">Agendar consulta →</a></p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->

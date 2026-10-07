@@ -25,7 +25,7 @@
     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
     <div class="wp-block-buttons">
       <!-- wp:button {"backgroundColor":"accent","textColor":"background","style":{"border":{"radius":"6px"},"typography":{"fontSize":"1rem","fontWeight":"600"}}} -->
-      <div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-background-color has-text-color has-background-color wp-element-button" href="https://wa.me/5531988887777" target="_blank" rel="noopener noreferrer" style="border-radius:6px;font-size:1rem;font-weight:600">Iniciar Atendimento no WhatsApp</a></div>
+      <div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-background-color has-text-color has-background-color wp-element-button" href="https://wa.me/5531992893060" target="_blank" rel="noopener noreferrer" style="border-radius:6px;font-size:1rem;font-weight:600">Iniciar Atendimento no WhatsApp</a></div>
       <!-- /wp:button -->
     </div>
     <!-- /wp:buttons -->
