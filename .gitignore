@@ -1,0 +1,34 @@
+# OS Metadata
+.DS_Store
+**/.DS_Store
+Thumbs.db
+._*
+
+# Configuration & Sensitive Files
+wp-config.php
+.env
+.env.*
+!.env.example
+
+# WordPress Uploads, Cache & Logs
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/debug.log
+*.log
+
+# WordPress Studio SQLite Database & Ephemeral Files
+/wp-content/database/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+/wp-content/mu-plugins/99-studio-loader.php
+
+# Prime Notion Bridge State & Locks
+prime-notion-bridge/bridge-state.json*
+prime-notion-bridge/*.lock
+prime-notion-bridge/.env
+prime-notion-bridge/.env.*
+
+# IDE & Editor
+.vscode/
+.idea/
