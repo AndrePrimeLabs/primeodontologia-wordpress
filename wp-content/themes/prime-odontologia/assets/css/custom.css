@@ -1,0 +1,165 @@
+/**
+ * Prime Odontologia - Custom styling based on DESIGN.md
+ */
+
+:root {
+  --prime-navy: #1b2a4a;
+  --prime-cobalt: #2457d6;
+  --prime-text: #1f2733;
+  --prime-secondary: #5b6675;
+  --prime-surface: #f3f5f8;
+  --prime-line: #e4e8ee;
+  --prime-radius: 6px;
+}
+
+/* Base typography refinements */
+body {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Image filter specified in DESIGN.md */
+img, .wp-block-image img {
+  filter: saturate(0.95);
+  border-radius: var(--prime-radius);
+}
+
+/* Buttons micro-animation & lift */
+.wp-block-button__link,
+.btn-primary {
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out, background-color 180ms ease-out !important;
+  border-radius: var(--prime-radius) !important;
+  font-weight: 600 !important;
+}
+
+.wp-block-button__link:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 42, 74, 0.15);
+}
+
+/* Card elevation & depth */
+.prime-card {
+  background: #ffffff !important;
+  border: 1px solid var(--prime-line) !important;
+  border-radius: var(--prime-radius) !important;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  padding: 2rem;
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+.prime-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 24, 40, 0.08);
+}
+
+.prime-card-featured {
+  border-top: 3px solid var(--prime-cobalt) !important;
+}
+
+/* Labels specified in DESIGN.md */
+.prime-label {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--prime-secondary) !important;
+  margin-bottom: 0.5rem;
+}
+
+/* Signature Tilted Reel */
+.prime-tilted-reel-wrapper {
+  overflow: hidden;
+  padding: 4rem 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.prime-tilted-reel {
+  display: flex;
+  gap: 1.5rem;
+  width: 120%;
+  margin-left: -10%;
+  transform: rotate(-2.5deg);
+  transition: transform 300ms ease;
+}
+
+.prime-tilted-reel-alt {
+  transform: rotate(2.5deg);
+}
+
+.prime-tilted-reel img {
+  width: 320px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--prime-radius);
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.08);
+}
+
+/* Mobile: straight scroll-snap row without tilt */
+@media (max-width: 768px) {
+  .prime-tilted-reel-wrapper {
+    padding: 2rem 0;
+  }
+  .prime-tilted-reel,
+  .prime-tilted-reel-alt {
+    width: 100%;
+    margin-left: 0;
+    transform: none !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 1.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .prime-tilted-reel img {
+    scroll-snap-align: center;
+    width: 260px;
+    height: 180px;
+  }
+}
+
+/* Tabular numerals for stats */
+.prime-stat-number {
+  font-variant-numeric: tabular-nums;
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--prime-navy);
+  line-height: 1.1;
+}
+
+/* Navigation header styling */
+.prime-site-header {
+  border-bottom: 1px solid var(--prime-line);
+  background: #ffffff;
+}
+
+.prime-site-header .wp-block-navigation a {
+  color: var(--prime-navy) !important;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-decoration: none !important;
+  transition: color 150ms ease;
+}
+
+.prime-site-header .wp-block-navigation a:hover {
+  color: var(--prime-cobalt) !important;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .prime-tilted-reel,
+  .prime-tilted-reel-alt {
+    transform: none !important;
+  }
+  .prime-card,
+  .wp-block-button__link {
+    transition: none !important;
+    transform: none !important;
+  }
+}
