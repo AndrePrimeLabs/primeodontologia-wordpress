@@ -1,11 +1,12 @@
 {
 	"folders": [
 		{
-			"path": "."
-		},
-		{
 			"name": "primeodontologia-wordpress",
 			"path": "primeodontologia-wordpress"
+		},
+		{
+			"name": "prime-odontologia-2",
+			"path": "."
 		}
 	],
 	"settings": {}
