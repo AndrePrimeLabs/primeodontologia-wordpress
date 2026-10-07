@@ -1,9 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "primeodontologia-wordpress",
-			"path": "."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "../primeodontologia-wordpress"
+        }
+    ]
 }
