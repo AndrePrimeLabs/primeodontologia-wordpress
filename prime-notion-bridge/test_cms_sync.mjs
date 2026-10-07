@@ -94,8 +94,8 @@ globalThis.fetch = async (url, init = {}) => {
   const u = String(url);
   const json = data => new Response(JSON.stringify(data), { status: 200, headers: { 'Content-Type': 'application/json' } });
 
-  // Notion Database Query Mock
-  if (u.includes('api.notion.com/v1/databases/')) {
+  // Notion Database / Data Source Query Mock
+  if (u.includes('api.notion.com/v1/databases/') || u.includes('api.notion.com/v1/data_sources/')) {
     return json({
       results: [
         {

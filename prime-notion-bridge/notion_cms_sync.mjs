@@ -157,11 +157,44 @@ export async function convertNotionBlocks(blocks, fetchChildren, uploadImage, de
   return out;
 }
 
+// Native .env file loader for Node.js
+export function loadDotenv(envPath) {
+  const paths = [
+    envPath,
+    path.join(process.cwd(), '.env'),
+    path.join(process.cwd(), 'prime-notion-bridge', '.env'),
+    path.join(path.dirname(fileURLToPath(import.meta.url)), '.env'),
+    path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '.env')
+  ].filter(Boolean);
+
+  for (const p of paths) {
+    if (fs.existsSync(p)) {
+      try {
+        const content = fs.readFileSync(p, 'utf8');
+        for (const line of content.split('\n')) {
+          const trimmed = line.trim();
+          if (!trimmed || trimmed.startsWith('#') || !trimmed.includes('=')) continue;
+          const [key, ...vals] = trimmed.split('=');
+          const val = vals.join('=').trim().replace(/^["']|["']$/g, '');
+          const cleanKey = key.trim();
+          if (!process.env[cleanKey]) {
+            process.env[cleanKey] = val;
+          }
+        }
+        break;
+      } catch {}
+    }
+  }
+}
+
 export class NotionCmsSync {
   constructor(options = {}) {
+    loadDotenv(options.envFile);
     const env = options.env || process.env;
     this.notionToken = options.notionToken || env.NOTION_TOKEN;
-    this.databaseId = cleanUuid(options.databaseId || env.NOTION_DATABASE_ID);
+    this.dataSourceId = cleanUuid(options.dataSourceId || env.NOTION_DATA_SOURCE_ID);
+    this.databaseId = cleanUuid(options.databaseId || env.NOTION_DATABASE_ID) || this.dataSourceId;
+    this.notionVersion = options.notionVersion || env.NOTION_VERSION || env.NOTION_API_VERSION || '2026-03-11';
     this.wpBaseUrl = (options.wpBaseUrl || env.WP_BASE_URL || 'http://localhost:8882').replace(/\/$/, '');
     this.wpUser = options.wpUser || env.WP_USER || 'admin';
     this.wpAppPassword = options.wpAppPassword || env.WP_APP_PASSWORD;
@@ -173,7 +206,7 @@ export class NotionCmsSync {
 
   validateConfig() {
     if (!this.notionToken) throw new Error('Missing NOTION_TOKEN. Configure in .env or pass in options.');
-    if (!this.databaseId) throw new Error('Missing NOTION_DATABASE_ID. Set the ID/URL of your Notion CMS Database.');
+    if (!this.databaseId && !this.dataSourceId) throw new Error('Missing NOTION_DATA_SOURCE_ID or NOTION_DATABASE_ID.');
     if (!this.wpBaseUrl) throw new Error('Missing WP_BASE_URL (e.g. http://localhost:8882).');
     if (!this.wpUser) throw new Error('Missing WP_USER (e.g. admin).');
     if (!this.wpAppPassword) throw new Error('Missing WP_APP_PASSWORD (generate in WP Admin -> Profile -> Application Passwords).');
@@ -200,13 +233,13 @@ export class NotionCmsSync {
   }
 
   async notionRequest(apiPath, method = 'GET', body = null) {
-    await new Promise(r => setTimeout(r, 200)); // Respect Notion rate limits (3 req/sec)
+    await new Promise(r => setTimeout(r, 200)); // Respect Notion rate limits
     const url = `https://api.notion.com/v1/${apiPath}`;
     const opts = {
       method,
       headers: {
         'Authorization': `Bearer ${this.notionToken}`,
-        'Notion-Version': '2022-06-28',
+        'Notion-Version': this.notionVersion,
         'Content-Type': 'application/json'
       }
     };
@@ -215,9 +248,30 @@ export class NotionCmsSync {
     const res = await fetch(url, opts);
     if (!res.ok) {
       const errText = await res.text();
-      throw new Error(`Notion API Error (${res.status} ${res.statusText}): ${errText}`);
+      const err = new Error(`Notion API Error (${res.status} ${res.statusText}): ${errText}`);
+      err.status = res.status;
+      throw err;
     }
     return res.json();
+  }
+
+  async queryDataSourceOrDatabase(queryParams = {}) {
+    const targetId = this.dataSourceId || this.databaseId;
+    
+    // Attempt data_sources/:id/query first if dataSourceId is present or with 2026-03-11
+    if (this.dataSourceId) {
+      return await this.notionRequest(`data_sources/${this.dataSourceId}/query`, 'POST', queryParams);
+    }
+
+    try {
+      return await this.notionRequest(`data_sources/${targetId}/query`, 'POST', queryParams);
+    } catch (err) {
+      if (err.status === 404 || err.message.includes('object_not_found') || err.message.includes('unrecognized_endpoint')) {
+        // Fallback to legacy databases/:id/query
+        return await this.notionRequest(`databases/${targetId}/query`, 'POST', queryParams);
+      }
+      throw err;
+    }
   }
 
   async wpRequest(apiPath, method = 'GET', body = null, extraHeaders = {}) {
@@ -417,23 +471,32 @@ export class NotionCmsSync {
 
   async runOnce() {
     this.validateConfig();
+    const targetId = this.dataSourceId || this.databaseId;
     console.log(`\n======================================================`);
     console.log(`🚀 Prime Notion CMS Sync starting...`);
     console.log(`Target WP: ${this.wpBaseUrl}`);
-    console.log(`Notion Database ID: ${this.databaseId}`);
+    console.log(`Notion Target ID: ${targetId} (${this.dataSourceId ? 'data_source' : 'database'})`);
+    console.log(`Notion Version: ${this.notionVersion}`);
     console.log(`Publish Mode: ${this.publishMode}`);
     console.log(`======================================================\n`);
 
-    // Query Notion Database
-    const dbRes = await this.notionRequest(`databases/${this.databaseId}/query`, 'POST', {
-      page_size: 100
-    });
+    // Query Notion Data Source / Database with full cursor pagination
+    const allPages = [];
+    let cursor = null;
+    do {
+      const queryBody = { page_size: 100 };
+      if (cursor) queryBody.start_cursor = cursor;
+      const res = await this.queryDataSourceOrDatabase(queryBody);
+      if (Array.isArray(res.results)) {
+        allPages.push(...res.results);
+      }
+      cursor = res.has_more ? res.next_cursor : null;
+    } while (cursor);
 
-    const pages = dbRes.results || [];
-    console.log(`Found ${pages.length} records in Notion CMS database.`);
+    console.log(`Found ${allPages.length} records in Notion CMS.`);
 
     const results = { synced: 0, skipped: 0, errors: 0 };
-    for (const page of pages) {
+    for (const page of allPages) {
       try {
         const meta = this.extractProperties(page);
         if (!meta.title) {
