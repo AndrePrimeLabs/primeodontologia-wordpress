@@ -18,11 +18,17 @@ wp-config.php
 *.log
 
 # WordPress Studio SQLite Database & Ephemeral Files
+/wp-content/db.php
 /wp-content/database/
+/wp-content/mu-plugins/sqlite-database-integration/
+/wp-content/mu-plugins/hostinger-auto-updates.php
+/wp-content/mu-plugins/99-studio-loader.php
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
-/wp-content/mu-plugins/99-studio-loader.php
+__wp__/
+prime-import-source*/
+
 
 # Prime Notion Bridge State & Locks
 prime-notion-bridge/bridge-state.json*
