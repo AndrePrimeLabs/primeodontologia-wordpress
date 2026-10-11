@@ -41,6 +41,13 @@ img, .wp-block-image img {
   font-weight: 600 !important;
 }
 
+/* Filled CTA buttons must always show white text. The bare `has-text-color` utility
+   applied to button links was overriding this, leaving dark text on navy/cobalt. */
+.wp-block-button__link.has-primary-background-color,
+.wp-block-button__link.has-accent-background-color {
+  color: #ffffff !important;
+}
+
 .wp-block-button__link:hover,
 .btn-primary:hover {
   transform: translateY(-2px);

@@ -10,6 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Disable the front-end emoji script and styles. The site does not rely on
+ * the emoji JS/CSS, and removing it saves ~15 KB of JavaScript per page load.
+ */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+/**
  * Enqueue theme styles, scripts, and fonts.
  */
 function prime_odontologia_scripts() {

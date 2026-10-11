@@ -12,25 +12,3 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: prime-odontologia
 */
-
-/* --- Prime Odontologia --- */
-
-/* Filled CTA buttons must always show white text. The bare `has-text-color`
-   utility applied to button links was overriding the theme's white button text,
-   leaving dark text on the navy (#1b2a4a) and cobalt (#2457d6) backgrounds. */
-.wp-block-button__link.has-primary-background-color,
-.wp-block-button__link.has-accent-background-color {
-  color: #ffffff;
-}
-
-/* Respect the user's reduced-motion preference. */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
