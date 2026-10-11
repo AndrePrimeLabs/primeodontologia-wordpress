@@ -25,6 +25,14 @@ img, .wp-block-image img {
   border-radius: var(--prime-radius);
 }
 
+/* Section (service page / story) imagery */
+.prime-story-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--prime-radius);
+  box-shadow: 0 4px 16px rgba(16, 24, 40, 0.06);
+}
+
 /* Buttons micro-animation & lift */
 .wp-block-button__link,
 .btn-primary {

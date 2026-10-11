@@ -63,6 +63,13 @@
         }
       ]
     },
+    "customTemplates": [
+      {
+        "name": "page-fullwidth",
+        "postTypes": ["page"],
+        "title": "Página largura total"
+      }
+    ],
     "typography": {
       "fluid": true,
       "fontFamilies": [
