@@ -213,7 +213,9 @@ export class NotionCmsSync {
   }
 
   getAuthHeader() {
-    return 'Basic ' + Buffer.from(`${this.wpUser}:${this.wpAppPassword}`).toString('base64');
+    const user = (this.wpUser || '').trim();
+    const pass = (this.wpAppPassword || '').replace(/\s+/g, '');
+    return 'Basic ' + Buffer.from(`${user}:${pass}`).toString('base64');
   }
 
   loadState() {
@@ -291,9 +293,31 @@ export class NotionCmsSync {
     const res = await fetch(url, opts);
     if (!res.ok) {
       const errText = await res.text();
-      throw new Error(`WordPress REST Error (${res.status} ${res.statusText}) on ${apiPath}: ${errText}`);
+      const err = new Error(`WordPress REST Error (${res.status} ${res.statusText}) on ${apiPath}: ${errText}`);
+      err.status = res.status;
+      throw err;
     }
     return res.json();
+  }
+
+  async validateWpConnection() {
+    if (this.dryRun) return;
+    try {
+      const user = await this.wpRequest('users/me');
+      if (user && user.id) {
+        console.log(`🔑 WordPress authenticated as: ${user.name || user.slug} (ID: ${user.id})`);
+      }
+    } catch (err) {
+      if (err.status === 401 || err.message.includes('401')) {
+        throw new Error(
+          `WordPress Authentication Failed (401 Unauthorized).\n` +
+          `The credentials for WP_USER="${this.wpUser}" were rejected by ${this.wpBaseUrl}.\n` +
+          `👉 Note: On WordPress.com Atomic, your user is likely "andredoctorr" or your email "andrestallion@gmail.com" (not "admin").\n` +
+          `👉 Ensure WP_APP_PASSWORD was created under that user in WP-Admin -> Users -> Profile -> Application Passwords.`
+        );
+      }
+      throw err;
+    }
   }
 
   extractProperties(page) {
@@ -471,6 +495,7 @@ export class NotionCmsSync {
 
   async runOnce() {
     this.validateConfig();
+    await this.validateWpConnection();
     const targetId = this.dataSourceId || this.databaseId;
     console.log(`\n======================================================`);
     console.log(`🚀 Prime Notion CMS Sync starting...`);

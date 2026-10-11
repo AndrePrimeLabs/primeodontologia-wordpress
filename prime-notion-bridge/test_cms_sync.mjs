@@ -135,6 +135,10 @@ globalThis.fetch = async (url, init = {}) => {
 
   // WordPress REST API Mock
   if (u.includes('/wp-json/wp/v2/')) {
+    if (init.method === 'GET' && u.endsWith('/users/me')) {
+      return json({ id: 1, name: 'testadmin', slug: 'testadmin' });
+    }
+
     // Search existing
     if (init.method === 'GET' && u.includes('?slug=')) {
       if (u.includes('meu-sorriso')) {
