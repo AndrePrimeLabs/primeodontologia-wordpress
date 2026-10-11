@@ -44,3 +44,37 @@ function prime_odontologia_register_pattern_categories() {
 	);
 }
 add_action( 'init', 'prime_odontologia_register_pattern_categories' );
+
+/**
+ * Add Google Tag (gtag.js) for Google Ads (AW-5199335510) and conversion tracking.
+ */
+function prime_odontologia_google_tag() {
+	?>
+	<!-- Google tag (gtag.js) - Google Ads: 519-933-5510 -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-5199335510"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'AW-5199335510');
+
+	  // Track WhatsApp consultation booking clicks as conversions
+	  document.addEventListener('DOMContentLoaded', function() {
+	    document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+	      link.addEventListener('click', function() {
+	        if (typeof gtag === 'function') {
+	          gtag('event', 'conversion', {
+	            'send_to': 'AW-5199335510',
+	            'event_category': 'Contact',
+	            'event_label': 'WhatsApp Appointment Click'
+	          });
+	        }
+	      });
+	    });
+	  });
+	</script>
+	<?php
+}
+add_action( 'wp_head', 'prime_odontologia_google_tag', 1 );
+
