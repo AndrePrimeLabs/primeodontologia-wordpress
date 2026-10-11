@@ -1,0 +1,17 @@
+[Unit]
+Description=Prime Odontologia Notion CMS Sync Worker
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/prime-notion-bridge
+ExecStart=/usr/bin/node prime-notion-bridge/notion_cms_sync.mjs --watch --interval=60
+Restart=always
+RestartSec=10
+EnvironmentFile=/opt/prime-notion-bridge/.env
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
