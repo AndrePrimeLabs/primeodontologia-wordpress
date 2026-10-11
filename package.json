@@ -9,5 +9,9 @@
     "sync:force": "node prime-notion-bridge/notion_cms_sync.mjs --force",
     "sync:dry-run": "node prime-notion-bridge/notion_cms_sync.mjs --dry-run",
     "test": "node prime-notion-bridge/test_cms_sync.mjs && node --test prime-notion-bridge/test.mjs"
+  },
+  "dependencies": {
+    "@notionhq/client": "^5.27.0",
+    "@notionhq/workers": "^0.9.3"
   }
 }

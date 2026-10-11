@@ -36,6 +36,10 @@ prime-notion-bridge/*.lock
 prime-notion-bridge/.env
 prime-notion-bridge/.env.*
 
+# Dependencies
+node_modules/
+package-lock.json
+
 # IDE & Editor
 .vscode/
 .idea/
