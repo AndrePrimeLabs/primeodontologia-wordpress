@@ -194,7 +194,7 @@ export class NotionCmsSync {
     this.notionToken = options.notionToken || env.NOTION_TOKEN;
     this.dataSourceId = cleanUuid(options.dataSourceId || env.NOTION_DATA_SOURCE_ID);
     this.databaseId = cleanUuid(options.databaseId || env.NOTION_DATABASE_ID) || this.dataSourceId;
-    this.notionVersion = options.notionVersion || env.NOTION_VERSION || env.NOTION_API_VERSION || '2026-03-11';
+    this.notionVersion = options.notionVersion || env.NOTION_VERSION || env.NOTION_API_VERSION || '2022-06-28';
     this.wpBaseUrl = (options.wpBaseUrl || env.WP_BASE_URL || 'http://localhost:8882').replace(/\/$/, '');
     this.wpUser = options.wpUser || env.WP_USER || 'admin';
     this.wpAppPassword = options.wpAppPassword || env.WP_APP_PASSWORD;
@@ -266,8 +266,8 @@ export class NotionCmsSync {
     try {
       return await this.notionRequest(`data_sources/${targetId}/query`, 'POST', queryParams);
     } catch (err) {
-      if (err.status === 404 || err.message.includes('object_not_found') || err.message.includes('unrecognized_endpoint')) {
-        // Fallback to legacy databases/:id/query
+      if (err.status === 404 || err.status === 400 || err.message.includes('invalid_request_url') || err.message.includes('object_not_found') || err.message.includes('unrecognized_endpoint')) {
+        // Fallback to databases/:id/query
         return await this.notionRequest(`databases/${targetId}/query`, 'POST', queryParams);
       }
       throw err;
