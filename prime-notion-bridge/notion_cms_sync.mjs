@@ -175,7 +175,7 @@ export function loadDotenv(envPath) {
           const trimmed = line.trim();
           if (!trimmed || trimmed.startsWith('#') || !trimmed.includes('=')) continue;
           const [key, ...vals] = trimmed.split('=');
-          const val = vals.join('=').trim().replace(/^["']|["']$/g, '');
+          const val = vals.join('=').trim().replace(/^["']+|["']+$/g, '');
           const cleanKey = key.trim();
           if (!process.env[cleanKey]) {
             process.env[cleanKey] = val;
@@ -213,8 +213,8 @@ export class NotionCmsSync {
   }
 
   getAuthHeader() {
-    const user = (this.wpUser || '').trim();
-    const pass = (this.wpAppPassword || '').replace(/\s+/g, '');
+    const user = (this.wpUser || '').trim().replace(/^["']+|["']+$/g, '');
+    const pass = (this.wpAppPassword || '').replace(/^["']+|["']+$/g, '').replace(/\s+/g, '');
     return 'Basic ' + Buffer.from(`${user}:${pass}`).toString('base64');
   }
 
