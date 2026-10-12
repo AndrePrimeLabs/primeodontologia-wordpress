@@ -48,6 +48,18 @@ img, .wp-block-image img {
   color: #ffffff !important;
 }
 
+/* Hero full-bleed cover: the palette utility classes don't apply white in this theme,
+   so force content over the navy scrim to stay legible. The white CTA keeps navy text. */
+.wp-block-cover__inner-container .wp-block-heading {
+  color: #ffffff !important;
+}
+.wp-block-cover__inner-container .wp-block-button__link {
+  color: #ffffff !important;
+}
+.wp-block-cover__inner-container .wp-block-button__link.has-background-background-color {
+  color: var(--prime-navy) !important;
+}
+
 .wp-block-button__link:hover,
 .btn-primary:hover {
   transform: translateY(-2px);

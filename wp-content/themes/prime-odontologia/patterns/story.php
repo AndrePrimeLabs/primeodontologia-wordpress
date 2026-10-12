@@ -55,7 +55,7 @@
     <!-- wp:column {"width":"50%"} -->
     <div class="wp-block-column" style="flex-basis:50%">
       <!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"prime-story-image"} -->
-      <figure class="wp-block-image size-large prime-story-image"><img src="https://i0.wp.com/primeodontologia.com.br/wp-content/uploads/2026/05/invisalign-como-funciona-de-perto-e1779377427947.jpg?fit=800%2C550&ssl=1" alt="Alinhador ortodôntico transparente SmartTrack" style="width:100%;height:auto;border-radius:6px;box-shadow:0 4px 16px rgba(16,24,40,0.06)"/></figure>
+      <figure class="wp-block-image size-large prime-story-image"><img src="https://i0.wp.com/primeodontologia.com.br/wp-content/uploads/2026/05/invisalign-como-funciona-de-perto-e1779377427947.jpg?fit=800%2C550&ssl=1" alt="Alinhador ortodôntico transparente SmartTrack" loading="lazy" decoding="async"/></figure>
       <!-- /wp:image -->
     </div>
     <!-- /wp:column -->

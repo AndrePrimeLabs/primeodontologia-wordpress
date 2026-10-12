@@ -85,3 +85,19 @@ function prime_odontologia_google_tag() {
 }
 add_action( 'wp_head', 'prime_odontologia_google_tag', 1 );
 
+/**
+ * Preload the LCP hero image and preconnect to font origins to improve
+ * Largest Contentful Paint on the front page.
+ */
+function prime_odontologia_resource_hints() {
+	// Preconnect to Google Fonts origins to cut render-blocking handshake time.
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+
+	// Preload the hero (LCP) cover image on the front page so it starts early.
+	if ( is_front_page() ) {
+		echo '<link rel="preload" as="image" href="' . esc_url( get_template_directory_uri() . '/assets/images/hero.jpg' ) . '" fetchpriority="high">' . "\n";
+	}
+}
+add_action( 'wp_head', 'prime_odontologia_resource_hints', 0 );
+
