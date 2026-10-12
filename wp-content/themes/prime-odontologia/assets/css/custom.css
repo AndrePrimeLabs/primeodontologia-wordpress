@@ -3,9 +3,9 @@
  */
 
 :root {
-  --prime-navy: #1b2a4a;
-  --prime-cobalt: #2457d6;
-  --prime-text: #1f2733;
+  --prime-navy: #1863dc;
+  --prime-cobalt: #03c4eb;
+  --prime-text: #333333;
   --prime-secondary: #5b6675;
   --prime-surface: #f3f5f8;
   --prime-line: #e4e8ee;
@@ -41,10 +41,10 @@ img, .wp-block-image img {
   font-weight: 600 !important;
 }
 
-/* Filled CTA buttons must always show white text. The bare `has-text-color` utility
-   applied to button links was overriding this, leaving dark text on navy/cobalt. */
-.wp-block-button__link.has-primary-background-color,
-.wp-block-button__link.has-accent-background-color {
+/* Filled CTA buttons must always show white text (Sapphire primary).
+   The Capri accent is too light for white text, so it is never used as a
+   filled button background — that keeps the palette accessible. */
+.wp-block-button__link.has-primary-background-color {
   color: #ffffff !important;
 }
 
@@ -63,7 +63,7 @@ img, .wp-block-image img {
 .wp-block-button__link:hover,
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(27, 42, 74, 0.15);
+  box-shadow: 0 4px 12px rgba(24, 99, 220, 0.15);
 }
 
 /* Card elevation & depth */
@@ -164,6 +164,40 @@ img, .wp-block-image img {
 .prime-site-header {
   border-bottom: 1px solid var(--prime-line);
   background: #ffffff;
+}
+
+/* Tighten primary headings to pure Sapphire (the palette utility class was
+   rendering a softened text tone instead of the brand Sapphire). */
+.wp-block-heading.has-primary-color {
+  color: var(--prime-navy) !important;
+}
+
+/* Floating transparent header over the front-page photo hero only.
+   Removed from flow so the hero reaches the top; white chrome over the dark scrim.
+   All other pages keep the solid white header with navy text. */
+body.home .prime-site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent !important;
+  border-bottom: none !important;
+  z-index: 10;
+}
+body.home .prime-site-header .wp-block-navigation a,
+body.home .prime-site-header .wp-block-site-title,
+body.home .prime-site-header .wp-block-site-title a,
+body.home .prime-site-header .wp-block-site-logo {
+  color: #ffffff !important;
+}
+body.home .prime-site-header .wp-block-button__link {
+  background-color: #ffffff !important;
+  color: var(--prime-navy) !important;
+}
+
+/* Start the hero photo flush at the very top, under the floating header. */
+body.home .wp-block-cover.is-position-center-left {
+  margin-top: 0 !important;
 }
 
 .prime-site-header .wp-block-navigation a {

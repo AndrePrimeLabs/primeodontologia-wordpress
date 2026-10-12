@@ -10,8 +10,8 @@
       "defaultPalette": false,
       "palette": [
         {
-          "color": "#1b2a4a",
-          "name": "Primary Navy",
+          "color": "#1863dc",
+          "name": "Primary Sapphire",
           "slug": "primary"
         },
         {
@@ -20,8 +20,8 @@
           "slug": "background"
         },
         {
-          "color": "#1f2733",
-          "name": "Text Dark",
+          "color": "#333333",
+          "name": "Text Onyx",
           "slug": "text"
         },
         {
@@ -40,8 +40,8 @@
           "slug": "line"
         },
         {
-          "color": "#2457d6",
-          "name": "Accent Cobalt",
+          "color": "#03c4eb",
+          "name": "Accent Capri",
           "slug": "accent"
         }
       ]
@@ -74,32 +74,14 @@
       "fluid": true,
       "fontFamilies": [
         {
-          "fontFamily": "\"Public Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
-          "name": "Public Sans",
-          "slug": "public-sans",
-          "fontFace": [
-            {
-              "fontFamily": "Public Sans",
-              "fontWeight": "400",
-              "fontStyle": "normal",
-              "fontStretch": "normal",
-              "src": ["https://fonts.gstatic.com/s/publicsans/v18/ijwUs572Xtc6ZYQws9YVwnNJfJ7DYlKwhT02.woff2"]
-            },
-            {
-              "fontFamily": "Public Sans",
-              "fontWeight": "600",
-              "fontStyle": "normal",
-              "fontStretch": "normal",
-              "src": ["https://fonts.gstatic.com/s/publicsans/v18/ijwUs572Xtc6ZYQws9YVwnNJfJ7DYlKwhT02.woff2"]
-            },
-            {
-              "fontFamily": "Public Sans",
-              "fontWeight": "700",
-              "fontStyle": "normal",
-              "fontStretch": "normal",
-              "src": ["https://fonts.gstatic.com/s/publicsans/v18/ijwUs572Xtc6ZYQws9YVwnNJfJ7DYlKwhT02.woff2"]
-            }
-          ]
+          "fontFamily": "Raleway, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
+          "name": "Raleway",
+          "slug": "raleway"
+        },
+        {
+          "fontFamily": "\"Open Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
+          "name": "Open Sans",
+          "slug": "open-sans"
         }
       ],
       "fontSizes": [
@@ -143,7 +125,7 @@
       "text": "var(--wp--preset--color--text)"
     },
     "typography": {
-      "fontFamily": "var(--wp--preset--font-family--public-sans)",
+      "fontFamily": "var(--wp--preset--font-family--open-sans)",
       "fontSize": "var(--wp--preset--font-size--body)",
       "lineHeight": "1.6"
     },
@@ -163,7 +145,7 @@
           "text": "var(--wp--preset--color--primary)"
         },
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--public-sans)",
+          "fontFamily": "var(--wp--preset--font-family--raleway)",
           "fontWeight": "700",
           "letterSpacing": "-0.01em",
           "lineHeight": "1.15"
@@ -198,7 +180,7 @@
           }
         },
         "typography": {
-          "fontFamily": "var(--wp--preset--font-family--public-sans)",
+          "fontFamily": "var(--wp--preset--font-family--open-sans)",
           "fontSize": "0.9375rem",
           "fontWeight": "600",
           "textDecoration": "none"

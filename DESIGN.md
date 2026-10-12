@@ -2,33 +2,33 @@
 name: Prime Odontologia
 description: Odontologia de confiança — cuidado que respeita o seu sorriso
 colors:
-  primary: "#1b2a4a"
+  primary: "#1863dc"
   background: "#ffffff"
-  text: "#1f2733"
+  text: "#333333"
   secondary: "#5b6675"
   surface: "#f3f5f8"
   line: "#e4e8ee"
-  accent: "#2457d6"
+  accent: "#03c4eb"
 typography:
   display:
-    fontFamily: "Public Sans"
+    fontFamily: "Raleway"
     fontSize: 3.25rem
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: -0.01em
   headline:
-    fontFamily: "Public Sans"
+    fontFamily: "Raleway"
     fontSize: 2.25rem
     fontWeight: 700
     lineHeight: 1.15
     letterSpacing: -0.01em
   body:
-    fontFamily: "Public Sans"
+    fontFamily: "Open Sans"
     fontSize: 1.0625rem
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Public Sans"
+    fontFamily: "Raleway"
     fontSize: 0.75rem
     fontWeight: 600
     lineHeight: 1.4
@@ -50,15 +50,15 @@ imagery:
 
 ## Overview
 
-A dental practice site that reassures through order and clarity. Pure white ground, navy for headlines and the primary button, cool gray surfaces for cards and alternate sections, and tidy rows of evidence — credentials, numbers, testimonials. The signature is a **tilted reel**: image strips run diagonally across the page, and text sits in the open wedges they leave. Clean and credible, with one memorable motion.
+A dental practice site that reassures through order and clarity, built from the official **Prime Odontologia Brandbook** (Google Labs / Pomelli). Pure white ground, **Sapphire Blue `#1863dc`** for headlines and the primary button, cool gray surfaces for cards and alternate sections, and a bright **Capri Blue `#03c4eb`** accent. Type is **Raleway** (headlines) + **Open Sans** (body). The signature is a **tilted reel**: image strips run diagonally across the page, and text sits in the open wedges they leave. Clean and credible, with one memorable motion.
 
 ## Colors
 
-Pure white is the ground. Navy `#1b2a4a` carries headlines and the primary button and one full navy section for the closing call to action. Cool gray surfaces (`#f3f5f8` for alternate sections, `#e4e8ee` for cards) hold content off the white. Text is `#1f2733`, secondary text `#5b6675`. A single accent, cobalt `#2457d6`, appears only on links, icons, and primary buttons — never as a surface.
+Pure white is the ground. **Sapphire `#1863dc`** carries headlines and the primary button and one full Sapphire section for the closing call to action. Cool gray surfaces (`#f3f5f8` for alternate sections, `#e4e8ee` for cards) hold content off the white. Text is **Onyx `#333333`**, secondary text `#5b6675`. A single bright accent, **Capri `#03c4eb`**, appears only on links, icons, and small highlights — never as a filled button or surface (it is too light for white text).
 
 ## Typography
 
-One neutral sans throughout — **Public Sans**. Headlines at 600–700 weight with `letter-spacing: -0.01em`, the hero at `clamp(2rem, 4.5vw, 3.5rem)`. Body at 1.0625rem/1.6. Labels are small uppercase with `letter-spacing: 0.08em`. Stats use tabular numerals so numbers line up. Nothing poster-scale; the type is calm and legible.
+**Raleway** (primary, from the brandbook) for headlines and labels — geometric, a little confident, at 600–700 weight with `letter-spacing: -0.01em`, the hero at `clamp(2rem, 4.5vw, 3.5rem)`. **Open Sans** (secondary) for body text at 1.0625rem/1.6. Labels are small uppercase with `letter-spacing: 0.08em`. Stats use tabular numerals so numbers line up. The pairing keeps headlines distinctive and body copy highly readable.
 
 ## Layout
 
@@ -86,17 +86,18 @@ Flat white surfaces. Cards sit on the gray surface with a 1px border in `#e4e8ee
 
 ## Components
 
-- **Button (primary)**: navy background, white text, 6px radius, `14px 28px` padding. On hover a 2px lift and 150–200ms ease-out.
+- **Button (primary)**: Sapphire background, white text, 6px radius, `14px 28px` padding. On hover a 2px lift and 150–200ms ease-out.
 - **Card**: white on the gray surface, 1px `#e4e8ee` border, one soft shadow, 6px radius.
 - **Section title row**: title left, short note or link right, aligned baseline.
 - **Label**: small uppercase secondary text with wide tracking.
 
 ## Do's and Don'ts
 
-- Do use navy for all headlines and the primary button.
+- Do use Sapphire for all headlines and the primary button.
 - Do keep a neutral photographic grade (`saturate(0.95)`).
 - Do use hairlines and 6px radii to keep things tidy.
 - Don't use warm tints, cream, or gradients.
+- Don't use Capri as a filled background (low contrast with white text); keep it to links and small accents.
 - Don't use more than one accent, decorative shapes, or poster-scale type.
 - Don't center the hero; keep copy pinned center-left with the headline and one CTA.
 
