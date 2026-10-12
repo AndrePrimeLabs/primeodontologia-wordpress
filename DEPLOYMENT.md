@@ -29,3 +29,16 @@ in every session.
 ## Push confirmation
 - Always confirm the exact target (`primeodontologia.blog`) before any
   `site_push`. Never push without explicit confirmation of the target.
+
+## Future production migration (ON HOLD — for later)
+- This site stays on **staging** (`primeodontologia.blog`, a staging/development
+  environment) while we continue coding. No production deploy now.
+- Plan: buy another WordPress (annual) plan/domain and move the site to a true
+  production environment there. We will migrate to that new site for the full
+  production launch.
+- Until that new production site exists: remain on staging, do NOT push `sqls`
+  or `plugins`, and page/plugin edits are made directly in the live WordPress
+  admin (as the user has decided).
+- Heads-up to revisit before buying: if the production site must run plugins,
+  the chosen plan needs a plugin-capable tier (plugins require at least the
+  Business plan). No action now — just noted for later.
