@@ -7,6 +7,8 @@ import {
   slugify,
   richTextToHtml,
   convertNotionBlocks,
+  extractFaqs,
+  generateFaqSchema,
   NotionCmsSync
 } from './notion_cms_sync.mjs';
 
@@ -70,6 +72,20 @@ assert.match(html, /wp:image/);
 assert.match(html, /wp-image-101/);
 assert.match(html, /💡/);
 
+// 4.1 extractFaqs and generateFaqSchema
+const faqBlocks = [
+  { type: 'heading_2', heading_2: { rich_text: r('Quanto tempo dura o Invisalign?') } },
+  { type: 'paragraph', paragraph: { rich_text: r('Dura de 6 a 18 meses em média dependendo da complexidade.') } },
+  { type: 'heading_2', heading_2: { rich_text: r('O aparelho é invisível?') } },
+  { type: 'paragraph', paragraph: { rich_text: r('Sim, os alinhadores transparentes são praticamente imperceptíveis.') } }
+];
+const extractedFaqs = extractFaqs(faqBlocks);
+assert.equal(extractedFaqs.length, 2);
+assert.equal(extractedFaqs[0].question, 'Quanto tempo dura o Invisalign?');
+const faqSchema = generateFaqSchema(extractedFaqs);
+assert.match(faqSchema, /FAQPage/);
+assert.match(faqSchema, /Quanto tempo dura o Invisalign\?/);
+
 // 5. Test Full Sync Workflow with Mocked APIs
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cms-sync-test-'));
 const stateFile = path.join(tmpDir, 'test-state.json');
@@ -131,6 +147,11 @@ globalThis.fetch = async (url, init = {}) => {
       ],
       has_more: false
     });
+  }
+
+  // Notion Page Update Mock (Write-Back)
+  if (u.includes('api.notion.com/v1/pages/')) {
+    return json({ id: 'updated-page', properties: {} });
   }
 
   // WordPress REST API Mock

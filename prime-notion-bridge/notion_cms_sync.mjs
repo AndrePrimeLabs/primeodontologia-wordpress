@@ -157,6 +157,52 @@ export async function convertNotionBlocks(blocks, fetchChildren, uploadImage, de
   return out;
 }
 
+export function extractFaqs(blocks = []) {
+  const faqs = [];
+  if (!Array.isArray(blocks)) return faqs;
+
+  for (let i = 0; i < blocks.length; i++) {
+    const b = blocks[i];
+    if (b && /^heading_[23]$/.test(b.type)) {
+      const qText = (b[b.type]?.rich_text || []).map(t => t.plain_text || '').join('').trim();
+      if (qText.endsWith('?')) {
+        let aText = '';
+        let j = i + 1;
+        while (j < blocks.length && (blocks[j].type === 'paragraph' || blocks[j].type === 'bulleted_list_item')) {
+          const nextBlock = blocks[j];
+          const subText = (nextBlock[nextBlock.type]?.rich_text || []).map(t => t.plain_text || '').join('').trim();
+          if (subText) {
+            aText += (aText ? ' ' : '') + subText;
+          }
+          j++;
+          if (aText.length > 300) break;
+        }
+        if (aText) {
+          faqs.push({ question: qText, answer: aText });
+        }
+      }
+    }
+  }
+  return faqs;
+}
+
+export function generateFaqSchema(faqs = []) {
+  if (!Array.isArray(faqs) || faqs.length < 2) return '';
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+      '@type': 'Question',
+      'name': f.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': f.answer
+      }
+    }))
+  };
+  return `<!-- wp:html -->\n<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>\n<!-- /wp:html -->\n`;
+}
+
 // Native .env file loader for Node.js
 export function loadDotenv(envPath) {
   const paths = [
@@ -332,7 +378,9 @@ export class NotionCmsSync {
 
     // Find Slug
     let slug = '';
-    const slugKey = Object.keys(p).find(k => /slug|url|permalink/i.test(k));
+    const slugKey = Object.keys(p).find(k => /desired slug/i.test(k)) ||
+                    Object.keys(p).find(k => /slug/i.test(k)) ||
+                    Object.keys(p).find(k => /url|permalink/i.test(k));
     if (slugKey && p[slugKey].rich_text) {
       slug = (p[slugKey].rich_text || []).map(t => t.plain_text || '').join('').trim();
     }
@@ -439,11 +487,19 @@ export class NotionCmsSync {
 
     console.log(`🔄 [${meta.type.toUpperCase()}] Fetching blocks for "${meta.title}"...`);
     const blocks = await this.fetchChildrenBlocks(meta.id);
-    const content = await convertNotionBlocks(
+    let content = await convertNotionBlocks(
       blocks,
       id => this.fetchChildrenBlocks(id),
       (id, url, cap) => this.uploadMedia(id, url, cap)
     );
+
+    // Extract FAQs and append JSON-LD FAQPage schema for SEO rich snippets
+    const faqs = extractFaqs(blocks);
+    const faqSchemaHtml = generateFaqSchema(faqs);
+    if (faqSchemaHtml) {
+      console.log(`✨ [SEO] Generated FAQPage Schema with ${faqs.length} questions for "${meta.title}"`);
+      content += '\n' + faqSchemaHtml;
+    }
 
     const wpStatus = meta.isPublished ? 'publish' : 'draft';
     const postPayload = {
@@ -489,8 +545,34 @@ export class NotionCmsSync {
     };
     this.saveState(state);
 
-    console.log(`✅ [${meta.type.toUpperCase()}] "${meta.title}" -> ${result.link || `${this.wpBaseUrl}/${meta.slug}/`} (${result.status})`);
+    const liveLink = result.link || `${this.wpBaseUrl}/${meta.slug}/`;
+
+    // Write back live URL and status to Notion database
+    await this.writeBackToNotion(meta.id, {
+      publishedUrl: liveLink,
+      wpId: result.id,
+      isPublished: result.status === 'publish'
+    });
+
+    console.log(`✅ [${meta.type.toUpperCase()}] "${meta.title}" -> ${liveLink} (${result.status})`);
     return { status: 'synced', id: result.id };
+  }
+
+  async writeBackToNotion(pageId, { publishedUrl, wpId, isPublished }) {
+    if (this.dryRun || !pageId) return;
+    try {
+      const properties = {};
+      if (publishedUrl) {
+        properties['Published URL'] = { url: publishedUrl };
+      }
+      if (isPublished) {
+        properties['Review status'] = { status: { name: 'Published' } };
+      }
+      await this.notionRequest(`pages/${pageId}`, 'PATCH', { properties });
+      console.log(`🔗 Updated Notion record with Published URL: ${publishedUrl}`);
+    } catch (err) {
+      console.warn(`⚠️ Notion write-back warning for ${pageId}:`, err.message);
+    }
   }
 
   async runOnce() {
