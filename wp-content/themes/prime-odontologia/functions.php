@@ -205,3 +205,24 @@ function prime_odontologia_json_ld() {
 }
 add_action( 'wp_head', 'prime_odontologia_json_ld', 6 );
 
+/**
+ * Automatically ensure ads.txt contains the verified Google AdSense publisher ID.
+ */
+function prime_odontologia_ensure_ads_txt() {
+	$target_entry = "google.com, pub-3413556435934115, DIRECT, f08c47fec0942fa0\n";
+	$paths = array(
+		'/srv/htdocs/ads.txt',
+		ABSPATH . 'ads.txt',
+	);
+	foreach ( $paths as $path ) {
+		if ( file_exists( $path ) ) {
+			$current = @file_get_contents( $path );
+			if ( $current !== false && strpos( $current, 'pub-3413556435934115' ) === false ) {
+				@file_put_contents( $path, $target_entry );
+			}
+		}
+	}
+}
+add_action( 'init', 'prime_odontologia_ensure_ads_txt' );
+
+
