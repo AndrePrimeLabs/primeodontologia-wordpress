@@ -1,48 +1,36 @@
-# Deployment Guardrails — Prime Odontologia (local project)
+# Deployment Instructions for primeodontologia.com.br
 
-These rules are mandatory for every deploy / push in this project. Follow them
-in every session.
+## Standing policy — MUST be followed on every push/deploy to the live site
+This file is a permanent instruction. Treat it as binding for any future
+`site_push`, deploy, or sync to **https://primeodontologia.com.br** (remote 255038635).
 
-## Target & origin
-- This local project (site dir `primeodontologia-wordpress`) deploys **only** to
-  **`primeodontologia.blog`**.
-- **NEVER deploy, push, or otherwise touch `primeodontologia.com.br`.** That
-  domain is a separate project with its own repo and its own backup process.
-  It must never be selected as a push target from this project.
+### 1. Never replace, remove, or overwrite plugins
+- Do **NOT** change the installed/active **plugins** on the live site when deploying.
+- Do **NOT** deactivate, delete, replace, or upgrade plugins on production.
+- A push must **not** sync `plugins` in a way that alters the live plugin set/state.
+  (i.e. avoid `options=all` / the `plugins` sync option; exclude plugin changes.)
 
-## Live wp-admin & plugins — DO NOT alter
-- **Never replace, install/uninstall, update, or otherwise change the plugins**
-  on the live `primeodontologia.blog` site's wp-admin.
-- **Never alter the live `primeodontologia.blog` wp-admin** settings,
-  configurations, plugin options, users, or theme selections as part of a deploy.
-  The client configures plugins on that site themselves.
-- **The live site owns its own content and media.** The user edits pages and
-  uploads images directly in WordPress on the live site. NEVER push `contents`
-  or `uploads` in a routine deploy, or it overwrites those direct edits and
-  replaces the live media library.
-- **Default Studio push to `primeodontologia.blog` is `themes` only** (the design
-  system this project owns). `contents`, `uploads`, `sqls`, or `plugins` are
-  pushed ONLY on explicit, deliberate request with confirmation.
-- **Never push `uploads`.** The live media library (managed directly on the site)
-  is authoritative; pushing it replaces their media.
-- **Never push `sqls` or `plugins`.** The database carries the local
-  `active_plugins` option and plugin configuration; importing it overwrites the
-  live plugin activation list and deactivates every plugin that exists only on
-  the live site.
+### 2. Never alter the live wp-admin
+- Do **NOT** modify wp-admin settings, site configuration, options, users,
+  roles, or admin-side state on the production site.
+- Do **NOT** change the admin user, passwords, or any wp-admin-managed setting
+  as part of a deploy.
+- Site configuration and admin preferences are managed manually and must remain
+  untouched by automated deploys.
 
-## Push confirmation
-- Always confirm the exact target (`primeodontologia.blog`) before any
-  `site_push`. Never push without explicit confirmation of the target.
+### 3. Content and theme only
+- Pushes to primeodontologia.com.br should be limited to the intended **content**
+  and **theme** changes for this webpage.
+- Preserve the live plugins, wp-admin configuration, and CMS settings.
 
-## Future production migration (ON HOLD — for later)
-- This site stays on **staging** (`primeodontologia.blog`, a staging/development
-  environment) while we continue coding. No production deploy now.
-- Plan: buy another WordPress (annual) plan/domain and move the site to a true
-  production environment there. We will migrate to that new site for the full
-  production launch.
-- Until that new production site exists: remain on staging, do NOT push `sqls`
-  or `plugins`, and page/plugin edits are made directly in the live WordPress
-  admin (as the user has decided).
-- Heads-up to revisit before buying: if the production site must run plugins,
-  the chosen plan needs a plugin-capable tier (plugins require at least the
-  Business plan). No action now — just noted for later.
+### 4. Confirm before pushing
+- Always confirm the exact target (https://primeodontologia.com.br / 255038635)
+  and the exact sync options with the user before any push.
+- Never use a full "all" push that would overwrite plugins or wp-admin state.
+
+---
+
+## Project context
+- This local site (`primeodontologia-wordpress`) and the local backup
+  (`prime-production-backup`) both correspond to **https://primeodontologia.com.br**
+  (remote 255038635). The same deployment policy above applies to both.
