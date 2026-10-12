@@ -29,6 +29,7 @@ img, .wp-block-image img {
 .prime-story-image img {
   width: 100%;
   height: auto;
+  aspect-ratio: 800 / 550;
   border-radius: var(--prime-radius);
   box-shadow: 0 4px 16px rgba(16, 24, 40, 0.06);
 }

@@ -11,10 +11,10 @@
   <div class="prime-tilted-reel">
     <img src="https://i0.wp.com/primeodontologia.com.br/wp-content/uploads/2026/05/invisalign-como-funciona-de-perto-e1779377427947.jpg?fit=640%2C440&ssl=1" alt="Alinhador transparente em detalhe" width="320" height="220" loading="lazy">
     <img src="https://i0.wp.com/primeodontologia.com.br/wp-content/uploads/2025/09/rebeca-e-invisalign.webp?fit=640%2C440&ssl=1" alt="Atendimento odontológico acolhedor" width="320" height="220" loading="lazy">
-    <img src="/wp-content/themes/prime-odontologia/assets/images/reel-sorriso.png" alt="Sorriso saudável e alinhado" width="320" height="220" loading="lazy">
+    <img src="/wp-content/themes/prime-odontologia/assets/images/reel-sorriso.jpg" alt="Sorriso saudável e alinhado" width="320" height="220" loading="lazy">
     <img src="https://i0.wp.com/primeodontologia.com.br/wp-content/uploads/2025/09/adolescente.webp?fit=640%2C440&ssl=1" alt="Ortodontia estética e discreta" width="320" height="220" loading="lazy">
-    <img src="/wp-content/themes/prime-odontologia/assets/images/reel-paciente.png" alt="Paciente satisfeita com tratamento" width="320" height="220" loading="lazy">
-    <img src="/wp-content/themes/prime-odontologia/assets/images/reel-clinica.png" alt="Clínica Prime Odontologia Lourdes" width="320" height="220" loading="lazy">
+    <img src="/wp-content/themes/prime-odontologia/assets/images/reel-paciente.jpg" alt="Paciente satisfeita com tratamento" width="320" height="220" loading="lazy">
+    <img src="/wp-content/themes/prime-odontologia/assets/images/reel-clinica.jpg" alt="Clínica Prime Odontologia Lourdes" width="320" height="220" loading="lazy">
   </div>
 </div>
 <!-- /wp:group -->

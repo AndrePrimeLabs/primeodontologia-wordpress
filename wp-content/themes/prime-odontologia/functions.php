@@ -20,14 +20,7 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
  * Enqueue theme styles, scripts, and fonts.
  */
 function prime_odontologia_scripts() {
-	// Enqueue Google Fonts: Raleway (primary) + Open Sans (secondary) per brandbook.
-	wp_enqueue_style(
-		'prime-odontologia-fonts',
-		'https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap',
-		array(),
-		null
-	);
-
+	// Brand fonts (Raleway + Open Sans) are self-hosted and declared via theme.json fontFace.
 	// Enqueue custom CSS for tilted reels, button hovers, and components
 	wp_enqueue_style(
 		'prime-odontologia-custom',
@@ -90,9 +83,9 @@ add_action( 'wp_head', 'prime_odontologia_google_tag', 1 );
  * Largest Contentful Paint on the front page.
  */
 function prime_odontologia_resource_hints() {
-	// Preconnect to Google Fonts origins to cut render-blocking handshake time.
-	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
-	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	// Preload the self-hosted brand fonts so they are available before first paint (no swap-induced CLS).
+	echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( get_template_directory_uri() . '/assets/fonts/raleway-latin.wght.woff2' ) . '">' . "\n";
+	echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( get_template_directory_uri() . '/assets/fonts/open-sans-latin.wght.woff2' ) . '">' . "\n";
 
 	// Preload the hero (LCP) cover image on the front page so it starts early.
 	if ( is_front_page() ) {
@@ -215,7 +208,7 @@ function prime_odontologia_ensure_ads_txt() {
 		ABSPATH . 'ads.txt',
 	);
 	foreach ( $paths as $path ) {
-		if ( file_exists( $path ) ) {
+		if ( @file_exists( $path ) ) {
 			$current = @file_get_contents( $path );
 			if ( $current !== false && strpos( $current, 'pub-3413556435934115' ) === false ) {
 				@file_put_contents( $path, $target_entry );
