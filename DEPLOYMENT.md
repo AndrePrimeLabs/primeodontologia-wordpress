@@ -19,6 +19,12 @@ in every session.
 - When pushing from Studio, **exclude `plugins`** from the sync options
   (e.g. `sqls,uploads,themes,contents`) so the remote plugin setup is never
   overwritten.
+- **ALSO exclude `sqls` (the database) from pushes to the live site.** The
+  database export carries the local `active_plugins` option and plugin
+  configuration; importing it overwrites the live plugin activation list and
+  deactivates every plugin that exists only on the live site. Push **only
+  `contents,uploads,themes`** to `primeodontologia.blog`. Deploy content via the
+  `contents` option and make plugin-related changes directly on the live site.
 
 ## Push confirmation
 - Always confirm the exact target (`primeodontologia.blog`) before any
