@@ -66,6 +66,26 @@ img, .wp-block-image img {
   box-shadow: 0 4px 12px rgba(24, 99, 220, 0.15);
 }
 
+/* Blog post featured images: lock the box to a tidy 16:9 and crop so
+   the wrapper never adds empty vertical space regardless of source ratio. */
+.wp-block-post-featured-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.wp-block-post-featured-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.wp-block-post-featured-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Card elevation & depth */
 .prime-card {
   background: #ffffff !important;

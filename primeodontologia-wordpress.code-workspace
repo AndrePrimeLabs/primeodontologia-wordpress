@@ -3,5 +3,8 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"gemini-cli.debug.logging.enabled": true
+	}
 }
