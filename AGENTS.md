@@ -3,6 +3,7 @@
 This is a local WordPress development site managed by [WordPress Studio](https://developer.wordpress.com/studio/).
 For Studio operational commands, see [STUDIO.md](file:///Users/primeoshub/Studio/primeodontologia-wordpress/STUDIO.md).
 For visual styling, layout, typography, and color tokens, follow [DESIGN.md](file:///Users/primeoshub/Studio/primeodontologia-wordpress/DESIGN.md).
+For brand identity guidelines and the Value Proposition operational system (VALUE-X), see [BRANDBOOK.md](file:///Users/primeoshub/Studio/primeodontologia-wordpress/docs/brand/BRANDBOOK.md) and [VALUE-PROPOSITION.md](file:///Users/primeoshub/Studio/primeodontologia-wordpress/docs/brand/VALUE-PROPOSITION.md).
 
 ---
 

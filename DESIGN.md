@@ -1,6 +1,10 @@
 ---
 name: Prime Odontologia
-description: Odontologia de confiança — cuidado que respeita o seu sorriso
+description: Conquiste o sorriso que você sempre sonhou com a tecnologia do Invisalign
+slogan: "Conquiste o sorriso que você sempre sonhou com a tecnologia do Invisalign."
+values: "Prevenção, Tecnologia digital, Abordagem transdisciplinar, Biossegurança"
+tone_of_voice: "Profissional, Informativo, Tecnológico, Acolhedor"
+aesthetic: "modern clinical, approachable expertise, bright & clear, patient-centered, educational lifestyle"
 colors:
   primary: "#1863dc"
   background: "#ffffff"
@@ -50,7 +54,28 @@ imagery:
 
 ## Overview
 
-A dental practice site that reassures through order and clarity, built from the official **Prime Odontologia Brandbook** (Google Labs / Pomelli). Pure white ground, **Sapphire Blue `#1863dc`** for headlines and the primary button, cool gray surfaces for cards and alternate sections, and a bright **Capri Blue `#03c4eb`** accent. Type is **Raleway** (headlines) + **Open Sans** (body). The signature is a **tilted reel**: image strips run diagonally across the page, and text sits in the open wedges they leave. Clean and credible, with one memorable motion.
+Prime Odontologia is a specialized dental clinic based in Belo Horizonte focused on digital dentistry, preventive oral health, and Invisalign orthodontics for children, teens, and adults. Built from the official **Prime Odontologia Brandbook** (Google Labs / Pomelli) and the **VALUE-X Value Proposition System** (`docs/brand/`):
+
+- **Slogan / Tagline:** *"Conquiste o sorriso que você sempre sonhou com a tecnologia do Invisalign."*
+- **Core Values:** Prevenção, Tecnologia digital, Abordagem transdisciplinar, Biossegurança.
+- **Aesthetic:** Modern clinical, approachable expertise, bright & clear, patient-centered, educational lifestyle.
+- **Tone of Voice:** Profissional, Informativo, Tecnológico, Acolhedor.
+- **Palette:** Pure white ground (`#ffffff`), **Sapphire Blue `#1863dc`** for headlines, hero accents, and primary buttons, cool gray surfaces (`#f3f5f8` / `#e4e8ee`) for cards, and bright **Capri Blue `#03c4eb`** for highlights and accents.
+- **Typography:** **Raleway** (display, headlines, labels) + **Open Sans** (body, descriptions).
+
+## Core Value Pillars (VALUE-X)
+
+1. **100% Digital & Predictable (Precision Technology)**
+   - *Pain Relieved:* Fear of messy, gag-inducing physical impressions; uncertainty about the end result.
+   - *Gain Created:* Visualizing the final 3D smile simulation before starting treatment; sub-millimeter computerized accuracy via iTero scanning.
+
+2. **Biomimetic Harmony & Minimal Invasiveness**
+   - *Pain Relieved:* Fear of aggressive tooth shaving or artificial, fake-looking results.
+   - *Gain Created:* Ultra-conservative enamel preservation; natural tooth translucency and shade gradient designed with Digital Smile Design (DSD).
+
+3. **Concierge Experience & Respect for Time**
+   - *Pain Relieved:* Long waiting room delays, cold sterile clinic atmosphere, post-op abandonment.
+   - *Gain Created:* Boutique lounge ambiance, strict on-time appointments, dedicated doctor direct WhatsApp access (`(31) 99289-3060`), transparent treatment plans.
 
 ## Colors
 
