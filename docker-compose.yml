@@ -1,0 +1,64 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: primeodontologia-wordpress:local
+    restart: unless-stopped
+    ports:
+      - "${WORDPRESS_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME:-primeodontologia_local}
+      WORDPRESS_DB_USER: ${DB_USER:-prime}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-change-me-local}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG:-1}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_ENVIRONMENT_TYPE', '${WP_ENVIRONMENT_TYPE:-local}');
+        define('WP_HOME', '${WP_HOME:-http://localhost:8080}');
+        define('WP_SITEURL', '${WP_SITEURL:-http://localhost:8080}');
+        define('DISALLOW_FILE_EDIT', true);
+    volumes:
+      - ./:/var/www/html
+      - wordpress_uploads:/var/www/html/wp-content/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --silent http://localhost/wp-login.php >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MARIADB_DATABASE: ${DB_NAME:-primeodontologia_local}
+      MARIADB_USER: ${DB_USER:-prime}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-change-me-local}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-change-me-root-local}
+    volumes:
+      - wordpress_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -u root -p$${MARIADB_ROOT_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  adminer:
+    image: adminer:latest
+    profiles: ["tools"]
+    restart: unless-stopped
+    ports:
+      - "${ADMINER_PORT:-8081}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  wordpress_db:
+  wordpress_uploads:

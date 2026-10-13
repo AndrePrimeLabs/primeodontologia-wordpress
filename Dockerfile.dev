@@ -1,0 +1,21 @@
+# syntax=docker/dockerfile:1
+FROM wordpress:php8.3-apache
+
+ENV APACHE_DOCUMENT_ROOT=/var/www/html
+
+RUN a2enmod rewrite expires headers
+
+# Development image: repository files are also bind-mounted by compose.dev.yml.
+COPY --chown=www-data:www-data . /var/www/html/
+
+RUN { \
+      echo 'memory_limit=256M'; \
+      echo 'upload_max_filesize=64M'; \
+      echo 'post_max_size=64M'; \
+      echo 'max_execution_time=120'; \
+    } > /usr/local/etc/php/conf.d/prime-development.ini
+
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=5 \
+  CMD curl --fail --silent http://localhost/wp-login.php > /dev/null || exit 1

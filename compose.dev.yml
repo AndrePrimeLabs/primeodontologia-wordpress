@@ -1,0 +1,35 @@
+services:
+  wordpress:
+    extends:
+      file: docker-compose.yml
+      service: wordpress
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: primeodontologia-wordpress:dev
+    environment:
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG:-1}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_ENVIRONMENT_TYPE', '${WP_ENVIRONMENT_TYPE:-development}');
+        define('WP_HOME', '${WP_HOME:-http://localhost:8080}');
+        define('WP_SITEURL', '${WP_SITEURL:-http://localhost:8080}');
+        define('DISALLOW_FILE_EDIT', true);
+    volumes:
+      - ./:/var/www/html
+      - wordpress_uploads_dev:/var/www/html/wp-content/uploads
+
+  db:
+    extends:
+      file: docker-compose.yml
+      service: db
+    volumes:
+      - wordpress_db_dev:/var/lib/mysql
+
+  adminer:
+    extends:
+      file: docker-compose.yml
+      service: adminer
+
+volumes:
+  wordpress_db_dev:
+  wordpress_uploads_dev:

@@ -1,0 +1,36 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+wp-config.php
+
+# Local databases and WordPress Studio state
+wp-content/database/
+wp-content/db.php
+wp-content/mu-plugins/sqlite-database-integration/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Generated WordPress data and caches
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/languages/
+wp-content/debug.log
+*.log
+
+# Node dependencies and runtime state
+node_modules/
+prime-notion-bridge/bridge-state.json*
+prime-notion-bridge/*.lock
+
+# Development and repository metadata
+.git/
+.gitignore
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__wp__/
+tmp/
