@@ -245,3 +245,56 @@ body.home .wp-block-cover.is-position-center-left {
     transform: none !important;
   }
 }
+
+/* FAQ Accordion Styling */
+.prime-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.prime-faq-item {
+  background: #ffffff !important;
+  border: 1px solid var(--prime-line, #e4e8ee) !important;
+  border-radius: var(--prime-radius, 6px) !important;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.04);
+  padding: 1.25rem 1.5rem !important;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.prime-faq-item[open] {
+  border-color: var(--prime-navy, #1863dc) !important;
+  box-shadow: 0 4px 12px rgba(24, 99, 220, 0.08);
+}
+.prime-faq-item summary {
+  cursor: pointer;
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  color: var(--prime-navy, #1863dc) !important;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.prime-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.prime-faq-item summary::after {
+  content: "+";
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--prime-cobalt, #03c4eb);
+  transition: transform 180ms ease;
+  line-height: 1;
+}
+.prime-faq-item[open] summary::after {
+  content: "−";
+}
+.prime-faq-item > p,
+.prime-faq-item > div {
+  margin-top: 1rem !important;
+  margin-bottom: 0.25rem !important;
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  color: var(--prime-secondary, #5b6675) !important;
+}
