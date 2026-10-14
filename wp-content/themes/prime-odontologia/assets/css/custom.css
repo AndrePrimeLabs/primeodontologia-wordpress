@@ -366,3 +366,48 @@ body.home .wp-block-cover.is-position-center-left {
   line-height: 1.6;
 }
 
+/* Editorial and Article Layout Utilities */
+.prime-lead-text {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+.prime-rounded-image,
+.prime-rounded-video {
+  border-radius: 6px;
+  width: 100%;
+  height: auto;
+}
+.prime-columns-spaced {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.prime-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.prime-card-desc {
+  font-size: 0.9375rem;
+}
+.prime-cta-card {
+  padding: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.prime-cta-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.prime-cta-desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.prime-buttons-margin {
+  margin-top: 1rem;
+}
+.prime-btn-cta {
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+
