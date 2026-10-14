@@ -1,6 +1,7 @@
 # Notion Content Import Directory
 
 Drop your exported Notion files into this folder:
+
 - **Markdown / ZIP Exports**: Markdown files (`.md`) with companion image folders.
 - **HTML Exports**: Notion HTML exports (`.html`) with embedded styles/media.
 - **CSV / Database Exports**: CSV tables exported from Notion databases.
@@ -9,14 +10,14 @@ Drop your exported Notion files into this folder:
 
 ## How Notion Content Maps to WordPress & Custom Domain
 
-| Notion Property | Type | Destination Field | Example |
-|---|---|---|---|
-| **Title** | Title | `post_title` | `2 - Como o Invisalign funciona?` |
-| **Slug** | Text / Formula | `post_name` | `como-o-invisalign-funciona` |
-| **Type** | Select | `post_type` | `page` or `post` |
-| **Status** | Status / Select | `post_status` | `publish` or `draft` |
-| **Excerpt** | Text | `post_excerpt` | Short summary for cards & meta tags |
-| **Category** | Select / Multi | `category` | `Blog do Dentista`, `Tratamentos` |
+| Notion Property | Type           | Destination Field  | Example                             |
+| --------------- | -------------- | ------------------ | ----------------------------------- |
+| **Title**       | Title          | `post_title`       | `2 - Como o Invisalign funciona?`   |
+| **Slug**        | Text / Formula | `post_name`        | `como-o-invisalign-funciona`        |
+| **Type**        | Select         | `post_type`        | `page` or `post`                    |
+| **Status**      | Status / Select| `post_status`      | `publish` or `draft`                |
+| **Excerpt**     | Text           | `post_excerpt`     | Short summary for cards & meta tags |
+| **Category**    | Select / Multi | `category`         | `Blog do Dentista`, `Tratamentos`   |
 
 ---
 
