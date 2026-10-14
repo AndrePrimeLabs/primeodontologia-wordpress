@@ -6,7 +6,7 @@ services:
     image: ${WORDPRESS_IMAGE:?WORDPRESS_IMAGE is required}
     restart: unless-stopped
     ports:
-      - "${WORDPRESS_PORT:-8080}:80"
+      - "127.0.0.1:${WORDPRESS_PORT:-8090}:80"
     environment:
       WORDPRESS_DB_HOST: ${DB_HOST:-db}:3306
       WORDPRESS_DB_NAME: ${DB_NAME:?DB_NAME is required}

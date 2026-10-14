@@ -11,8 +11,8 @@ services:
       WORDPRESS_DEBUG: ${WORDPRESS_DEBUG:-1}
       WORDPRESS_CONFIG_EXTRA: |
         define('WP_ENVIRONMENT_TYPE', '${WP_ENVIRONMENT_TYPE:-development}');
-        define('WP_HOME', '${WP_HOME:-http://localhost:8080}');
-        define('WP_SITEURL', '${WP_SITEURL:-http://localhost:8080}');
+        define('WP_HOME', '${WP_HOME:-http://localhost:8090}');
+        define('WP_SITEURL', '${WP_SITEURL:-http://localhost:8090}');
         define('DISALLOW_FILE_EDIT', true);
     volumes:
       - ./:/var/www/html

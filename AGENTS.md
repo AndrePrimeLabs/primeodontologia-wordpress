@@ -26,6 +26,12 @@ Deployments to production must follow one of these safe methods:
 1. **Official Studio Push:** Use the WordPress Studio desktop app or `studio site push` (syncs content, themes, plugins, and uploads safely without touching `wp-config.php` or dropping SQLite into production).
 2. **Selective Theme/Plugin Sync:** Sync ONLY `wp-content/themes/prime-odontologia/` or specific plugin folders to the server via SFTP/SSH.
 
+### 4. Port Constraints (No Ports 8080 or 5001)
+- **NEVER deploy WordPress to ports 8080 or 5001.**
+- Port `5001` is reserved by macOS AirPlay Receiver / Control Center.
+- Port `8080` is prohibited to prevent collision with development proxies.
+- Approved ports: `8882` (local Studio), `8090` (Docker mapping `8090:80`), or `80`/`443` (Nginx TLS).
+
 ---
 
 ## 🌐 Production Server Reference (WordPress.com Atomic)

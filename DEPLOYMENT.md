@@ -28,6 +28,12 @@ This file is a permanent instruction. Treat it as binding for any future
   and the exact sync options with the user before any push.
 - Never use a full "all" push that would overwrite plugins or wp-admin state.
 
+### 5. Port Constraints (Local & Staging Deployments)
+- **Do NOT deploy WordPress to ports 8080 or 5001.**
+  - Port `5001` is strictly reserved by macOS AirPlay Receiver / Control Center.
+  - Port `8080` is prohibited to prevent conflicts with development proxies.
+  - Approved ports: `8882` (WordPress Studio local dev), `8090` (Docker container mapping `8090:80`), and `80`/`443` (Nginx TLS staging/production).
+
 ---
 
 ## Project context

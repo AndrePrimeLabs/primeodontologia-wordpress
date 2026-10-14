@@ -163,7 +163,6 @@ img, .wp-block-image img {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 0 1.5rem;
-    -webkit-overflow-scrolling: touch;
   }
   .prime-tilted-reel img {
     scroll-snap-align: center;
@@ -274,6 +273,7 @@ body.home .wp-block-cover.is-position-center-left {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  -webkit-user-select: none;
   user-select: none;
 }
 .prime-faq-item summary::-webkit-details-marker {
@@ -342,3 +342,27 @@ body.home .wp-block-cover.is-position-center-left {
   display: block;
   margin-top: 0.125rem !important;
 }
+
+/* Template Layout Utilities */
+.prime-template-main {
+  padding: 5rem 2rem;
+}
+.prime-post-card {
+  padding: 1.5rem;
+}
+.prime-no-results {
+  font-size: 1.0625rem;
+}
+.prime-search-empty {
+  padding: 3rem 2.5rem;
+}
+.prime-search-empty-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.prime-search-empty-text {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+

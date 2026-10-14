@@ -22,6 +22,7 @@ image="${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
 export WORDPRESS_IMAGE="$image"
 export WP_ENVIRONMENT_TYPE="${WP_ENVIRONMENT_TYPE:-staging}"
 export WORDPRESS_DEBUG="${WORDPRESS_DEBUG:-0}"
+export WORDPRESS_PORT="${WORDPRESS_PORT:-8090}"
 
 print "Building ${image}"
 docker build --pull -f Dockerfile.prod -t "$image" .
