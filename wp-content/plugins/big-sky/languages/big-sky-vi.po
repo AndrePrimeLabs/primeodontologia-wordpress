@@ -1,0 +1,407 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Big Sky\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-19T17:22:29+00:00\n"
+"PO-Revision-Date: 2026-10-14 11:25:57+0000\n"
+"Language: vi_VN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:55
+msgid "Are there any changes you would like me to make?"
+msgstr "Có bất kỳ thay đổi nào bạn muốn mình thực hiện không?"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:54
+msgid "Your site is ready! Please click around and check it out."
+msgstr "Web của bạn đã sẵn sàng! Hãy click xung quanh và kiểm tra nó."
+
+#: src/easy-mode/components/app.tsx:454
+msgid "Switching to edit mode so you can watch the new design being built."
+msgstr "Chuyển sang chế độ sửa để bạn có thể xem thiết kế mới đang được xây dựng."
+
+#: src/easy-mode/components/topbar.tsx:691
+msgid "Return to WP Admin"
+msgstr "Trở lại WP Admin"
+
+#: src/easy-mode/hooks/use-save-controller.ts:121
+msgid "Your changes could not be saved. Your work is still here — try saving again."
+msgstr "Các thay đổi của bạn không thể được lưu. Công việc của bạn vẫn ở đây — hãy thử lưu lại lần nữa."
+
+#: src/easy-mode/hooks/use-save-controller.ts:120
+msgid "Some changes could not be saved. Your work is still here — try saving again."
+msgstr "Có một số thay đổi không thể được lưu. Công việc của bạn vẫn ở đây — hãy thử lưu lại lần nữa."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:66
+msgid "Save your changes?"
+msgstr "Lưu thay đổi của bạn?"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:33
+msgid "You need to save or discard the changes to the current page."
+msgstr "Bạn cần lưu hoặc bỏ qua các thay đổi trên trang hiện tại."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:32
+msgid "The preview shows your saved site, so unsaved changes won’t appear there."
+msgstr "xem trước hiển thị trang web đã lưu của bạn, vì vậy những thay đổi chưa lưu sẽ không xuất hiện ở đó."
+
+#: src/easy-mode/components/topbar.tsx:756
+msgid "Save draft"
+msgstr "Lưu nháp"
+
+#: src/easy-mode/components/topbar.tsx:742
+msgid "Publish"
+msgstr "Đăng"
+
+#: src/easy-mode/components/topbar.tsx:706
+msgid "Redo"
+msgstr "Làm lại"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Open in a new tab"
+msgstr "Mở trong tab mới"
+
+#: src/easy-mode/components/topbar.tsx:69
+msgid "Mode"
+msgstr "Chế độ"
+
+#. %s: selected device, e.g. Desktop.
+#: src/easy-mode/components/topbar.tsx:736
+msgid "Responsive view: %s"
+msgstr "Chế độ xem đáp ứng: %s"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Responsive view"
+msgstr "xem đáp ứng"
+
+#: src/easy-mode/components/topbar.tsx:718
+msgid "Reload preview"
+msgstr "Tải lại xem trước"
+
+#: src/easy-mode/components/topbar.tsx:689
+msgid "Annotate"
+msgstr "Chú thích"
+
+#. %d: number of annotations waiting to be sent.
+#: src/easy-mode/components/topbar.tsx:687
+msgid "Resume annotating, %d pending"
+msgid_plural "Resume annotating, %d pending"
+msgstr[0] "Tiếp tục chú thích, %d đang chờ"
+
+#: src/easy-mode/components/topbar.tsx:682
+msgid "Chat is unavailable"
+msgstr "Chat không có sẵn"
+
+#: src/easy-mode/components/topbar.tsx:57
+msgid "Mobile"
+msgstr "Di động"
+
+#: src/easy-mode/components/topbar.tsx:56
+msgid "Tablet"
+msgstr "Máy tính bảng"
+
+#: src/easy-mode/components/topbar.tsx:55
+msgid "Desktop"
+msgstr "Màn hình chính"
+
+#: src/easy-mode/components/topbar.tsx:51
+msgid "Preview"
+msgstr "Xem trước"
+
+#: src/easy-mode/components/preview-overlay.tsx:149
+msgid "The site preview could not be loaded."
+msgstr "Không thể tải xong xem trước trang web."
+
+#: src/easy-mode/components/page-switcher.tsx:116
+msgid "(no title)"
+msgstr "(không có tựa đề)"
+
+#. %s: page title.
+#: src/easy-mode/components/page-switcher.tsx:113
+msgid "%s — Draft"
+msgstr "%s — Bản nháp"
+
+#. %s: page currently open.
+#: src/easy-mode/components/page-switcher.tsx:99
+msgid "Switch page. Current page: %s"
+msgstr "Chuyển trang. Trang hiện tại: %s"
+
+#: src/easy-mode/components/page-switcher.tsx:76
+msgid "Switch page"
+msgstr "Chuyển trang"
+
+#: src/easy-mode/components/app.tsx:308
+msgid "Switching to edit mode so you can see the changes."
+msgstr "Chuyển sang chế độ sửa để bạn có thể thấy những thay đổi."
+
+#: src/easy-mode/components/app.tsx:307
+msgid "Switching to edit mode so you can approve the changes before saving."
+msgstr "Chuyển sang chế độ sửa để bạn có thể chấp thuận các thay đổi trước khi lưu."
+
+#: src/easy-mode/annotations/use-editor-annotations.ts:146
+msgid "Annotations could not be sent — the assistant is unavailable."
+msgstr "Không thể gửi chú thích — trợ lý không có sẵn."
+
+#. %d: number of annotations.
+#: src/easy-mode/annotations/prompt.ts:82
+msgid "%d annotation submitted"
+msgid_plural "%d annotations submitted"
+msgstr[0] "%d chú thích đã gửi đi"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Annotating"
+msgstr "Chú thích"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Discard annotations"
+msgstr "Bỏ qua chú thích"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Exit annotation mode"
+msgstr "Thoát chế độ chú thích"
+
+#. %d: number of annotations to send.
+#: src/easy-mode/annotations/annotation-topbar.tsx:21
+msgid "Send %d annotation"
+msgid_plural "Send %d annotations"
+msgstr[0] "Gửi %d chú thích"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:18
+msgid "Sending…"
+msgstr "Đang gửi…"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:14
+msgid "Send"
+msgstr "Gửi"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:566
+msgid "Save annotation"
+msgstr "Lưu chú thích"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:565
+msgid "Update annotation"
+msgstr "Cập nhật chú thích"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Delete annotation"
+msgstr "Xoá chú thích"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Add a comment…"
+msgstr "Thêm bình luận…"
+
+#. %s: label of the block being annotated.
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Annotate %s"
+msgstr "Chú thích %s"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:445
+msgid "Annotate blocks. Use the arrow keys to move between blocks, Enter to comment, and Escape to exit."
+msgstr "Chú thích các Block. Sử dụng phím mũi tên để di chuyển giữa các Block, Enter để bình luận, và Escape để thoát."
+
+#. 1: annotation number, 2: comment text.
+#: src/easy-mode/annotations/annotation-layer.tsx:367
+msgid "Annotation %1$d: %2$s"
+msgstr "Chú thích %1$d: %2$s"
+
+#. 1: block label, 2: position, 3: total count.
+#: src/easy-mode/annotations/annotation-layer.tsx:341
+msgid "%1$s, block %2$d of %3$d"
+msgstr "%1$s, block %2$d của %3$d"
+
+#. Description of the plugin
+#: big-sky.php
+msgid "Your WordPress.com AI agent that helps with site setup, content, design, and more."
+msgstr "Đại lý AI WordPress.com của bạn giúp với việc thiết lập trang web, nội dung, thiết kế, và nhiều hơn nữa."
+
+#. Plugin Name of the plugin
+#: big-sky.php
+msgid "WordPress Agent"
+msgstr "Đại lý WordPress"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Discard"
+msgstr "Bỏ"
+
+#: src/easy-mode/components/topbar.tsx:754
+msgid "Saving…"
+msgstr "Đang lưu…"
+
+#: src/easy-mode/components/preview-overlay.tsx:157
+#: src/components/index.js:145
+msgid "Retry"
+msgstr "Thử lại"
+
+#: src/abilities/set-styles/index.ts:18
+msgid "Set Styles"
+msgstr "Đặt kiểu"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:82
+msgid "Failed to update styles:"
+msgstr "Không thể cập nhật kiểu: "
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:76
+msgid "Failed to update styles. The style variation may be invalid."
+msgstr "Không thể cập nhật kiểu. Biến thể kiểu có thể không hợp lệ."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:62
+msgid "Styles updated successfully."
+msgstr "Các kiểu đã được cập nhật thành công."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:38
+msgid "Invalid button format. Button must be a string (variation title)."
+msgstr "Định dạng nút không hợp lệ. Nút phải là một chuỗi (tiêu đề biến thể)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:31
+msgid "Invalid font format. Font must be a string (variation title)."
+msgstr "Định dạng font không hợp lệ. Font phải là một chuỗi (tiêu đề biến thể)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:24
+msgid "Invalid color format. Color must be a string (variation title)."
+msgstr "Định dạng màu không hợp lệ. Màu phải là một chuỗi (tiêu đề biến thể)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:17
+msgid "Invalid arguments. Provide at least one of: color, font, or button."
+msgstr "Tham số không hợp lệ. Cung cấp ít nhất một trong các: màu, font, hoặc nút."
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:169
+msgid "Failed to create pages:"
+msgstr "Không thể tạo Trang: "
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:65
+msgid "Invalid pages. Must provide an array of page objects."
+msgstr "Trang không hợp lệ. Phải cung cấp một mảng các đối tượng trang."
+
+#: big-sky.php:207
+msgid "AI-powered site building and navigation abilities."
+msgstr "Khả năng xây dựng trang web và menu được hỗ trợ bởi AI."
+
+#: src/easy-mode/components/topbar.tsx:52
+msgid "Edit"
+msgstr "Sửa"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:65
+msgid "Updated:"
+msgstr "Đã cập nhật:"
+
+#: big-sky.php:1018
+#: big-sky.php:1019
+msgid "AI Editor"
+msgstr "Công cụ soạn thảo AI"
+
+#. translators: %s is the theme name.
+#: big-sky.php:479
+msgid "The current theme (%s) is a block theme."
+msgstr "Giao diện hiện tại (%s) là một Block."
+
+#: big-sky.php:472
+msgid "The current theme is not a block theme. Big Sky requires a block theme to be active."
+msgstr "Giao diện hiện tại không phải là giao diện Block. Big Sky yêu cầu một giao diện Block phải được kích hoạt."
+
+#: src/easy-mode/components/preview-overlay.tsx:160
+msgid "Site preview"
+msgstr "Xem trước website"
+
+#: src/easy-mode/components/page-switcher.tsx:49
+#: src/components/mosaic.js:634
+#: src/components/mosaic.js:676
+msgid "Pages"
+msgstr "Trang"
+
+#: src/easy-mode/components/page-switcher.tsx:34
+msgid "Home"
+msgstr "Trang chủ"
+
+#: src/abilities/add-pages/index.ts:17
+msgid "Add Pages"
+msgstr "Thêm Trang"
+
+#: src/easy-mode/components/topbar.tsx:703
+msgid "Undo"
+msgstr "Hoàn tác"
+
+#: src/easy-mode/components/topbar.tsx:756
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Save"
+msgstr "Lưu"
+
+#: big-sky.php:561
+msgid "These checks passed:"
+msgstr "Các kiểm tra này đã qua:"
+
+#: big-sky.php:547
+msgid "Big Sky detected the following issues with your site:"
+msgstr "Big Sky phát hiện các vấn đề sau với trang web của bạn:"
+
+#. translators: $d is the number of performance issues found.
+#: big-sky.php:546
+msgid "Big Sky is affected by %d issue"
+msgid_plural "Big Sky is affected by %d issues"
+msgstr[0] "Big Sky bị ảnh hưởng bởi %d vấn đề"
+
+#: big-sky.php:536
+msgid "Mapbox API key is set."
+msgstr "Khóa API Mapbox đã được thiết lập."
+
+#: big-sky.php:531
+msgid "Mapbox API key is not set. Big Sky requires a Mapbox API key to be set."
+msgstr "Khóa API Mapbox chưa được thiết lập. Big Sky yêu cầu phải thiết lập một khóa API Mapbox."
+
+#: big-sky.php:523
+msgid "Jetpack is connected to an admin."
+msgstr "Jetpack được kết nối với một admin."
+
+#: big-sky.php:518
+msgid "Jetpack does not have a connected admin. Big Sky requires Jetpack to be connected to an admin."
+msgstr "Jetpack không có admin kết nối. Big Sky yêu cầu Jetpack phải được kết nối với một admin."
+
+#: big-sky.php:509
+msgid "Jetpack is connected."
+msgstr "Jetpack đã được kết nối."
+
+#: big-sky.php:504
+msgid "Jetpack is not connected. Big Sky requires Jetpack to be connected."
+msgstr "Jetpack không được kết nối. Big Sky yêu cầu Jetpack phải được kết nối."
+
+#: big-sky.php:493
+msgid "Jetpack is installed."
+msgstr "Jetpack đã được cài."
+
+#: big-sky.php:488
+msgid "Jetpack is not installed. Big Sky requires Jetpack to be installed and active."
+msgstr "Jetpack chưa được cài. Big Sky yêu cầu Jetpack phải được cài và hoạt động."
+
+#: big-sky.php:462
+msgid "Big Sky did not find any known issues with your site."
+msgstr "Big Sky không tìm thấy bất kỳ vấn đề nào với Web của bạn."
+
+#: big-sky.php:454
+msgid "Big Sky Checks"
+msgstr "Big Sky Checks"
+
+#: big-sky.php:429
+#: big-sky.php:430
+msgid "Big Sky checks"
+msgstr "Big Sky kiểm tra"
+
+#: big-sky.php:260
+msgid "AI Features"
+msgstr "Tính năng AI"
+
+#: big-sky.php:252
+msgid "Enable AI-powered site building experience"
+msgstr "Bật trải nghiệm xây dựng trang web bằng AI"
+
+#. Author of the plugin
+#: big-sky.php
+msgid "Automattic, Inc."
+msgstr "Automattic, Inc."
+
+#: big-sky.php:206
+#: big-sky.php:457
+msgid "Big Sky"
+msgstr "Trời Rộng"

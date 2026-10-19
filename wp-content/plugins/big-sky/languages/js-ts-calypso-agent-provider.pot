@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"X-Generator: babel-plugin-makepot\n"
+
+#: src/abilities/add-pages/index.ts:17
+msgid "Add Pages"
+msgstr ""
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:169
+msgid "Failed to create pages:"
+msgstr ""
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:65
+msgid "Invalid pages. Must provide an array of page objects."
+msgstr ""
+
+#: src/abilities/set-styles/index.ts:18
+msgid "Set Styles"
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:17
+msgid "Invalid arguments. Provide at least one of: color, font, or button."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:24
+msgid "Invalid color format. Color must be a string (variation title)."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:31
+msgid "Invalid font format. Font must be a string (variation title)."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:38
+msgid "Invalid button format. Button must be a string (variation title)."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:62
+msgid "Styles updated successfully."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:65
+msgid "Updated:"
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:76
+msgid "Failed to update styles. The style variation may be invalid."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:82
+msgid "Failed to update styles:"
+msgstr ""
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:54
+msgid "Your site is ready! Please click around and check it out."
+msgstr ""
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:55
+msgid "Are there any changes you would like me to make?"
+msgstr ""
+
+#: src/easy-mode/annotations/prompt.ts:82
+#. %d: number of annotations.
+msgid "%d annotation submitted"
+msgid_plural "%d annotations submitted"
+msgstr[0] ""
+msgstr[1] ""

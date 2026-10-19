@@ -1,0 +1,102 @@
+services:
+  # ============================================================================
+  # PRIMEOS FRONTEND
+  # ============================================================================
+  primeos:
+    image: primeoshub:latest
+    container_name: primeos-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    networks:
+      - primeos-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # OMNIOS FRONTEND
+  # ============================================================================
+  omnios:
+    image: omnios-app:latest
+    container_name: omnios-app
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    networks:
+      - primeos-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # PRIMEOS BACKEND API (Multi-Tenant)
+  # ============================================================================
+  primeos-api:
+    image: primeos-api:latest
+    container_name: primeos-api-server
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+      - "5002:5002"
+    env_file:
+      - .env.production
+      - .env.omnios
+    environment:
+      NODE_ENV: production
+      PORT: "5001"
+    networks:
+      - primeos-net
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - >-
+          require("http").get("http://127.0.0.1:5001/health", r => {
+          process.exit(r.statusCode === 200 ? 0 : 1)
+          }).on("error", () => process.exit(1))
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  primeos-net:
+    driver: bridge

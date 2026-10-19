@@ -1,0 +1,21 @@
+<?php return array(
+	'dependencies' => array(
+		'jetpack-script-data',
+		'jetpack-shared-stores',
+		'react',
+		'react-jsx-runtime',
+		'wp-blob',
+		'wp-compose',
+		'wp-data',
+		'wp-dom-ready',
+		'wp-element',
+		'wp-hooks',
+		'wp-i18n',
+		'wp-keycodes',
+		'wp-plugins',
+		'wp-polyfill',
+		'wp-primitives',
+		'wp-url'
+	),
+	'version' => '026769065274b07329d9'
+);

@@ -1,0 +1,411 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Big Sky\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-19T17:22:29+00:00\n"
+"PO-Revision-Date: 2026-09-09 21:58:17+0000\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:55
+msgid "Are there any changes you would like me to make?"
+msgstr "Yapmamı istediğiniz herhangi bir değişiklik var mı?"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:54
+msgid "Your site is ready! Please click around and check it out."
+msgstr "Siteniz hazır! Lütfen etrafına tıklayıp kontrol edin."
+
+#: src/easy-mode/components/app.tsx:454
+msgid "Switching to edit mode so you can watch the new design being built."
+msgstr "Yeni tasarımın oluşturulmasını izleyebilmeniz için düzenleme moduna geçiliyor."
+
+#: src/easy-mode/components/topbar.tsx:691
+msgid "Return to WP Admin"
+msgstr "WP Yöneticisine Dön"
+
+#: src/easy-mode/hooks/use-save-controller.ts:121
+msgid "Your changes could not be saved. Your work is still here — try saving again."
+msgstr "Değişiklikleriniz kaydedilemedi. Çalışmanız hala burada — tekrar kaydetmeyi deneyin."
+
+#: src/easy-mode/hooks/use-save-controller.ts:120
+msgid "Some changes could not be saved. Your work is still here — try saving again."
+msgstr "Bazı değişiklikler kaydedilemedi. Çalışmanız hala burada — tekrar kaydetmeyi deneyin."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:66
+msgid "Save your changes?"
+msgstr "Değişiklikleriniz kaydedilsin mi?"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:33
+msgid "You need to save or discard the changes to the current page."
+msgstr "Geçerli sayfadaki değişiklikleri kaydetmeniz veya iptal etmeniz gerekir."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:32
+msgid "The preview shows your saved site, so unsaved changes won’t appear there."
+msgstr "Önizleme kaydedilen sitenizi gösterir, böylece kaydedilmemiş değişiklikler orada görünmez."
+
+#: src/easy-mode/components/topbar.tsx:756
+msgid "Save draft"
+msgstr "Taslağı kaydet"
+
+#: src/easy-mode/components/topbar.tsx:742
+msgid "Publish"
+msgstr "Yayımla"
+
+#: src/easy-mode/components/topbar.tsx:706
+msgid "Redo"
+msgstr "Yinele"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Open in a new tab"
+msgstr "Yeni sekmede aç"
+
+#: src/easy-mode/components/topbar.tsx:69
+msgid "Mode"
+msgstr "Mod"
+
+#. %s: selected device, e.g. Desktop.
+#: src/easy-mode/components/topbar.tsx:736
+msgid "Responsive view: %s"
+msgstr "Hızlı görünüm: %s"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Responsive view"
+msgstr "Hızlı görünüm"
+
+#: src/easy-mode/components/topbar.tsx:718
+msgid "Reload preview"
+msgstr "Önizlemeyi yeniden yükle"
+
+#: src/easy-mode/components/topbar.tsx:689
+msgid "Annotate"
+msgstr "Açıklama ekle"
+
+#. %d: number of annotations waiting to be sent.
+#: src/easy-mode/components/topbar.tsx:687
+msgid "Resume annotating, %d pending"
+msgid_plural "Resume annotating, %d pending"
+msgstr[0] "Ek açıklama yapmaya devam et, %d beklemede"
+msgstr[1] "Ek açıklama yapmaya devam et, %d beklemede"
+
+#: src/easy-mode/components/topbar.tsx:682
+msgid "Chat is unavailable"
+msgstr "Sohbet kullanılamıyor"
+
+#: src/easy-mode/components/topbar.tsx:57
+msgid "Mobile"
+msgstr "Mobil"
+
+#: src/easy-mode/components/topbar.tsx:56
+msgid "Tablet"
+msgstr "Tablet"
+
+#: src/easy-mode/components/topbar.tsx:55
+msgid "Desktop"
+msgstr "Masaüstü"
+
+#: src/easy-mode/components/topbar.tsx:51
+msgid "Preview"
+msgstr "Ön izleme"
+
+#: src/easy-mode/components/preview-overlay.tsx:149
+msgid "The site preview could not be loaded."
+msgstr "Site önizlemesi yüklenemedi."
+
+#: src/easy-mode/components/page-switcher.tsx:116
+msgid "(no title)"
+msgstr "(başlık yok)"
+
+#. %s: page title.
+#: src/easy-mode/components/page-switcher.tsx:113
+msgid "%s — Draft"
+msgstr "%s — Taslak"
+
+#. %s: page currently open.
+#: src/easy-mode/components/page-switcher.tsx:99
+msgid "Switch page. Current page: %s"
+msgstr "Sayfayı değiştirin. Geçerli sayfa: %s"
+
+#: src/easy-mode/components/page-switcher.tsx:76
+msgid "Switch page"
+msgstr "Sayfa değiştir"
+
+#: src/easy-mode/components/app.tsx:308
+msgid "Switching to edit mode so you can see the changes."
+msgstr "Değişiklikleri görebilmeniz için düzenleme moduna geçiliyor."
+
+#: src/easy-mode/components/app.tsx:307
+msgid "Switching to edit mode so you can approve the changes before saving."
+msgstr "Değişiklikleri kaydetmeden önce onaylayabilmeniz için düzenleme moduna geçiliyor."
+
+#: src/easy-mode/annotations/use-editor-annotations.ts:146
+msgid "Annotations could not be sent — the assistant is unavailable."
+msgstr "Ek açıklamalar gönderilemedi, yardımcı kullanılamıyor."
+
+#. %d: number of annotations.
+#: src/easy-mode/annotations/prompt.ts:82
+msgid "%d annotation submitted"
+msgid_plural "%d annotations submitted"
+msgstr[0] "%d ek açıklama gönderildi"
+msgstr[1] "%d ek açıklama gönderildi"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Annotating"
+msgstr "Ek açıklama"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Discard annotations"
+msgstr "Ek açıklamaları sil"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Exit annotation mode"
+msgstr "Ek açıklama modundan çık"
+
+#. %d: number of annotations to send.
+#: src/easy-mode/annotations/annotation-topbar.tsx:21
+msgid "Send %d annotation"
+msgid_plural "Send %d annotations"
+msgstr[0] "%d ek açıklamayı gönder"
+msgstr[1] "%d ek açıklamayı gönder"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:18
+msgid "Sending…"
+msgstr "Gönderiliyor..."
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:14
+msgid "Send"
+msgstr "Gönder"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:566
+msgid "Save annotation"
+msgstr "Bilgi notu"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:565
+msgid "Update annotation"
+msgstr "Ek açıklamayı güncelle"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Delete annotation"
+msgstr "Ek açıklamayı sil"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Add a comment…"
+msgstr "Yorum ekleyin…"
+
+#. %s: label of the block being annotated.
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Annotate %s"
+msgstr "Ek açıklama: %s"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:445
+msgid "Annotate blocks. Use the arrow keys to move between blocks, Enter to comment, and Escape to exit."
+msgstr "Bloklara ek açıklama yapın. Bloklar arasında hareket etmek için ok tuşlarını kullanın, yorum yapmak için Enter tuşuna basın ve çıkmak için Escape tuşuna basın."
+
+#. 1: annotation number, 2: comment text.
+#: src/easy-mode/annotations/annotation-layer.tsx:367
+msgid "Annotation %1$d: %2$s"
+msgstr "Ek açıklama %1$d: %2$s"
+
+#. 1: block label, 2: position, 3: total count.
+#: src/easy-mode/annotations/annotation-layer.tsx:341
+msgid "%1$s, block %2$d of %3$d"
+msgstr "%1$s, %2$d/%3$d blok"
+
+#. Description of the plugin
+#: big-sky.php
+msgid "Your WordPress.com AI agent that helps with site setup, content, design, and more."
+msgstr "Site kurulumu, içerik, tasarım ve daha fazlasına yardımcı olan WordPress.com yapay zeka aracımız."
+
+#. Plugin Name of the plugin
+#: big-sky.php
+msgid "WordPress Agent"
+msgstr "WordPress Aracısı"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Discard"
+msgstr "Sil"
+
+#: src/easy-mode/components/topbar.tsx:754
+msgid "Saving…"
+msgstr "Kaydediliyor…"
+
+#: src/easy-mode/components/preview-overlay.tsx:157
+#: src/components/index.js:145
+msgid "Retry"
+msgstr "Tekrar dene"
+
+#: src/abilities/set-styles/index.ts:18
+msgid "Set Styles"
+msgstr "Stilleri Ayarla"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:82
+msgid "Failed to update styles:"
+msgstr "Stiller güncellenemedi:"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:76
+msgid "Failed to update styles. The style variation may be invalid."
+msgstr "Stiller güncellenemedi. Stil varyasyonu geçersiz olabilir."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:62
+msgid "Styles updated successfully."
+msgstr "Stiller başarıyla güncellendi."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:38
+msgid "Invalid button format. Button must be a string (variation title)."
+msgstr "Geçersiz düğme biçimi. Düğme bir dize olmalıdır (varyasyon başlığı)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:31
+msgid "Invalid font format. Font must be a string (variation title)."
+msgstr "Geçersiz yazı tipi biçimi. Yazı tipi bir dize olmalıdır (varyasyon başlığı)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:24
+msgid "Invalid color format. Color must be a string (variation title)."
+msgstr "Geçersiz renk biçimi. Renk bir dize olmalıdır (varyasyon başlığı)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:17
+msgid "Invalid arguments. Provide at least one of: color, font, or button."
+msgstr "Bağımsız değişkenler geçersiz. En az şunlardan bir tane sağlayın: Renk, yazı tipi veya düğme."
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:169
+msgid "Failed to create pages:"
+msgstr "Sayfa oluşturma başarısız:"
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:65
+msgid "Invalid pages. Must provide an array of page objects."
+msgstr "Geçersiz sayfalar. Sayfa nesneleri dizilimi sağlamalıdır."
+
+#: big-sky.php:207
+msgid "AI-powered site building and navigation abilities."
+msgstr "Yapay zeka destekli site oluşturma ve gezinme yetenekleri."
+
+#: src/easy-mode/components/topbar.tsx:52
+msgid "Edit"
+msgstr "Düzenle"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:65
+msgid "Updated:"
+msgstr "Güncellenme:"
+
+#: big-sky.php:1018
+#: big-sky.php:1019
+msgid "AI Editor"
+msgstr "Yapay Zeka Düzenleyici"
+
+#. translators: %s is the theme name.
+#: big-sky.php:479
+msgid "The current theme (%s) is a block theme."
+msgstr "Geçerli tema (%s) bir blok teması."
+
+#: big-sky.php:472
+msgid "The current theme is not a block theme. Big Sky requires a block theme to be active."
+msgstr "Geçerli tema bir blok teması değil. Big Sky, blok temasının etkin olmasını gerektirir."
+
+#: src/easy-mode/components/preview-overlay.tsx:160
+msgid "Site preview"
+msgstr "Site ön izleme"
+
+#: src/easy-mode/components/page-switcher.tsx:49
+#: src/components/mosaic.js:634
+#: src/components/mosaic.js:676
+msgid "Pages"
+msgstr "Sayfalar"
+
+#: src/easy-mode/components/page-switcher.tsx:34
+msgid "Home"
+msgstr "Başlangıç"
+
+#: src/abilities/add-pages/index.ts:17
+msgid "Add Pages"
+msgstr "Sayfa Ekle"
+
+#: src/easy-mode/components/topbar.tsx:703
+msgid "Undo"
+msgstr "Geri al"
+
+#: src/easy-mode/components/topbar.tsx:756
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Save"
+msgstr "Kaydet"
+
+#: big-sky.php:561
+msgid "These checks passed:"
+msgstr "Şu kontrollerden geçti:"
+
+#: big-sky.php:547
+msgid "Big Sky detected the following issues with your site:"
+msgstr "Big Sky, sitenizle ilgili şu sorunları tespit etti:"
+
+#. translators: $d is the number of performance issues found.
+#: big-sky.php:546
+msgid "Big Sky is affected by %d issue"
+msgid_plural "Big Sky is affected by %d issues"
+msgstr[0] "Big Sky %d sorundan etkilendi"
+msgstr[1] "Big Sky %d sorundan etkilendi"
+
+#: big-sky.php:536
+msgid "Mapbox API key is set."
+msgstr "Mapbox API anahtarı ayarlandı."
+
+#: big-sky.php:531
+msgid "Mapbox API key is not set. Big Sky requires a Mapbox API key to be set."
+msgstr "Mapbox API anahtarı ayarlanmadı. Big Sky, Mapbox API anahtarının ayarlanmasını gerektirir."
+
+#: big-sky.php:523
+msgid "Jetpack is connected to an admin."
+msgstr "Jetpack bir yöneticiye bağlandı."
+
+#: big-sky.php:518
+msgid "Jetpack does not have a connected admin. Big Sky requires Jetpack to be connected to an admin."
+msgstr "Jetpack'te bağlı yönetici yok. Big Sky, Jetpack'in bir yöneticiye bağlanmasını gerektirir."
+
+#: big-sky.php:509
+msgid "Jetpack is connected."
+msgstr "Jetpack bağlandı."
+
+#: big-sky.php:504
+msgid "Jetpack is not connected. Big Sky requires Jetpack to be connected."
+msgstr "Jetpack bağlı değil. Big Sky, Jetpack'in bağlı olmasını gerektirir."
+
+#: big-sky.php:493
+msgid "Jetpack is installed."
+msgstr "Jetpack yüklendi."
+
+#: big-sky.php:488
+msgid "Jetpack is not installed. Big Sky requires Jetpack to be installed and active."
+msgstr "Jetpack yüklenmedi. Big Sky, Jetpack'in yüklenmesini ve etkinleştirilmesini gerektirir."
+
+#: big-sky.php:462
+msgid "Big Sky did not find any known issues with your site."
+msgstr "Big Sky, sitenizle ilgili bilenen hiçbir sorun bulamadı."
+
+#: big-sky.php:454
+msgid "Big Sky Checks"
+msgstr "Big Sky Kontrolleri"
+
+#: big-sky.php:429
+#: big-sky.php:430
+msgid "Big Sky checks"
+msgstr "Big Sky kontrolleri"
+
+#: big-sky.php:260
+msgid "AI Features"
+msgstr "Yapay Zeka Özellikleri"
+
+#: big-sky.php:252
+msgid "Enable AI-powered site building experience"
+msgstr "Yapay zeka destekli site oluşturma deneyimini etkinleştirin"
+
+#. Author of the plugin
+#: big-sky.php
+msgid "Automattic, Inc."
+msgstr "Automattic, A.Ş."
+
+#: big-sky.php:206
+#: big-sky.php:457
+msgid "Big Sky"
+msgstr "Big Sky"

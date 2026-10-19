@@ -1,0 +1,784 @@
+<?php
+/**
+ * Content classification WordPress Ability implementation.
+ *
+ * @package WordPress\AI
+ */
+
+declare( strict_types=1 );
+
+namespace WordPress\AI\Abilities\Content_Classification;
+
+use WP_Error;
+use WP_Post;
+use WP_Post_Type;
+use WP_Taxonomy;
+use WordPress\AI\Abstracts\Abstract_Ability;
+use WordPress\AI\Experiments\Content_Classification\Content_Classification as Content_Classification_Experiment;
+
+use function WordPress\AI\get_post_context;
+use function WordPress\AI\normalize_content;
+
+/**
+ * Content classification WordPress Ability.
+ *
+ * Generates taxonomy term suggestions based on post content analysis.
+ *
+ * @since 0.7.0
+ */
+class Content_Classification extends Abstract_Ability {
+
+	/**
+	 * Default minimum confidence below which a suggestion is dropped.
+	 *
+	 * The system prompt instructs the model to use 0.5 = "somewhat
+	 * relevant" / 1.0 = "perfect match". In practice true positives
+	 * cluster at ≥0.85 and generic / popularity-driven false positives
+	 * sit in the 0.5–0.78 range, so filtering at 0.6 removes most
+	 * noise without meaningfully impacting recall. Filterable via
+	 * `wpai_content_classification_min_confidence`.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @var float
+	 */
+	public const MIN_CONFIDENCE = 0.6;
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since 0.8.0
+	 */
+	protected function guideline_categories(): array {
+		return array( 'site', 'copy' );
+	}
+
+	/**
+	 * Returns the input schema of the ability.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @return array<string, mixed> The input schema of the ability.
+	 */
+	protected function input_schema(): array {
+		return array(
+			'type'       => 'object',
+			'properties' => array(
+				'content'         => array(
+					'type'        => 'string',
+					'description' => esc_html__( 'Content to generate taxonomy suggestions for.', 'ai' ),
+				),
+				'post_id'         => array(
+					'type'        => 'integer',
+					'description' => esc_html__( 'Content from this post will be used to generate taxonomy suggestions. This overrides the content parameter if both are provided.', 'ai' ),
+				),
+				'taxonomy'        => array(
+					'type'        => 'string',
+					'default'     => 'post_tag',
+					'description' => esc_html__( 'The taxonomy to generate suggestions for (e.g., post_tag, category).', 'ai' ),
+				),
+				'strategy'        => array(
+					'type'        => 'string',
+					'default'     => Content_Classification_Experiment::STRATEGY_EXISTING_ONLY,
+					'description' => esc_html__( 'The suggestion strategy: existing_only or allow_new.', 'ai' ),
+				),
+				'max_suggestions' => array(
+					'type'        => 'integer',
+					'minimum'     => 1,
+					'maximum'     => 10,
+					'default'     => Content_Classification_Experiment::DEFAULT_MAX_SUGGESTIONS,
+					'description' => esc_html__( 'Maximum number of suggestions to generate.', 'ai' ),
+				),
+			),
+		);
+	}
+
+	/**
+	 * Returns the output schema of the ability.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @return array<string, mixed> The output schema of the ability.
+	 */
+	protected function output_schema(): array {
+		return array(
+			'type'       => 'object',
+			'properties' => array(
+				'suggestions' => array(
+					'type'        => 'array',
+					'description' => esc_html__( 'Generated taxonomy term suggestions.', 'ai' ),
+					'items'       => array(
+						'type'       => 'object',
+						'properties' => array(
+							'term'       => array(
+								'type'        => 'string',
+								'description' => esc_html__( 'The suggested term name.', 'ai' ),
+							),
+							'confidence' => array(
+								'type'        => 'number',
+								'description' => esc_html__( 'Confidence score between 0 and 1.', 'ai' ),
+							),
+							'is_new'     => array(
+								'type'        => 'boolean',
+								'description' => esc_html__( 'Whether this is a new term or an existing one.', 'ai' ),
+							),
+							'parent'     => array(
+								'type'        => 'string',
+								'description' => esc_html__( 'Parent term name for hierarchical taxonomies.', 'ai' ),
+							),
+						),
+					),
+				),
+			),
+		);
+	}
+
+	/**
+	 * Executes the ability with the given input arguments.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param mixed $input The input arguments to the ability.
+	 * @return array{suggestions: array<array{term: string, confidence: float, is_new: bool, parent?: string}>}|\WP_Error The result of the ability execution, or a WP_Error on failure.
+	 */
+	protected function execute_callback( $input ) {
+		// Default arguments.
+		$args = wp_parse_args(
+			$input,
+			array(
+				'content'         => null,
+				'post_id'         => null,
+				'taxonomy'        => 'post_tag',
+				'strategy'        => Content_Classification_Experiment::STRATEGY_EXISTING_ONLY,
+				'max_suggestions' => (int) Content_Classification_Experiment::DEFAULT_MAX_SUGGESTIONS,
+			),
+		);
+
+		// Validate taxonomy.
+		if ( ! taxonomy_exists( $args['taxonomy'] ) ) {
+			return new WP_Error(
+				'invalid_taxonomy',
+				/* translators: %s: Taxonomy name. */
+				sprintf( esc_html__( 'Taxonomy "%s" does not exist.', 'ai' ), sanitize_key( $args['taxonomy'] ) )
+			);
+		}
+
+		$assigned_terms = array();
+
+		// If a post ID is provided, ensure the post exists before using its content.
+		if ( $args['post_id'] ) {
+			$post = get_post( (int) $args['post_id'] );
+
+			if ( ! $post instanceof WP_Post ) {
+				return new WP_Error(
+					'post_not_found',
+					/* translators: %d: Post ID. */
+					sprintf( esc_html__( 'Post with ID %d not found.', 'ai' ), absint( $args['post_id'] ) )
+				);
+			}
+
+			// Get the post context.
+			$context = get_post_context( (int) $args['post_id'] );
+
+			// Default to the passed in content if it exists.
+			if ( $args['content'] ) {
+				$context['content'] = normalize_content( $args['content'] );
+			}
+
+			// Get terms already assigned to this post for the taxonomy.
+			$assigned = wp_get_object_terms( (int) $args['post_id'], $args['taxonomy'], array( 'fields' => 'names' ) );
+			if ( ! is_wp_error( $assigned ) ) {
+				$assigned_terms = (array) $assigned;
+			}
+		} else {
+			$context = array(
+				'content' => normalize_content( $args['content'] ?? '' ),
+			);
+		}
+
+		$tax_label = $this->get_taxonomy_label( $args['taxonomy'] );
+
+		// If we have no content, return an error.
+		if ( empty( $context['content'] ) ) {
+			return new WP_Error(
+				'content_not_provided',
+				/* translators: %s: Taxonomy label (e.g., "Category" or "Tag"). */
+				sprintf( esc_html__( 'Content is required to generate %s suggestions.', 'ai' ), esc_html( $tax_label ) )
+			);
+		}
+
+		// Generate the suggestions.
+		$result = $this->generate_suggestions(
+			$context,
+			$args['taxonomy'],
+			$args['strategy'],
+			(int) $args['max_suggestions'],
+			$assigned_terms
+		);
+
+		// If we have an error, return it.
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+
+		// If we have no results, return an error.
+		if ( empty( $result ) ) {
+			return new WP_Error(
+				'no_results',
+				/* translators: %s: Taxonomy label (e.g., "Category" or "Tag"). */
+				sprintf( esc_html__( 'No %s suggestions were generated.', 'ai' ), esc_html( $tax_label ) )
+			);
+		}
+
+		return array(
+			'suggestions' => $result,
+		);
+	}
+
+	/**
+	 * Returns the permission callback of the ability.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param mixed $args The input arguments to the ability.
+	 * @return bool|\WP_Error True if the user has permission, WP_Error otherwise.
+	 */
+	protected function permission_callback( $args ) {
+		$taxonomy  = isset( $args['taxonomy'] ) && is_string( $args['taxonomy'] ) ? $args['taxonomy'] : 'post_tag';
+		$tax_label = $this->get_taxonomy_label( $taxonomy );
+		$post_id   = isset( $args['post_id'] ) ? absint( $args['post_id'] ) : null;
+
+		if ( $post_id ) {
+			$post = get_post( $post_id );
+
+			// Ensure the post exists.
+			if ( ! $post instanceof WP_Post ) {
+				return new WP_Error(
+					'post_not_found',
+					/* translators: %d: Post ID. */
+					sprintf( esc_html__( 'Post with ID %d not found.', 'ai' ), $post_id )
+				);
+			}
+
+			// Ensure the user has permission to edit this particular post.
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return new WP_Error(
+					'insufficient_capabilities',
+					/* translators: %s: Taxonomy label (e.g., "Category" or "Tag"). */
+					sprintf( esc_html__( 'You do not have permission to generate %s suggestions for this post.', 'ai' ), esc_html( $tax_label ) )
+				);
+			}
+
+			$post_type_obj = get_post_type_object( $post->post_type );
+			if ( ! $post_type_obj instanceof WP_Post_Type || empty( $post_type_obj->show_in_rest ) ) {
+				return false;
+			}
+		} elseif ( ! current_user_can( 'edit_posts' ) ) {
+			// Ensure the user has permission to edit posts in general.
+			return new WP_Error(
+				'insufficient_capabilities',
+				/* translators: %s: Taxonomy label (e.g., "Category" or "Tag"). */
+				sprintf( esc_html__( 'You do not have permission to generate %s suggestions.', 'ai' ), esc_html( $tax_label ) )
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Returns the meta of the ability.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @return array<string, mixed> The meta of the ability.
+	 */
+	protected function meta(): array {
+		return array(
+			'show_in_rest' => true,
+		);
+	}
+
+	/**
+	 * Generates taxonomy term suggestions from the given content.
+	 *
+	 * The LLM generates suggestions based purely on content analysis
+	 * and the currently assigned terms. Post-processing then matches
+	 * suggestions against existing terms and applies the strategy.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param string|array<string, string> $context         The context to generate suggestions from.
+	 * @param string                       $taxonomy        The taxonomy to suggest terms for.
+	 * @param string                       $strategy        The suggestion strategy.
+	 * @param int                          $max_suggestions The maximum number of suggestions.
+	 * @param array<string>                $assigned_terms  Terms already assigned to the post.
+	 * @return array<array{term: string, confidence: float, is_new: bool, parent?: string}>|\WP_Error The generated suggestions, or a WP_Error if there was an error.
+	 */
+	protected function generate_suggestions( $context, string $taxonomy, string $strategy, int $max_suggestions, array $assigned_terms = array() ) {
+		// Convert the context to a string if it's an array.
+		if ( is_array( $context ) ) {
+			$context = implode(
+				"\n",
+				array_map(
+					static function ( $key, $value ) {
+						return sprintf(
+							'%s: %s',
+							ucwords( str_replace( '_', ' ', $key ) ),
+							$value
+						);
+					},
+					array_keys( $context ),
+					$context
+				)
+			);
+		}
+
+		// When using existing_only strategy, send the top terms to the LLM
+		// so it can select from actual terms rather than guessing.
+		$available_terms = array();
+		if ( Content_Classification_Experiment::STRATEGY_EXISTING_ONLY === $strategy ) {
+			$available_terms = $this->get_top_terms( $taxonomy );
+		}
+
+		/**
+		 * Filters the candidate pool of existing terms surfaced to the model as
+		 * `<available-terms>`.
+		 *
+		 * Default behaviour: the top 100 terms ordered by usage count when the
+		 * `existing_only` strategy is in use; an empty array otherwise. The
+		 * system instruction treats this pool as candidates ("use only when
+		 * they genuinely fit; relevance outweighs popularity") rather than as
+		 * required choices, so the popularity ordering is not load-bearing for
+		 * relevance — it's just the default. Sites can return a relevance-
+		 * ranked pool (e.g. via embeddings) here without touching prompt code.
+		 *
+		 * Returning an empty array suppresses the `<available-terms>` block
+		 * entirely, which lets the model rely purely on content + assigned
+		 * terms.
+		 *
+		 * @since 1.3.0
+		 *
+		 * @param array<string> $available_terms The default candidate pool (term names).
+		 * @param string        $taxonomy        The taxonomy slug being suggested for.
+		 * @param string        $strategy        The suggestion strategy
+		 *                                       (`existing_only` or `allow_new`).
+		 * @return array<string> The filtered candidate pool.
+		 */
+		$available_terms = (array) apply_filters(
+			'wpai_content_classification_available_terms',
+			$available_terms,
+			$taxonomy,
+			$strategy
+		);
+
+		// Piece together the various prompt parts.
+		$prompt_parts = array();
+
+		$prompt_parts[] = $this->build_taxonomy_descriptor( $taxonomy );
+		$prompt_parts[] = '<content>' . $context . '</content>';
+
+		// If we have currently assigned terms, add them to the prompt to avoid redundant suggestions.
+		if ( ! empty( $assigned_terms ) ) {
+			$prompt_parts[] = '<assigned-terms>' . implode( ', ', $assigned_terms ) . '</assigned-terms>';
+		}
+
+		// Surface the candidate pool: the existing terms fetched for the
+		// existing_only strategy by default, or whatever the
+		// `wpai_content_classification_available_terms` filter injected.
+		if ( ! empty( $available_terms ) ) {
+			$prompt_parts[] = '<available-terms>' . implode( ', ', $available_terms ) . '</available-terms>';
+		}
+
+		$prompt = implode( "\n", $prompt_parts );
+
+		/**
+		 * Filters the prompt string before it is sent to the AI model for taxonomy suggestion generation.
+		 *
+		 * Allows developers to modify, augment, or replace the prompt that the AI analyzes
+		 * when generating taxonomy term suggestions.
+		 *
+		 * @since 0.7.0
+		 *
+		 * @param string                       $prompt          The prompt string to be sent to the AI model.
+		 * @param string|array<string, string> $context         The context to generate suggestions from.
+		 * @param string                       $taxonomy        The taxonomy slug being suggested for (e.g., 'post_tag', 'category').
+		 * @param array<string>                $assigned_terms  Terms already assigned to the post.
+		 * @param array<string>                $available_terms Available terms to suggest from.
+		 */
+		$prompt = (string) apply_filters( 'wpai_content_classification_prompt', $prompt, $context, $taxonomy, $assigned_terms, $available_terms );
+
+		$prompt_builder = $this->get_prompt_builder( $prompt );
+
+		if ( is_wp_error( $prompt_builder ) ) {
+			return $prompt_builder;
+		}
+
+		// Generate the suggestions using the AI client with structured output.
+		$result = $prompt_builder->generate_text();
+
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+
+		// Parse, match against existing terms, filter, and limit.
+		$suggestions = $this->parse_suggestions( $result, $strategy, $assigned_terms, $taxonomy, $max_suggestions );
+
+		if ( is_wp_error( $suggestions ) ) {
+			return $suggestions;
+		}
+
+		/**
+		 * Filters the parsed taxonomy suggestions before they are returned to the client.
+		 *
+		 * Allows developers to modify, reorder, add, or remove suggestions after the AI
+		 * has generated them and they have been parsed into structured data.
+		 *
+		 * Each suggestion is an associative array with the keys:
+		 * - 'term'       (string) The suggested term name.
+		 * - 'confidence' (float)  Confidence score between 0 and 1.
+		 * - 'is_new'     (bool)   Whether the term is new or already exists on the site.
+		 * - 'parent'     (string) Optional. Parent term name for hierarchical taxonomies.
+		 *
+		 * @since 0.7.0
+		 *
+		 * @param array<array{term: string, confidence: float, is_new: bool, parent?: string}> $suggestions    The parsed suggestions.
+		 * @param string                                                                       $taxonomy       The taxonomy slug (e.g., 'post_tag', 'category').
+		 * @param string                                                                       $strategy       The suggestion strategy ('existing_only' or 'allow_new').
+		 */
+		return (array) apply_filters( 'wpai_content_classification_suggestions', $suggestions, $taxonomy, $strategy );
+	}
+
+	/**
+	 * Builds the `<taxonomy …/>` descriptor block sent to the model.
+	 *
+	 * Surfaces the human label, the description, whether the taxonomy is
+	 * hierarchical, and a coarse `kind` (`category` vs `tag`) so the
+	 * model can reason about intent (broad/thematic vs specific) rather
+	 * than guessing from the raw slug. The system instruction branches
+	 * on `kind`.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @param string $taxonomy The taxonomy slug.
+	 * @return string The descriptor block (e.g.
+	 *                `<taxonomy name="category" label="Categories" kind="category" hierarchical="true">…description…</taxonomy>`),
+	 *                or an empty string when the taxonomy does not exist.
+	 */
+	private function build_taxonomy_descriptor( string $taxonomy ): string {
+		$taxonomy = sanitize_key( $taxonomy );
+
+		if ( '' === $taxonomy || ! taxonomy_exists( $taxonomy ) ) {
+			return '';
+		}
+
+		$tax_object = get_taxonomy( $taxonomy );
+
+		if ( ! $tax_object instanceof WP_Taxonomy ) {
+			return '';
+		}
+
+		$is_hierarchical = is_taxonomy_hierarchical( $taxonomy );
+		$kind            = $is_hierarchical ? 'category' : 'tag';
+
+		$label = ! empty( $tax_object->labels->name )
+			? wp_strip_all_tags( (string) $tax_object->labels->name )
+			: $taxonomy;
+
+		$description = trim( wp_strip_all_tags( (string) $tax_object->description ) );
+
+		// esc_attr() guards the attribute values so a label containing quotes or
+		// angle brackets can't break the pseudo-XML the model reads.
+		return sprintf(
+			'<taxonomy name="%1$s" label="%2$s" kind="%3$s" hierarchical="%4$s">%5$s</taxonomy>',
+			esc_attr( $taxonomy ),
+			esc_attr( $label ),
+			esc_attr( $kind ),
+			$is_hierarchical ? 'true' : 'false',
+			$description
+		);
+	}
+
+	/**
+	 * Get the prompt builder for generating taxonomy term suggestions.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param string $prompt The prompt to use for generating taxonomy term suggestions.
+	 * @return \WP_AI_Client_Prompt_Builder|\WP_Error The prompt builder, or a WP_Error on failure.
+	 */
+	private function get_prompt_builder( string $prompt ) {
+		$prompt_builder = wp_ai_client_prompt( $prompt )
+			->using_system_instruction( $this->get_system_instruction() )
+			->as_json_response( $this->suggestions_schema() );
+
+		$prompt_builder = $this->filter_prompt_builder( $prompt_builder, Content_Classification_Experiment::class, array(), $prompt );
+
+		return $this->ensure_text_generation_supported(
+			$prompt_builder,
+			esc_html__( 'Term generation failed. Please ensure you have a connected provider that supports text generation.', 'ai' )
+		);
+	}
+
+	/**
+	 * Returns the JSON schema for structured output from the AI model.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @return array<string, mixed> The JSON schema for structured output.
+	 */
+	protected function suggestions_schema(): array {
+		return array(
+			'type'                 => 'object',
+			'properties'           => array(
+				'suggestions' => array(
+					'type'  => 'array',
+					'items' => array(
+						'type'                 => 'object',
+						'properties'           => array(
+							'term'       => array( 'type' => 'string' ),
+							'confidence' => array( 'type' => 'number' ),
+						),
+						'required'             => array( 'term', 'confidence' ),
+						'additionalProperties' => false,
+					),
+				),
+			),
+			'required'             => array( 'suggestions' ),
+			'additionalProperties' => false,
+		);
+	}
+
+	/**
+	 * Parses the AI response into structured suggestions.
+	 *
+	 * Matches LLM suggestions against existing terms (case-insensitive),
+	 * filters out assigned terms, applies the strategy, sorts by confidence,
+	 * and limits to the requested number of suggestions.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param string        $response        The raw AI response.
+	 * @param string        $strategy        The suggestion strategy ('existing_only' or 'allow_new').
+	 * @param array<string> $assigned_terms  Terms already assigned to the post.
+	 * @param string        $taxonomy        The taxonomy to suggest terms for.
+	 * @param int           $max_suggestions The maximum number of suggestions to return.
+	 * @return array<array{term: string, confidence: float, is_new: bool, parent?: string}>|\WP_Error Parsed suggestions or error.
+	 */
+	private function parse_suggestions( string $response, string $strategy, array $assigned_terms, string $taxonomy, int $max_suggestions ) {
+		$decoded = json_decode( $response, true );
+
+		if ( ! is_array( $decoded ) || ! isset( $decoded['suggestions'] ) || ! is_array( $decoded['suggestions'] ) ) {
+			return new WP_Error(
+				'invalid_response',
+				esc_html__( 'Could not parse AI response as valid suggestions.', 'ai' )
+			);
+		}
+
+		// Only fetch existing terms when we need them for post-processing (existing_only strategy).
+		$existing_terms = Content_Classification_Experiment::STRATEGY_EXISTING_ONLY === $strategy
+			? $this->get_existing_terms( $taxonomy )
+			: array();
+
+		// Build a lowercase → original name lookup for existing terms.
+		// We don't use slugs here because the LLM may generate terms that don't match the taxonomy slug.
+		if ( ! empty( $existing_terms ) ) {
+			$existing_terms = array_combine( array_map( 'strtolower', $existing_terms ), $existing_terms );
+		}
+
+		/**
+		 * Filters the minimum confidence threshold for a suggestion to be
+		 * returned. Suggestions with confidence below this value are dropped
+		 * before sorting and limiting to `max_suggestions`.
+		 *
+		 * @since 1.3.0
+		 *
+		 * @param float  $min_confidence The minimum confidence (0.0–1.0).
+		 * @param string $taxonomy       The taxonomy slug being suggested for.
+		 * @param string $strategy       The suggestion strategy.
+		 * @return float The filtered minimum confidence.
+		 */
+		$min_confidence = (float) apply_filters(
+			'wpai_content_classification_min_confidence',
+			self::MIN_CONFIDENCE,
+			$taxonomy,
+			$strategy
+		);
+		// Clamp to the valid range so a stray filter return can't disable the floor entirely.
+		$min_confidence = max( 0.0, min( 1.0, $min_confidence ) );
+
+		// Build a lowercase set of assigned terms for filtering.
+		$assigned_terms = array_map( 'strtolower', $assigned_terms );
+		$suggestions    = array();
+		foreach ( $decoded['suggestions'] as $item ) {
+			if ( ! is_array( $item ) || empty( $item['term'] ) ) {
+				continue;
+			}
+
+			$term       = sanitize_text_field( trim( $item['term'] ) );
+			$term_lower = strtolower( $term );
+			$is_new     = ! isset( $existing_terms[ $term_lower ] );
+			$confidence = isset( $item['confidence'] ) ? (float) $item['confidence'] : 0.5;
+			// Clamp first so the floor compares against the effective confidence
+			// rather than malformed model output.
+			$confidence = max( 0.0, min( 1.0, $confidence ) );
+
+			// Drop suggestions below the relevance floor.
+			if ( $confidence < $min_confidence ) {
+				continue;
+			}
+
+			// Skip terms already assigned to the post.
+			// The agent should avoid suggesting these, but just in case we'll check here as well.
+			if ( in_array( $term_lower, $assigned_terms, true ) ) {
+				continue;
+			}
+
+			// For existing_only strategy, skip terms that don't exist.
+			if ( Content_Classification_Experiment::STRATEGY_EXISTING_ONLY === $strategy && $is_new ) {
+				continue;
+			}
+
+			// Use the original capitalized name for existing terms.
+			if ( ! $is_new ) {
+				$term = $existing_terms[ $term_lower ];
+			}
+
+			$suggestion = array(
+				'term'       => $term,
+				'confidence' => $confidence,
+				'is_new'     => $is_new,
+			);
+
+			// Only preserve parent for hierarchical taxonomies, and strip it
+			// when the AI returns the taxonomy slug itself as the parent.
+			if (
+				! empty( $item['parent'] )
+				&& is_taxonomy_hierarchical( $taxonomy )
+				&& strtolower( trim( $item['parent'] ) ) !== strtolower( $taxonomy )
+			) {
+				$suggestion['parent'] = sanitize_text_field( trim( $item['parent'] ) );
+			}
+
+			$suggestions[] = $suggestion;
+		}
+
+		// Sort by confidence descending.
+		usort(
+			$suggestions,
+			static function ( $a, $b ) {
+				return $b['confidence'] <=> $a['confidence'];
+			}
+		);
+
+		// Limit to max suggestions.
+		return array_slice( $suggestions, 0, $max_suggestions );
+	}
+
+	/**
+	 * Gets existing terms for a taxonomy.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param string $taxonomy The taxonomy to get terms for.
+	 * @return array<string> List of existing term names.
+	 */
+	private function get_existing_terms( string $taxonomy ): array {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => false,
+				'fields'     => 'names',
+			)
+		);
+
+		if ( is_wp_error( $terms ) ) {
+			return array();
+		}
+
+		return (array) $terms;
+	}
+
+	/**
+	 * Gets the top terms for a taxonomy, ordered by usage count.
+	 *
+	 * Used to provide the LLM with a set of existing terms to select from
+	 * when using the existing_only strategy, improving match quality.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param string $taxonomy The taxonomy to get terms for.
+	 * @param int    $limit    Maximum number of terms to return.
+	 * @return array<string> List of term names ordered by count descending.
+	 */
+	private function get_top_terms( string $taxonomy, int $limit = 100 ): array {
+		/**
+		 * Filters the maximum number of existing terms fetched for the
+		 * candidate pool surfaced to the model under the `existing_only`
+		 * strategy.
+		 *
+		 * The default of 100 suits most sites; large taxonomies may benefit
+		 * from a higher cap, while smaller sites can lower it to reduce the
+		 * prompt token count.
+		 *
+		 * @since 1.3.0
+		 *
+		 * @param int    $limit    The maximum number of terms to fetch.
+		 * @param string $taxonomy The taxonomy slug being suggested for.
+		 * @return int The filtered limit.
+		 */
+		$limit = (int) apply_filters( 'wpai_content_classification_candidate_pool_size', $limit, $taxonomy );
+
+		// A non-positive limit would make get_terms() return everything;
+		// fall back to the default so the pool stays bounded.
+		if ( $limit < 1 ) {
+			$limit = 100;
+		}
+
+		$terms = get_terms(
+			array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => false,
+				'fields'     => 'names',
+				'orderby'    => 'count',
+				'order'      => 'DESC',
+				'number'     => $limit,
+			)
+		);
+
+		if ( is_wp_error( $terms ) ) {
+			return array();
+		}
+
+		return (array) $terms;
+	}
+
+	/**
+	 * Gets the taxonomy label for use in error and status messages.
+	 *
+	 * Defaults to 'taxonomy' if taxonomy does not exist or has no label.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param string $taxonomy The taxonomy slug.
+	 * @return string Taxonomy singular label (e.g., 'Category', 'Tag', 'taxonomy').
+	 */
+	private function get_taxonomy_label( string $taxonomy ): string {
+		$taxonomy = sanitize_key( $taxonomy );
+
+		if ( '' === $taxonomy || ! taxonomy_exists( $taxonomy ) ) {
+			return __( 'Taxonomy', 'ai' );
+		}
+
+		$tax_object = get_taxonomy( $taxonomy );
+
+		if ( ! $tax_object instanceof WP_Taxonomy ) {
+			return __( 'Taxonomy', 'ai' );
+		}
+
+		$label = ! empty( $tax_object->labels->singular_name )
+			? $tax_object->labels->singular_name
+			: ( ! empty( $tax_object->labels->name ) ? $tax_object->labels->name : $taxonomy );
+
+		return trim( wp_strip_all_tags( (string) $label ) );
+	}
+}

@@ -1,0 +1,411 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Big Sky\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-19T17:22:29+00:00\n"
+"PO-Revision-Date: 2026-09-10 11:56:54+0000\n"
+"Language: id\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:55
+msgid "Are there any changes you would like me to make?"
+msgstr "Apakah ada perubahan yang Anda ingin untuk saya terapkan?"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:54
+msgid "Your site is ready! Please click around and check it out."
+msgstr "Situs Anda telah siap! Anda bisa klik di mana saja dan memeriksanya."
+
+#: src/easy-mode/components/app.tsx:454
+msgid "Switching to edit mode so you can watch the new design being built."
+msgstr "Beralih ke mode edit agar Anda dapat melihat desain baru yang sedang dibuat."
+
+#: src/easy-mode/components/topbar.tsx:691
+msgid "Return to WP Admin"
+msgstr "Kembali ke WP Admin"
+
+#: src/easy-mode/hooks/use-save-controller.ts:121
+msgid "Your changes could not be saved. Your work is still here — try saving again."
+msgstr "Perubahan tidak dapat disimpan. Pekerjaan Anda masih di sini — coba simpan lagi."
+
+#: src/easy-mode/hooks/use-save-controller.ts:120
+msgid "Some changes could not be saved. Your work is still here — try saving again."
+msgstr "Beberapa perubahan tidak dapat disimpan. Pekerjaan Anda masih di sini — coba simpan lagi."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:66
+msgid "Save your changes?"
+msgstr "Simpan perubahan?"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:33
+msgid "You need to save or discard the changes to the current page."
+msgstr "Anda perlu menyimpan atau membuang perubahan pada halaman ini."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:32
+msgid "The preview shows your saved site, so unsaved changes won’t appear there."
+msgstr "Pratinjau menunjukkan situs Anda yang tersimpan, jadi perubahan yang tidak tersimpan tidak akan ditampilkan."
+
+#: src/easy-mode/components/topbar.tsx:756
+msgid "Save draft"
+msgstr "Simpan konsep"
+
+#: src/easy-mode/components/topbar.tsx:742
+msgid "Publish"
+msgstr "Publikasikan"
+
+#: src/easy-mode/components/topbar.tsx:706
+msgid "Redo"
+msgstr "Ulangi"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Open in a new tab"
+msgstr "Buka di tab baru"
+
+#: src/easy-mode/components/topbar.tsx:69
+msgid "Mode"
+msgstr "Mode"
+
+#. %s: selected device, e.g. Desktop.
+#: src/easy-mode/components/topbar.tsx:736
+msgid "Responsive view: %s"
+msgstr "Tampilan responsif: %s"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Responsive view"
+msgstr "Tampilan responsif"
+
+#: src/easy-mode/components/topbar.tsx:718
+msgid "Reload preview"
+msgstr "Muat ulang pratinjau"
+
+#: src/easy-mode/components/topbar.tsx:689
+msgid "Annotate"
+msgstr "Beri anotasi"
+
+#. %d: number of annotations waiting to be sent.
+#: src/easy-mode/components/topbar.tsx:687
+msgid "Resume annotating, %d pending"
+msgid_plural "Resume annotating, %d pending"
+msgstr[0] "Lanjutkan menganotasi, %d tertunda"
+msgstr[1] "Lanjutkan menganotasi, %d tertunda"
+
+#: src/easy-mode/components/topbar.tsx:682
+msgid "Chat is unavailable"
+msgstr "Obrolan tidak tersedia"
+
+#: src/easy-mode/components/topbar.tsx:57
+msgid "Mobile"
+msgstr "Ponsel"
+
+#: src/easy-mode/components/topbar.tsx:56
+msgid "Tablet"
+msgstr "Tablet"
+
+#: src/easy-mode/components/topbar.tsx:55
+msgid "Desktop"
+msgstr "Desktop"
+
+#: src/easy-mode/components/topbar.tsx:51
+msgid "Preview"
+msgstr "Pratinjau"
+
+#: src/easy-mode/components/preview-overlay.tsx:149
+msgid "The site preview could not be loaded."
+msgstr "Pratinjau situs tidak dapat dimuat."
+
+#: src/easy-mode/components/page-switcher.tsx:116
+msgid "(no title)"
+msgstr "(tanpa judul)"
+
+#. %s: page title.
+#: src/easy-mode/components/page-switcher.tsx:113
+msgid "%s — Draft"
+msgstr "%s — Draf"
+
+#. %s: page currently open.
+#: src/easy-mode/components/page-switcher.tsx:99
+msgid "Switch page. Current page: %s"
+msgstr "Alihkan halaman. Halaman sekarang: %s"
+
+#: src/easy-mode/components/page-switcher.tsx:76
+msgid "Switch page"
+msgstr "Alihkan halaman"
+
+#: src/easy-mode/components/app.tsx:308
+msgid "Switching to edit mode so you can see the changes."
+msgstr "Beralih ke mode edit agar Anda dapat melihat perubahan."
+
+#: src/easy-mode/components/app.tsx:307
+msgid "Switching to edit mode so you can approve the changes before saving."
+msgstr "Beralih ke mode edit agar Anda dapat menyetujui perubahan sebelum menyimpan."
+
+#: src/easy-mode/annotations/use-editor-annotations.ts:146
+msgid "Annotations could not be sent — the assistant is unavailable."
+msgstr "Anotasi tidak dapat dikirim — asisten tidak tersedia."
+
+#. %d: number of annotations.
+#: src/easy-mode/annotations/prompt.ts:82
+msgid "%d annotation submitted"
+msgid_plural "%d annotations submitted"
+msgstr[0] "%d anotasi dikirimkan"
+msgstr[1] "%d anotasi dikirimkan"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Annotating"
+msgstr "Menganotasi"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Discard annotations"
+msgstr "Buang anotasi"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Exit annotation mode"
+msgstr "Keluar dari mode anotasi"
+
+#. %d: number of annotations to send.
+#: src/easy-mode/annotations/annotation-topbar.tsx:21
+msgid "Send %d annotation"
+msgid_plural "Send %d annotations"
+msgstr[0] "Kirim %d anotasi"
+msgstr[1] "Kirim %d anotasi"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:18
+msgid "Sending…"
+msgstr "Mengirim…"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:14
+msgid "Send"
+msgstr "Kirim"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:566
+msgid "Save annotation"
+msgstr "Simpan anotasi"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:565
+msgid "Update annotation"
+msgstr "Perbarui anotasi"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Delete annotation"
+msgstr "Hapus anotasi"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Add a comment…"
+msgstr "Tambah komentar…"
+
+#. %s: label of the block being annotated.
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Annotate %s"
+msgstr "Anotasikan %s"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:445
+msgid "Annotate blocks. Use the arrow keys to move between blocks, Enter to comment, and Escape to exit."
+msgstr "Anotasikan blok. Gunakan tombol panah untuk berpindah blok, tekan Enter untuk berkomentar, dan Escape untuk keluar."
+
+#. 1: annotation number, 2: comment text.
+#: src/easy-mode/annotations/annotation-layer.tsx:367
+msgid "Annotation %1$d: %2$s"
+msgstr "Anotasi %1$d: %2$s"
+
+#. 1: block label, 2: position, 3: total count.
+#: src/easy-mode/annotations/annotation-layer.tsx:341
+msgid "%1$s, block %2$d of %3$d"
+msgstr "%1$s, blok %2$d dari %3$d"
+
+#. Description of the plugin
+#: big-sky.php
+msgid "Your WordPress.com AI agent that helps with site setup, content, design, and more."
+msgstr "Agen AI WordPress.com yang membantu Anda menyiapkan situs, konten, desain, dan banyak lagi."
+
+#. Plugin Name of the plugin
+#: big-sky.php
+msgid "WordPress Agent"
+msgstr "Agen WordPress"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Discard"
+msgstr "Buang"
+
+#: src/easy-mode/components/topbar.tsx:754
+msgid "Saving…"
+msgstr "Menyimpan…"
+
+#: src/easy-mode/components/preview-overlay.tsx:157
+#: src/components/index.js:145
+msgid "Retry"
+msgstr "Coba lagi"
+
+#: src/abilities/set-styles/index.ts:18
+msgid "Set Styles"
+msgstr "Atur Gaya"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:82
+msgid "Failed to update styles:"
+msgstr "Gagal memperbarui gaya:"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:76
+msgid "Failed to update styles. The style variation may be invalid."
+msgstr "Gagal memperbarui gaya. Variasi gaya mungkin tidak valid."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:62
+msgid "Styles updated successfully."
+msgstr "Gaya berhasil diperbarui."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:38
+msgid "Invalid button format. Button must be a string (variation title)."
+msgstr "Format tombol tidak valid. Tombol harus berupa string (judul variasi)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:31
+msgid "Invalid font format. Font must be a string (variation title)."
+msgstr "Format font tidak valid. Font harus berupa string (judul variasi)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:24
+msgid "Invalid color format. Color must be a string (variation title)."
+msgstr "Format warna tidak valid. Warna harus berupa string (judul variasi)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:17
+msgid "Invalid arguments. Provide at least one of: color, font, or button."
+msgstr "Argumen tidak valid. Berikan setidaknya satu dari: warna, font, atau tombol."
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:169
+msgid "Failed to create pages:"
+msgstr "Gagal membuat halaman:"
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:65
+msgid "Invalid pages. Must provide an array of page objects."
+msgstr "Halaman tidak valid. Harus berikan array objek halaman."
+
+#: big-sky.php:207
+msgid "AI-powered site building and navigation abilities."
+msgstr "Fungsi pembuatan situs dan navigasi berbasis AI."
+
+#: src/easy-mode/components/topbar.tsx:52
+msgid "Edit"
+msgstr "Edit"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:65
+msgid "Updated:"
+msgstr "Diperbarui:"
+
+#: big-sky.php:1018
+#: big-sky.php:1019
+msgid "AI Editor"
+msgstr "Editor AI"
+
+#. translators: %s is the theme name.
+#: big-sky.php:479
+msgid "The current theme (%s) is a block theme."
+msgstr "Tema saat ini (%s) adalah tema blok."
+
+#: big-sky.php:472
+msgid "The current theme is not a block theme. Big Sky requires a block theme to be active."
+msgstr "Tema saat ini bukan tema blok. Big Sky memerlukan pengaktifan tema blok."
+
+#: src/easy-mode/components/preview-overlay.tsx:160
+msgid "Site preview"
+msgstr "Pratinjau Situs"
+
+#: src/easy-mode/components/page-switcher.tsx:49
+#: src/components/mosaic.js:634
+#: src/components/mosaic.js:676
+msgid "Pages"
+msgstr "Laman"
+
+#: src/easy-mode/components/page-switcher.tsx:34
+msgid "Home"
+msgstr "Beranda"
+
+#: src/abilities/add-pages/index.ts:17
+msgid "Add Pages"
+msgstr "Tambah Halaman"
+
+#: src/easy-mode/components/topbar.tsx:703
+msgid "Undo"
+msgstr "Batalkan"
+
+#: src/easy-mode/components/topbar.tsx:756
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Save"
+msgstr "Simpan"
+
+#: big-sky.php:561
+msgid "These checks passed:"
+msgstr "Berhasil lolos pemeriksaan berikut:"
+
+#: big-sky.php:547
+msgid "Big Sky detected the following issues with your site:"
+msgstr "Big Sky mendeteksi adanya masalah berikut pada situs Anda:"
+
+#. translators: $d is the number of performance issues found.
+#: big-sky.php:546
+msgid "Big Sky is affected by %d issue"
+msgid_plural "Big Sky is affected by %d issues"
+msgstr[0] "Big Sky terkena %d masalah"
+msgstr[1] "Big Sky terkena %d masalah"
+
+#: big-sky.php:536
+msgid "Mapbox API key is set."
+msgstr "Kunci API Mapbox sudah diatur."
+
+#: big-sky.php:531
+msgid "Mapbox API key is not set. Big Sky requires a Mapbox API key to be set."
+msgstr "Kunci API Mapbox belum diatur. Big Sky memerlukan pengaturan kunci API Mapbox."
+
+#: big-sky.php:523
+msgid "Jetpack is connected to an admin."
+msgstr "Jetpack tersambung ke admin."
+
+#: big-sky.php:518
+msgid "Jetpack does not have a connected admin. Big Sky requires Jetpack to be connected to an admin."
+msgstr "Jetpack tidak tersambung ke admin. Big Sky memerlukan penyambungan Jetpack ke admin."
+
+#: big-sky.php:509
+msgid "Jetpack is connected."
+msgstr "Jetpack tersambung."
+
+#: big-sky.php:504
+msgid "Jetpack is not connected. Big Sky requires Jetpack to be connected."
+msgstr "Jetpack tidak tersambung. Big Sky memerlukan penyambungan Jetpack."
+
+#: big-sky.php:493
+msgid "Jetpack is installed."
+msgstr "Jetpack sudah terinstal."
+
+#: big-sky.php:488
+msgid "Jetpack is not installed. Big Sky requires Jetpack to be installed and active."
+msgstr "Jetpack belum terinstal. Big Sky memerlukan penginstalan dan pengaktifan Jetpack."
+
+#: big-sky.php:462
+msgid "Big Sky did not find any known issues with your site."
+msgstr "Big Sky tidak menemukan masalah umum apa pun pada situs Anda."
+
+#: big-sky.php:454
+msgid "Big Sky Checks"
+msgstr "Pemeriksaan Big Sky"
+
+#: big-sky.php:429
+#: big-sky.php:430
+msgid "Big Sky checks"
+msgstr "Pemeriksaan Big Sky"
+
+#: big-sky.php:260
+msgid "AI Features"
+msgstr "Fitur AI"
+
+#: big-sky.php:252
+msgid "Enable AI-powered site building experience"
+msgstr "Aktifkan pembuatan situs bersama AI"
+
+#. Author of the plugin
+#: big-sky.php
+msgid "Automattic, Inc."
+msgstr "Automattic, Inc."
+
+#: big-sky.php:206
+#: big-sky.php:457
+msgid "Big Sky"
+msgstr "Big Sky"

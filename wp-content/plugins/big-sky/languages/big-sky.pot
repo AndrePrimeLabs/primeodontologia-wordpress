@@ -1,0 +1,592 @@
+# Copyright (C) 2026 Automattic, Inc.
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Agent 7.9.23\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/big-sky-plugin\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-19T17:02:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: big-sky\n"
+
+#: src/abilities/add-pages/index.ts:17
+msgid "Add Pages"
+msgstr ""
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:169
+msgid "Failed to create pages:"
+msgstr ""
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:65
+msgid "Invalid pages. Must provide an array of page objects."
+msgstr ""
+
+#: src/abilities/set-styles/index.ts:18
+msgid "Set Styles"
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:17
+msgid "Invalid arguments. Provide at least one of: color, font, or button."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:24
+msgid "Invalid color format. Color must be a string (variation title)."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:31
+msgid "Invalid font format. Font must be a string (variation title)."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:38
+msgid "Invalid button format. Button must be a string (variation title)."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:62
+msgid "Styles updated successfully."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:65
+msgid "Updated:"
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:76
+msgid "Failed to update styles. The style variation may be invalid."
+msgstr ""
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:82
+msgid "Failed to update styles:"
+msgstr ""
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:54
+msgid "Your site is ready! Please click around and check it out."
+msgstr ""
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:55
+msgid "Are there any changes you would like me to make?"
+msgstr ""
+
+#. %d: number of annotations.
+#: src/easy-mode/annotations/prompt.ts:82
+msgid "%d annotation submitted"
+msgid_plural "%d annotations submitted"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: block label, 2: position, 3: total count.
+#: src/easy-mode/annotations/annotation-layer.tsx:341
+msgid "%1$s, block %2$d of %3$d"
+msgstr ""
+
+#. 1: annotation number, 2: comment text.
+#: src/easy-mode/annotations/annotation-layer.tsx:367
+msgid "Annotation %1$d: %2$s"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-layer.tsx:445
+msgid "Annotate blocks. Use the arrow keys to move between blocks, Enter to comment, and Escape to exit."
+msgstr ""
+
+#. %s: label of the block being annotated.
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Annotate %s"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Add a comment…"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Delete annotation"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-layer.tsx:565
+msgid "Update annotation"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-layer.tsx:566
+msgid "Save annotation"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:14
+msgid "Send"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:18
+msgid "Sending…"
+msgstr ""
+
+#. %d: number of annotations to send.
+#: src/easy-mode/annotations/annotation-topbar.tsx:21
+msgid "Send %d annotation"
+msgid_plural "Send %d annotations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Exit annotation mode"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Discard annotations"
+msgstr ""
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Annotating"
+msgstr ""
+
+#: src/easy-mode/annotations/use-editor-annotations.ts:146
+msgid "Annotations could not be sent — the assistant is unavailable."
+msgstr ""
+
+#: src/easy-mode/components/app.tsx:324
+msgid "Switching to edit mode so you can approve the changes before saving."
+msgstr ""
+
+#: src/easy-mode/components/app.tsx:325
+msgid "Switching to edit mode so you can see the changes."
+msgstr ""
+
+#: src/easy-mode/components/app.tsx:550
+msgid "Switching to edit mode so you can watch the new design being built."
+msgstr ""
+
+#: src/easy-mode/components/buffered-preview-frame.tsx:14
+msgid "Site preview"
+msgstr ""
+
+#. %s: page title.
+#: src/easy-mode/components/page-switcher.tsx:113
+msgid "%s — Draft"
+msgstr ""
+
+#: src/easy-mode/components/page-switcher.tsx:116
+msgid "(no title)"
+msgstr ""
+
+#: src/easy-mode/components/page-switcher.tsx:34
+msgid "Home"
+msgstr ""
+
+#: src/easy-mode/components/page-switcher.tsx:49
+#: src/components/mosaic.js:634
+#: src/components/mosaic.js:676
+msgid "Pages"
+msgstr ""
+
+#: src/easy-mode/components/page-switcher.tsx:76
+msgid "Switch page"
+msgstr ""
+
+#. %s: page currently open.
+#: src/easy-mode/components/page-switcher.tsx:99
+msgid "Switch page. Current page: %s"
+msgstr ""
+
+#: src/easy-mode/components/preview-overlay.tsx:112
+msgid "The preview could not be refreshed."
+msgstr ""
+
+#: src/easy-mode/components/preview-overlay.tsx:209
+msgid "The site preview could not be loaded."
+msgstr ""
+
+#: src/easy-mode/components/preview-overlay.tsx:217
+#: src/components/index.js:145
+msgid "Retry"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:51
+msgid "Preview"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:52
+msgid "Edit"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:55
+msgid "Desktop"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:56
+msgid "Tablet"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:57
+msgid "Mobile"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:682
+msgid "Chat is unavailable"
+msgstr ""
+
+#. %d: number of annotations waiting to be sent.
+#: src/easy-mode/components/topbar.tsx:687
+msgid "Resume annotating, %d pending"
+msgid_plural "Resume annotating, %d pending"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/easy-mode/components/topbar.tsx:689
+msgid "Annotate"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:69
+msgid "Mode"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:691
+msgid "Return to WP Admin"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:703
+msgid "Undo"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:706
+msgid "Redo"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:718
+msgid "Reload preview"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Open in a new tab"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Responsive view"
+msgstr ""
+
+#. %s: selected device, e.g. Desktop.
+#: src/easy-mode/components/topbar.tsx:736
+msgid "Responsive view: %s"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:742
+msgid "Publish"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:754
+msgid "Saving…"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:756
+msgid "Save draft"
+msgstr ""
+
+#: src/easy-mode/components/topbar.tsx:756
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Save"
+msgstr ""
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:32
+msgid "The preview shows your saved site, so unsaved changes won’t appear there."
+msgstr ""
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:33
+msgid "You need to save or discard the changes to the current page."
+msgstr ""
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:66
+msgid "Save your changes?"
+msgstr ""
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Discard"
+msgstr ""
+
+#: src/easy-mode/hooks/use-save-controller.ts:120
+msgid "Some changes could not be saved. Your work is still here — try saving again."
+msgstr ""
+
+#: src/easy-mode/hooks/use-save-controller.ts:121
+msgid "Your changes could not be saved. Your work is still here — try saving again."
+msgstr ""
+
+#. Plugin Name of the plugin
+#: big-sky.php
+msgid "WordPress Agent"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: big-sky.php
+msgid "https://wordpress.com/support/ai/wordpress-agent/"
+msgstr ""
+
+#. Description of the plugin
+#: big-sky.php
+msgid "Your WordPress.com AI agent that helps with site setup, content, design, and more."
+msgstr ""
+
+#. Author of the plugin
+#: big-sky.php
+msgid "Automattic, Inc."
+msgstr ""
+
+#. Author URI of the plugin
+#: big-sky.php
+msgid "https://automattic.com/"
+msgstr ""
+
+#: big-sky.php:207
+#: big-sky.php:458
+msgid "Big Sky"
+msgstr ""
+
+#: big-sky.php:208
+msgid "AI-powered site building and navigation abilities."
+msgstr ""
+
+#: big-sky.php:253
+msgid "Enable AI-powered site building experience"
+msgstr ""
+
+#: big-sky.php:261
+msgid "AI Features"
+msgstr ""
+
+#: big-sky.php:430
+#: big-sky.php:431
+msgid "Big Sky checks"
+msgstr ""
+
+#: big-sky.php:455
+msgid "Big Sky Checks"
+msgstr ""
+
+#: big-sky.php:463
+msgid "Big Sky did not find any known issues with your site."
+msgstr ""
+
+#: big-sky.php:473
+msgid "The current theme is not a block theme. Big Sky requires a block theme to be active."
+msgstr ""
+
+#. translators: %s is the theme name.
+#: big-sky.php:480
+#, php-format
+msgid "The current theme (%s) is a block theme."
+msgstr ""
+
+#: big-sky.php:489
+msgid "Jetpack is not installed. Big Sky requires Jetpack to be installed and active."
+msgstr ""
+
+#: big-sky.php:494
+msgid "Jetpack is installed."
+msgstr ""
+
+#: big-sky.php:505
+msgid "Jetpack is not connected. Big Sky requires Jetpack to be connected."
+msgstr ""
+
+#: big-sky.php:510
+msgid "Jetpack is connected."
+msgstr ""
+
+#: big-sky.php:519
+msgid "Jetpack does not have a connected admin. Big Sky requires Jetpack to be connected to an admin."
+msgstr ""
+
+#: big-sky.php:524
+msgid "Jetpack is connected to an admin."
+msgstr ""
+
+#: big-sky.php:532
+msgid "Mapbox API key is not set. Big Sky requires a Mapbox API key to be set."
+msgstr ""
+
+#: big-sky.php:537
+msgid "Mapbox API key is set."
+msgstr ""
+
+#. translators: $d is the number of performance issues found.
+#: big-sky.php:547
+#, php-format
+msgid "Big Sky is affected by %d issue"
+msgid_plural "Big Sky is affected by %d issues"
+msgstr[0] ""
+msgstr[1] ""
+
+#: big-sky.php:548
+msgid "Big Sky detected the following issues with your site:"
+msgstr ""
+
+#: big-sky.php:562
+msgid "These checks passed:"
+msgstr ""
+
+#: big-sky.php:1019
+#: big-sky.php:1020
+msgid "AI Editor"
+msgstr ""
+
+#: src/components/index.js:144
+msgid "Start over"
+msgstr ""
+
+#: src/components/index.js:147
+msgid "Something went wrong while building your site."
+msgstr ""
+
+#: src/components/index.js:152
+msgid "Build Error"
+msgstr ""
+
+#: src/components/legacy-css-dialog/index.js:52
+msgid "Older styles may be hiding your change"
+msgstr ""
+
+#: src/components/legacy-css-dialog/index.js:56
+msgid "An earlier version of the editor saved this to your Additional CSS. It can override the fonts you pick."
+msgid_plural "An earlier version of the editor saved these to your Additional CSS. They can override the fonts you pick."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/components/legacy-css-dialog/index.js:68
+msgid "Custom CSS that would be removed"
+msgstr ""
+
+#: src/components/legacy-css-dialog/index.js:77
+msgid "Check this does not include any CSS you wrote yourself. If not, it is safe to remove it."
+msgstr ""
+
+#: src/components/legacy-css-dialog/index.js:98
+msgid "Edit myself"
+msgstr ""
+
+#: src/components/legacy-css-dialog/index.js:109
+msgid "Remove this style"
+msgid_plural "Remove these styles"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/components/mosaic.js:641
+msgid "Close Pages"
+msgstr ""
+
+#: src/components/mosaic.js:687
+msgid "Drafts"
+msgstr ""
+
+#: src/components/site-build-progress/index.js:123
+msgid "Generating your site"
+msgstr ""
+
+#. translators: %1$s is contact support URL, %2$s is session reference for debugging
+#: src/components/site-spec-landing/index.js:42
+#, js-format
+msgid "Something went wrong. Please try again or [contact support](%1$s) with reference: %2$s"
+msgstr ""
+
+#: src/components/site-spec-landing/index.js:128
+msgid "Whoops! Our AI is having some issues right now. Please try again later."
+msgstr ""
+
+#: src/components/site-spec-landing/index.js:161
+#: src/components/site-spec-landing/index.js:196
+#: src/components/site-spec-landing/index.js:267
+msgid "Failed to start chat interface. Please refresh the page and try again."
+msgstr ""
+
+#: src/components/site-spec-landing/index.js:248
+msgid "Back to sites"
+msgstr ""
+
+#: src/components/site-spec-landing/index.js:252
+msgid "Skip this step"
+msgstr ""
+
+#: src/components/site-spec-landing/index.js:303
+msgid "AI Site Builder Chat Interface"
+msgstr ""
+
+#: src/components/site-spec-landing/index.js:315
+msgid "Loading…"
+msgstr ""
+
+#: src/hooks/use-blueprint-walkthrough-kickoff.js:31
+msgid "Hello"
+msgstr ""
+
+#: src/hooks/use-build-site.js:51
+msgid "Planning your site"
+msgstr ""
+
+#: src/hooks/use-build-site.js:118
+msgid "Something went wrong."
+msgstr ""
+
+#: src/hooks/use-reset-site.js:75
+msgid "You can rebuild your site from here. Either build a new site with the same details, or modify them and then rebuild."
+msgstr ""
+
+#: src/store/actions/site-build.js:876
+msgid "Cooking up something good…"
+msgstr ""
+
+#: src/store/actions/site-build.js:877
+msgid "Making progress…"
+msgstr ""
+
+#: src/store/actions/site-build.js:878
+msgid "Putting the pieces together…"
+msgstr ""
+
+#: src/store/actions/site-build.js:879
+msgid "Almost there…"
+msgstr ""
+
+#: src/store/actions/site-build.js:880
+msgid "Fine-tuning things…"
+msgstr ""
+
+#: src/store/actions/site-build.js:909
+msgid "Planned your site"
+msgstr ""
+
+#: src/store/actions/site-build.js:923
+msgid "No layouts were created"
+msgstr ""
+
+#: src/store/actions/site-build.js:934
+msgid "Created initial layout and pages"
+msgstr ""
+
+#: src/store/actions/site-build.js:965
+msgid "Applied images"
+msgstr ""
+
+#: src/store/actions/site-build.js:983
+msgid "Applied button styles"
+msgstr ""
+
+#: src/store/actions/site-build.js:1003
+msgid "Applied color theme"
+msgstr ""
+
+#: src/store/actions/site-build.js:1025
+msgid "Applied fonts"
+msgstr ""
+
+#: src/store/actions/site-build.js:1230
+msgid "Activated marketing features"
+msgstr ""
+
+#: src/store/actions/site-build.js:1240
+msgid "Site build complete"
+msgstr ""
+
+#: src/store/actions/site-build.js:1255
+msgid "Your site is ready! What would you like to do next?"
+msgstr ""
+
+#: src/utils/constants.js:28
+msgid "Type another request …"
+msgstr ""

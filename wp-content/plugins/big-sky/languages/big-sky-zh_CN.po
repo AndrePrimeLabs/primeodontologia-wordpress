@@ -1,0 +1,407 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Big Sky\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-19T17:22:29+00:00\n"
+"PO-Revision-Date: 2026-09-09 11:57:59+0000\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:55
+msgid "Are there any changes you would like me to make?"
+msgstr "您是否希望我作出任何更改？"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:54
+msgid "Your site is ready! Please click around and check it out."
+msgstr "您的站点已准备就绪！ 请四处点击看看，体验一下。"
+
+#: src/easy-mode/components/app.tsx:454
+msgid "Switching to edit mode so you can watch the new design being built."
+msgstr "切换到编辑模式，以便您可以观看新设计的构建过程。"
+
+#: src/easy-mode/components/topbar.tsx:691
+msgid "Return to WP Admin"
+msgstr "返回 WP 管理"
+
+#: src/easy-mode/hooks/use-save-controller.ts:121
+msgid "Your changes could not be saved. Your work is still here — try saving again."
+msgstr "无法保存您所做的更改。 您的工作内容仍在此处，请尝试再次保存。"
+
+#: src/easy-mode/hooks/use-save-controller.ts:120
+msgid "Some changes could not be saved. Your work is still here — try saving again."
+msgstr "无法保存某些更改。 您的工作内容仍在此处，请尝试再次保存。"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:66
+msgid "Save your changes?"
+msgstr "保存您所做的更改？"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:33
+msgid "You need to save or discard the changes to the current page."
+msgstr "您需要保存或放弃对当前页面所做的更改。"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:32
+msgid "The preview shows your saved site, so unsaved changes won’t appear there."
+msgstr "预览中会显示您保存的站点，因此未保存的更改不会显示在其中。"
+
+#: src/easy-mode/components/topbar.tsx:756
+msgid "Save draft"
+msgstr "保存草稿"
+
+#: src/easy-mode/components/topbar.tsx:742
+msgid "Publish"
+msgstr "发布"
+
+#: src/easy-mode/components/topbar.tsx:706
+msgid "Redo"
+msgstr "重做"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Open in a new tab"
+msgstr "在新选项卡中打开"
+
+#: src/easy-mode/components/topbar.tsx:69
+msgid "Mode"
+msgstr "模式"
+
+#. %s: selected device, e.g. Desktop.
+#: src/easy-mode/components/topbar.tsx:736
+msgid "Responsive view: %s"
+msgstr "响应式视图：%s"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Responsive view"
+msgstr "响应式视图"
+
+#: src/easy-mode/components/topbar.tsx:718
+msgid "Reload preview"
+msgstr "重新加载预览"
+
+#: src/easy-mode/components/topbar.tsx:689
+msgid "Annotate"
+msgstr "批注"
+
+#. %d: number of annotations waiting to be sent.
+#: src/easy-mode/components/topbar.tsx:687
+msgid "Resume annotating, %d pending"
+msgid_plural "Resume annotating, %d pending"
+msgstr[0] "继续添加批注，%d 项待处理"
+
+#: src/easy-mode/components/topbar.tsx:682
+msgid "Chat is unavailable"
+msgstr "聊天功能不可用"
+
+#: src/easy-mode/components/topbar.tsx:57
+msgid "Mobile"
+msgstr "移动端"
+
+#: src/easy-mode/components/topbar.tsx:56
+msgid "Tablet"
+msgstr "平板电脑"
+
+#: src/easy-mode/components/topbar.tsx:55
+msgid "Desktop"
+msgstr "桌面端"
+
+#: src/easy-mode/components/topbar.tsx:51
+msgid "Preview"
+msgstr "预览"
+
+#: src/easy-mode/components/preview-overlay.tsx:149
+msgid "The site preview could not be loaded."
+msgstr "无法加载站点预览。"
+
+#: src/easy-mode/components/page-switcher.tsx:116
+msgid "(no title)"
+msgstr "（无标题）"
+
+#. %s: page title.
+#: src/easy-mode/components/page-switcher.tsx:113
+msgid "%s — Draft"
+msgstr "%s — 草稿"
+
+#. %s: page currently open.
+#: src/easy-mode/components/page-switcher.tsx:99
+msgid "Switch page. Current page: %s"
+msgstr "切换页面。 当前页：%s"
+
+#: src/easy-mode/components/page-switcher.tsx:76
+msgid "Switch page"
+msgstr "切换页面"
+
+#: src/easy-mode/components/app.tsx:308
+msgid "Switching to edit mode so you can see the changes."
+msgstr "切换到编辑模式，以便您查看更改。"
+
+#: src/easy-mode/components/app.tsx:307
+msgid "Switching to edit mode so you can approve the changes before saving."
+msgstr "切换到编辑模式，以便您在保存前批准更改。"
+
+#: src/easy-mode/annotations/use-editor-annotations.ts:146
+msgid "Annotations could not be sent — the assistant is unavailable."
+msgstr "无法发送批注 — 助手当前不可用。"
+
+#. %d: number of annotations.
+#: src/easy-mode/annotations/prompt.ts:82
+msgid "%d annotation submitted"
+msgid_plural "%d annotations submitted"
+msgstr[0] "%d 注释已提交"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Annotating"
+msgstr "添加批注"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Discard annotations"
+msgstr "放弃批注"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Exit annotation mode"
+msgstr "退出批注模式"
+
+#. %d: number of annotations to send.
+#: src/easy-mode/annotations/annotation-topbar.tsx:21
+msgid "Send %d annotation"
+msgid_plural "Send %d annotations"
+msgstr[0] "发送 %d 条批注"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:18
+msgid "Sending…"
+msgstr "发送中..."
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:14
+msgid "Send"
+msgstr "发送"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:566
+msgid "Save annotation"
+msgstr "保存批注"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:565
+msgid "Update annotation"
+msgstr "更新批注"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Delete annotation"
+msgstr "删除批注"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Add a comment…"
+msgstr "添加评论……"
+
+#. %s: label of the block being annotated.
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Annotate %s"
+msgstr "为 %s 添加批注"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:445
+msgid "Annotate blocks. Use the arrow keys to move between blocks, Enter to comment, and Escape to exit."
+msgstr "为区块添加批注。 使用箭头键在区块之间移动，按 Enter 键发表评论，按 Escape 键退出。"
+
+#. 1: annotation number, 2: comment text.
+#: src/easy-mode/annotations/annotation-layer.tsx:367
+msgid "Annotation %1$d: %2$s"
+msgstr "批注 %1$d：%2$s"
+
+#. 1: block label, 2: position, 3: total count.
+#: src/easy-mode/annotations/annotation-layer.tsx:341
+msgid "%1$s, block %2$d of %3$d"
+msgstr "%1$s，区块 %2$d/%3$d"
+
+#. Description of the plugin
+#: big-sky.php
+msgid "Your WordPress.com AI agent that helps with site setup, content, design, and more."
+msgstr "您的 WordPress.com AI 智能体，可协助您完成站点设置、内容创作、设计等工作。"
+
+#. Plugin Name of the plugin
+#: big-sky.php
+msgid "WordPress Agent"
+msgstr "WordPress 智能体"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Discard"
+msgstr "放弃"
+
+#: src/easy-mode/components/topbar.tsx:754
+msgid "Saving…"
+msgstr "正在保存…"
+
+#: src/easy-mode/components/preview-overlay.tsx:157
+#: src/components/index.js:145
+msgid "Retry"
+msgstr "重试"
+
+#: src/abilities/set-styles/index.ts:18
+msgid "Set Styles"
+msgstr "设置样式"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:82
+msgid "Failed to update styles:"
+msgstr "更新样式失败："
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:76
+msgid "Failed to update styles. The style variation may be invalid."
+msgstr "更新样式失败。 该样式变体可能无效。"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:62
+msgid "Styles updated successfully."
+msgstr "样式更新成功。"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:38
+msgid "Invalid button format. Button must be a string (variation title)."
+msgstr "无效的按钮格式。 按钮必须为字符串（变体标题）。"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:31
+msgid "Invalid font format. Font must be a string (variation title)."
+msgstr "无效的字体格式。 字体必须为字符串（变体标题）。"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:24
+msgid "Invalid color format. Color must be a string (variation title)."
+msgstr "无效的颜色格式。 颜色必须为字符串（变体标题）。"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:17
+msgid "Invalid arguments. Provide at least one of: color, font, or button."
+msgstr "无效的参数。 至少提供以下一项：颜色、字体或按钮。"
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:169
+msgid "Failed to create pages:"
+msgstr "创建页面失败："
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:65
+msgid "Invalid pages. Must provide an array of page objects."
+msgstr "无效的页面。 必须提供页面对象数组。"
+
+#: big-sky.php:207
+msgid "AI-powered site building and navigation abilities."
+msgstr "AI 驱动的站点构建和导航功能。"
+
+#: src/easy-mode/components/topbar.tsx:52
+msgid "Edit"
+msgstr "编辑"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:65
+msgid "Updated:"
+msgstr "更新:"
+
+#: big-sky.php:1018
+#: big-sky.php:1019
+msgid "AI Editor"
+msgstr "AI 编辑器"
+
+#. translators: %s is the theme name.
+#: big-sky.php:479
+msgid "The current theme (%s) is a block theme."
+msgstr "当前主题 (%s) 是区块主题。"
+
+#: big-sky.php:472
+msgid "The current theme is not a block theme. Big Sky requires a block theme to be active."
+msgstr "当前主题不是区块主题。 Big Sky 要求激活区块主题。"
+
+#: src/easy-mode/components/preview-overlay.tsx:160
+msgid "Site preview"
+msgstr "站点预览"
+
+#: src/easy-mode/components/page-switcher.tsx:49
+#: src/components/mosaic.js:634
+#: src/components/mosaic.js:676
+msgid "Pages"
+msgstr "页面"
+
+#: src/easy-mode/components/page-switcher.tsx:34
+msgid "Home"
+msgstr "首页"
+
+#: src/abilities/add-pages/index.ts:17
+msgid "Add Pages"
+msgstr "添加页面"
+
+#: src/easy-mode/components/topbar.tsx:703
+msgid "Undo"
+msgstr "撤销"
+
+#: src/easy-mode/components/topbar.tsx:756
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Save"
+msgstr "保存"
+
+#: big-sky.php:561
+msgid "These checks passed:"
+msgstr "以下检查均已通过："
+
+#: big-sky.php:547
+msgid "Big Sky detected the following issues with your site:"
+msgstr "Big Sky 检测到您的站点存在以下问题："
+
+#. translators: $d is the number of performance issues found.
+#: big-sky.php:546
+msgid "Big Sky is affected by %d issue"
+msgid_plural "Big Sky is affected by %d issues"
+msgstr[0] "Big Sky 受到 %d 个问题的影响"
+
+#: big-sky.php:536
+msgid "Mapbox API key is set."
+msgstr "Mapbox API 密钥已设置。"
+
+#: big-sky.php:531
+msgid "Mapbox API key is not set. Big Sky requires a Mapbox API key to be set."
+msgstr "Mapbox API 密钥未设置。 Big Sky 要求设置 Mapbox API 密钥。"
+
+#: big-sky.php:523
+msgid "Jetpack is connected to an admin."
+msgstr "Jetpack 已连接到一名管理员。"
+
+#: big-sky.php:518
+msgid "Jetpack does not have a connected admin. Big Sky requires Jetpack to be connected to an admin."
+msgstr "Jetpack 未连接管理员。 Big Sky 要求 Jetpack 连接到管理员。"
+
+#: big-sky.php:509
+msgid "Jetpack is connected."
+msgstr "已连接 Jetpack。"
+
+#: big-sky.php:504
+msgid "Jetpack is not connected. Big Sky requires Jetpack to be connected."
+msgstr "未连接 Jetpack。 Big Sky 要求连接 Jetpack。"
+
+#: big-sky.php:493
+msgid "Jetpack is installed."
+msgstr "已安装 Jetpack。"
+
+#: big-sky.php:488
+msgid "Jetpack is not installed. Big Sky requires Jetpack to be installed and active."
+msgstr "未安装 Jetpack。 Big Sky 要求安装并激活 Jetpack。"
+
+#: big-sky.php:462
+msgid "Big Sky did not find any known issues with your site."
+msgstr "Big Sky 未发现您的站点存在任何已知问题。"
+
+#: big-sky.php:454
+msgid "Big Sky Checks"
+msgstr "Big Sky 检查"
+
+#: big-sky.php:429
+#: big-sky.php:430
+msgid "Big Sky checks"
+msgstr "Big Sky 检查"
+
+#: big-sky.php:260
+msgid "AI Features"
+msgstr "所有功能"
+
+#: big-sky.php:252
+msgid "Enable AI-powered site building experience"
+msgstr "启用 AI 驱动的站点构建体验"
+
+#. Author of the plugin
+#: big-sky.php
+msgid "Automattic, Inc."
+msgstr "Automattic, Inc."
+
+#: big-sky.php:206
+#: big-sky.php:457
+msgid "Big Sky"
+msgstr "Big Sky"

@@ -1,0 +1,971 @@
+<?php
+/**
+ * Helper functions for the AI plugin.
+ *
+ * @package WordPress\AI
+ */
+
+declare( strict_types=1 );
+
+namespace WordPress\AI;
+
+use Throwable;
+use WordPress\AI\Abilities\Utilities\Posts;
+use WordPress\AI\Experiments\Summarization\Summarization;
+use WordPress\AI\Logging\AI_Request_Log_Manager;
+use WordPress\AI\Logging\Logging_Integration;
+use WordPress\AI\Services\AI_Service;
+use WordPress\AI\Services\Guidelines;
+use WordPress\AiClient\AiClient;
+use WordPress\AiClient\Builders\EmbeddingBuilder;
+use WordPress\AiClient\Providers\Models\Contracts\ModelInterface;
+use WordPress\AiClient\Providers\Models\Enums\CapabilityEnum;
+
+/**
+ * Purposely using return instead of exit here.
+ *
+ * This file is loaded via the composer files directive.
+ * When tools like PHPCS and PHPStan run, they include
+ * our composer autoloader and that will then load this file,
+ * causing the script to exit and not function properly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	return;
+}
+
+/**
+ * Normalizes the content by cleaning it and removing unwanted HTML tags.
+ *
+ * @since 0.1.0
+ *
+ * @param string $content The content to normalize.
+ * @return string The normalized content.
+ */
+function normalize_content( string $content ): string {
+	/**
+	 * Hook to filter content before cleaning it.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $post_content The post content.
+	 *
+	 * @return string The filtered Post content.
+	 */
+	$content = (string) apply_filters( 'wpai_pre_normalize_content', $content );
+
+	// Replace HTML linebreaks with newlines.
+	$content = preg_replace( '#<br\s*/?>#i', "\n\n", $content ) ?? $content;
+
+	// Remove linebreaks but replace with spaces to avoid sentences running together.
+	$content = str_replace( array( "\r", "\n" ), ' ', (string) $content );
+
+	// Strip all HTML tags before decoding.
+	$content = wp_strip_all_tags( (string) $content );
+
+	// Decode HTML entities into their characters rather than deleting them.
+	$content = html_entity_decode( $content, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+	// Normalize non-breaking spaces produced by `&nbsp;` to regular spaces.
+	$content = str_replace( "\u{00A0}", ' ', $content );
+
+	// Re-escape tag-like text that decoding produced.
+	$content = preg_replace( '#<(/?[a-z!?][^<>]*)>#i', '&lt;$1&gt;', $content ) ?? $content;
+
+	// Remove unrendered shortcode tags while keeping their inner content.
+	$shortcode_pattern = '#(?<!\[)\[([^<>&/\[\]\x00-\x20=]+)(?:\s[^\]/]*(?:/(?!\])[^\]/]*)*)?\](.*?)\[/\1\](?!\])#s';
+	$previous          = null;
+	while ( $previous !== $content ) {
+		$previous = $content;
+		$content  = preg_replace( $shortcode_pattern, '$2', $content ) ?? $content;
+	}
+
+	/**
+	 * Filters the normalized content to allow for additional cleanup.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $content The normalized content.
+	 *
+	 * @return string The filtered normalized content.
+	 */
+	$content = (string) apply_filters( 'wpai_normalize_content', (string) $content );
+
+	return trim( $content );
+}
+
+/**
+ * Counts characters excluding whitespace, with Unicode support.
+ *
+ * This approximately mirrors @wordpress/wordcount's
+ * `characters_excluding_spaces` strategy used in the editor.
+ *
+ * @since 1.1.0
+ *
+ * @param string $text The text to count characters in.
+ * @return int The number of non-whitespace characters.
+ */
+function count_characters_excluding_spaces( string $text ): int {
+	if ( empty( $text ) ) {
+		return 0;
+	}
+
+	// Strip all HTML tags including comments.
+	$text = wp_strip_all_tags( $text );
+
+	// Normalize NBSP entities to whitespace.
+	$text = preg_replace( '/&nbsp;|&#160;/i', ' ', $text ) ?? $text;
+
+	// Transpose HTML entities to countable characters.
+	$text = preg_replace( '/&\S+?;/u', 'a', $text ) ?? $text;
+
+	/*
+	 * Count non-whitespace code points using a class that mirrors JavaScript's
+	 * \s semantics, so full-width CJK spaces and similar separators match the
+	 * editor's @wordpress/wordcount result.
+	 */
+	$whitespace = '\x{0009}\x{000A}\x{000B}\x{000C}\x{000D}\x{0020}\x{00A0}\x{1680}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}\x{FEFF}';
+	$count      = preg_match_all( sprintf( '/[^%s]/u', $whitespace ), $text );
+
+	return is_int( $count ) ? $count : 0;
+}
+
+/**
+ * Returns the context for the given post ID.
+ *
+ * Reads the post details and terms directly rather than through an ability, so
+ * the context is available even when the gated abilities are not registered.
+ * No permission callback is run. Callers are responsible for performing their
+ * own capability/permission checks before exposing this data.
+ *
+ * @since 0.1.0
+ *
+ * @param int $post_id The ID of the post to get the context for.
+ * @return array<string, string> The context for the given post ID.
+ */
+function get_post_context( int $post_id ): array {
+	$context = array();
+
+	// Read the post details directly so the context does not depend on any ability.
+	$details = Posts::get_post_details( $post_id );
+
+	if ( is_array( $details ) ) {
+		$context = array_merge( $context, $details );
+
+		if ( isset( $context['content'] ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+			$context['content'] = normalize_content( (string) apply_filters( 'the_content', $context['content'] ) );
+		}
+
+		if ( isset( $context['type'] ) ) {
+			$context['content_type'] = $context['type'];
+			unset( $context['type'] );
+		}
+
+		// Remove any empty context values.
+		$context = array_filter( $context );
+	}
+
+	// Get the post terms directly (not via the ability) so the context is
+	// available even when the get-post-terms ability is gated off.
+	$terms = Posts::get_post_terms( $post_id );
+
+	if ( $terms && ! is_wp_error( $terms ) ) {
+		$grouped_terms = array();
+
+		foreach ( $terms as $term ) {
+			$taxonomy = $term['taxonomy'] ?? '';
+			$name     = $term['name'] ?? '';
+
+			if ( '' === $taxonomy || '' === $name ) {
+				continue;
+			}
+
+			$grouped_terms[ $taxonomy ][] = $name;
+		}
+
+		$context = array_merge(
+			$context,
+			array_map(
+				static fn( array $term_names ): string => implode( ', ', $term_names ),
+				$grouped_terms
+			)
+		);
+	}
+
+	return $context;
+}
+
+/**
+ * Registers a deprecated alias for an ability.
+ *
+ * The alias copies the replacement ability's schemas, category, and meta, so
+ * existing callers keep working. Executing the alias triggers a deprecation
+ * notice and forwards the call to the replacement ability.
+ *
+ * Must be called during `wp_abilities_api_init`, after the replacement ability
+ * is registered. Does nothing when the replacement is not registered.
+ *
+ * @since 1.4.0
+ *
+ * @param lowercase-string&non-falsy-string $deprecated_name  The old ability name, for example `core/read-content`.
+ * @param string                            $replacement_name The name of the ability that replaces it.
+ * @param string                            $version          The plugin version that deprecated the old name.
+ */
+function register_deprecated_ability_alias( string $deprecated_name, string $replacement_name, string $version ): void {
+	// Check first: wp_get_ability() reports an incorrect usage notice for unknown names.
+	if ( ! wp_has_ability( $replacement_name ) ) {
+		return;
+	}
+
+	$replacement = wp_get_ability( $replacement_name );
+
+	if ( ! $replacement ) {
+		return;
+	}
+
+	if ( wp_has_ability( $deprecated_name ) ) {
+		wp_unregister_ability( $deprecated_name );
+	}
+
+	wp_register_ability(
+		$deprecated_name,
+		array(
+			'label'               => sprintf(
+				/* translators: %s: The label of the replacement ability. */
+				__( '%s (deprecated)', 'ai' ),
+				$replacement->get_label()
+			),
+			'description'         => sprintf(
+				/* translators: 1: The deprecated ability name. 2: The plugin version. 3: The replacement ability name. 4: The replacement ability description. */
+				__( 'Deprecated: `%1$s` is deprecated since version %2$s. Use `%3$s` instead. %4$s', 'ai' ),
+				$deprecated_name,
+				$version,
+				$replacement_name,
+				$replacement->get_description()
+			),
+			'category'            => $replacement->get_category(),
+			'input_schema'        => $replacement->get_input_schema(),
+			'output_schema'       => $replacement->get_output_schema(),
+			'execute_callback'    => static function ( $input = null ) use ( $deprecated_name, $replacement, $replacement_name, $version ) {
+				_deprecated_function( esc_html( $deprecated_name ), esc_html( $version ), esc_html( $replacement_name ) );
+
+				return $replacement->execute( $input );
+			},
+			'permission_callback' => static function ( $input = null ) use ( $replacement ) {
+				return $replacement->check_permissions( $input );
+			},
+			'meta'                => array_merge(
+				$replacement->get_meta(),
+				array(
+					'deprecated' => array(
+						'since'       => $version,
+						'replacement' => $replacement_name,
+					),
+				)
+			),
+		)
+	);
+}
+
+/**
+ * Returns the preferred models for text generation.
+ *
+ * @since 0.2.1
+ *
+ * @return array<int, array{string, string}> The preferred models for text generation.
+ */
+function get_preferred_models_for_text_generation(): array {
+	$preferred_models = array(
+		array(
+			'anthropic',
+			'claude-sonnet-5',
+		),
+		array(
+			'google',
+			'gemini-3.6-flash',
+		),
+		array(
+			'google',
+			'gemini-3.5-flash-lite',
+		),
+		array(
+			'openai',
+			'gpt-5.6-luna',
+		),
+		array(
+			'openai',
+			'gpt-5.4-mini',
+		),
+	);
+
+	/**
+	 * Filters the preferred models for text generation.
+	 *
+	 * @since 0.2.1
+	 *
+	 * @param array<int, array{string, string}> $preferred_models The preferred models for text generation.
+	 * @return array<int, array{string, string}> The filtered preferred models.
+	 */
+	return (array) apply_filters( 'wpai_preferred_text_models', $preferred_models );
+}
+
+/**
+ * Gets the AI Service instance.
+ *
+ * Call `wp_ai_client_prompt()` directly instead. The prompt builder it returns
+ * exposes the full SDK API, so the only behavior this helper added was applying
+ * `get_preferred_models_for_text_generation()` by default:
+ *
+ * ```php
+ * $builder = wp_ai_client_prompt( 'Summarize this article...' );
+ *
+ * $models = WordPress\AI\get_preferred_models_for_text_generation();
+ * if ( ! empty( $models ) ) {
+ *     $builder = $builder->using_model_preference( ...$models );
+ * }
+ * ```
+ *
+ * @since 0.2.1
+ * @deprecated 1.3.0 Use wp_ai_client_prompt() instead.
+ *
+ * @return \WordPress\AI\Services\AI_Service The AI Service instance.
+ */
+function get_ai_service(): AI_Service {
+	_deprecated_function( __FUNCTION__, '1.3.0', 'wp_ai_client_prompt()' );
+
+	return AI_Service::get_instance();
+}
+
+/**
+ * Returns the preferred image models.
+ *
+ * @since 0.2.0
+ *
+ * @return array<int, array{string, string}> The preferred image models.
+ */
+function get_preferred_image_models(): array {
+	$preferred_models = array(
+		array(
+			'google',
+			'gemini-3.1-flash-image-preview',
+		),
+		array(
+			'google',
+			'gemini-3-pro-image-preview',
+		),
+		array(
+			'google',
+			'gemini-2.5-flash-image',
+		),
+		array(
+			'google',
+			'imagen-4.0-generate-001',
+		),
+		array(
+			'openai',
+			'gpt-image-2.5-flare',
+		),
+		array(
+			'openai',
+			'gpt-image-2',
+		),
+	);
+
+	/**
+	 * Filters the preferred image models.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param array<int, array{string, string}> $preferred_models The preferred image models.
+	 * @return array<int, array{string, string}> The filtered preferred image models.
+	 */
+	return (array) apply_filters( 'wpai_preferred_image_models', $preferred_models );
+}
+
+/**
+ * Returns the preferred vision models.
+ *
+ * @since 0.3.0
+ *
+ * @return array<int, array{string, string}> The preferred vision models.
+ */
+function get_preferred_vision_models(): array {
+	$preferred_models = array(
+		array(
+			'anthropic',
+			'claude-sonnet-5',
+		),
+		array(
+			'google',
+			'gemini-3.6-flash',
+		),
+		array(
+			'google',
+			'gemini-3.5-flash-lite',
+		),
+		array(
+			'openai',
+			'gpt-5.6-luna',
+		),
+		array(
+			'openai',
+			'gpt-5.4-mini',
+		),
+	);
+
+	/**
+	 * Filters the preferred vision models.
+	 *
+	 * @since 0.3.0
+	 *
+	 * @param array<int, array{string, string}> $preferred_models The preferred vision models.
+	 * @return array<int, array{string, string}> The filtered preferred vision models.
+	 */
+	return (array) apply_filters( 'wpai_preferred_vision_models', $preferred_models );
+}
+
+/**
+ * Returns the developer-mode provider/model config saved for a feature.
+ *
+ * @since 0.9.0
+ *
+ * @param string $feature_id The feature ID (e.g. 'excerpt-generation').
+ * @return array{provider: string, model: string} The saved provider and model, or empty strings if unset.
+ */
+function get_feature_developer_model_config( string $feature_id ): array {
+	$option = get_option( "wpai_feature_{$feature_id}_field_developer", array() );
+	return array(
+		'provider' => is_array( $option ) ? ( $option['provider'] ?? '' ) : '',
+		'model'    => is_array( $option ) ? ( $option['model'] ?? '' ) : '',
+	);
+}
+
+/**
+ * Retrieves guidelines, optionally filtered by category.
+ *
+ * @since 0.8.0
+ *
+ * @param string|null $category Optional. Guideline category to retrieve.
+ * @return array<string, string>|null Keyed array of guidelines, or null when unavailable.
+ */
+function get_guidelines( ?string $category = null ): ?array {
+	return Guidelines::get_instance()->get_guidelines( $category );
+}
+
+/**
+ * Formats guidelines as an XML-tagged string for prompt injection.
+ *
+ * @since 0.8.0
+ *
+ * @param list<string> $categories Guideline category slugs to include.
+ * @param string|null  $block_name Optional block name for block-specific guidelines.
+ * @return string Formatted guidelines XML string, or empty string.
+ */
+function format_guidelines_for_prompt( array $categories, ?string $block_name = null ): string {
+	return Guidelines::get_instance()->format_for_prompt( $categories, $block_name );
+}
+
+/**
+ * Determines if a connector is configured.
+ *
+ * @since 1.0.1
+ *
+ * @param string $connector_id The connector ID.
+ * @return bool True if the connector is configured, false otherwise.
+ */
+function is_connector_configured( string $connector_id ): bool {
+	$registry = AiClient::defaultRegistry();
+	return $registry->hasProvider( $connector_id ) && $registry->isProviderConfigured( $connector_id );
+}
+
+/**
+ * Determines if a connector has authentication in place.
+ *
+ * This checks for API-key credentials by source only (environment variable,
+ * PHP constant, or stored option) and does not make external API requests.
+ *
+ * @since 1.0.1
+ *
+ * @param string $connector_id The connector ID.
+ * @return bool True if connector authentication is present, false otherwise.
+ */
+function has_connector_authentication( string $connector_id ): bool {
+	if ( ! wp_is_connector_registered( $connector_id ) ) {
+		return false;
+	}
+
+	$connector = wp_get_connector( $connector_id );
+	if ( ! is_array( $connector ) ) {
+		return false;
+	}
+
+	$auth = $connector['authentication'] ?? null;
+	if ( ! is_array( $auth ) || ( $auth['method'] ?? '' ) !== 'api_key' ) {
+		return false;
+	}
+
+	$setting_name = $auth['setting_name'] ?? '';
+	if ( ! is_string( $setting_name ) || '' === $setting_name ) {
+		return false;
+	}
+
+	return 'none' !== get_connector_api_key_source(
+		$setting_name,
+		$auth['env_var_name'] ?? '',
+		$auth['constant_name'] ?? ''
+	);
+}
+
+/**
+ * Determines the source of a connector API key.
+ *
+ * Checks in order: environment variable, PHP constant, database option.
+ *
+ * @since 1.0.1
+ *
+ * @param string $setting_name  The option name for the API key.
+ * @param string $env_var_name  Optional environment variable name.
+ * @param string $constant_name Optional PHP constant name.
+ * @return string The key source: 'env', 'constant', 'database', or 'none'.
+ */
+function get_connector_api_key_source( string $setting_name, string $env_var_name = '', string $constant_name = '' ): string {
+	if ( '' !== $env_var_name ) {
+		$env_value = getenv( $env_var_name );
+		if ( false !== $env_value && '' !== $env_value ) {
+			return 'env';
+		}
+	}
+
+	if ( '' !== $constant_name && defined( $constant_name ) ) {
+		$const_value = constant( $constant_name );
+		if ( is_string( $const_value ) && '' !== $const_value ) {
+			return 'constant';
+		}
+	}
+
+	$db_value = get_option( $setting_name, '' );
+	if ( '' !== $db_value ) {
+		return 'database';
+	}
+
+	return 'none';
+}
+
+/**
+ * Checks if we have AI credentials set.
+ *
+ * @since 0.1.0
+ *
+ * @return bool True if we have AI credentials, false otherwise.
+ */
+function has_ai_credentials(): bool {
+	$connectors      = get_ai_connectors();
+	$has_credentials = false;
+
+	foreach ( $connectors as $connector_id => $connector_data ) {
+		$auth = $connector_data['authentication'];
+		if ( 'api_key' !== $auth['method'] ) {
+			continue;
+		}
+
+		if ( ! has_connector_authentication( $connector_id ) ) {
+			continue;
+		}
+
+		$has_credentials = true;
+		break;
+	}
+
+	/**
+	 * Filters whether AI credentials are available.
+	 *
+	 * Allows third-party plugins to declare credential availability for
+	 * connectors that do not rely on API key settings.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param bool  $has_credentials Whether AI credentials are available.
+	 * @param array $connectors      The registered connectors.
+	 */
+	return (bool) apply_filters( 'wpai_has_ai_credentials', $has_credentials, $connectors );
+}
+
+/**
+ * Checks whether any configured connector exposes an image-generation-capable model.
+ *
+ * @since 1.0.2
+ *
+ * @param bool $reset_cache Whether to bypass the static cache and recompute. Default false.
+ * @return bool True if at least one connector supports image generation.
+ */
+function has_image_generation_support( bool $reset_cache = false ): bool {
+	static $result = null;
+
+	if ( ! $reset_cache && null !== $result ) {
+		return $result;
+	}
+
+	$connectors  = array();
+	$has_support = false;
+
+	if ( class_exists( AiClient::class ) ) {
+		$registry   = AiClient::defaultRegistry();
+		$connectors = get_ai_connectors();
+
+		foreach ( array_keys( $connectors ) as $connector_id ) {
+			if ( ! has_connector_authentication( $connector_id ) ) {
+				continue;
+			}
+
+			try {
+				$provider_class = $registry->getProviderClassName( $connector_id );
+
+				/** @var \WordPress\AiClient\Providers\Contracts\ProviderInterface $provider_class */
+				$models = $provider_class::modelMetadataDirectory()->listModelMetadata();
+
+				foreach ( $models as $model ) {
+					foreach ( $model->getSupportedCapabilities() as $capability ) {
+						if ( CapabilityEnum::IMAGE_GENERATION === $capability->value ) {
+							$has_support = true;
+							break 3;
+						}
+					}
+				}
+			} catch ( Throwable $e ) {
+				continue;
+			}
+		}
+	}
+
+	/**
+	 * Filters whether image generation is supported.
+	 *
+	 * Allows third-party plugins to declare image generation support for
+	 * connectors that do not rely on API key settings (e.g. OAuth), without
+	 * triggering a live API request.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param bool  $has_support Whether image generation is supported.
+	 * @param array $connectors  The registered connectors.
+	 */
+	$result = (bool) apply_filters( 'wpai_has_image_generation_support', $has_support, $connectors );
+
+	return $result;
+}
+
+/**
+ * Returns provider availability data for script localization.
+ *
+ * @since 1.0.0
+ *
+ * @return array{hasProvider: bool, connectorsUrl: string} Provider availability data.
+ */
+function get_provider_availability_data(): array {
+	return array(
+		'hasProvider'   => has_ai_credentials(),
+		'connectorsUrl' => admin_url( 'options-connectors.php' ),
+	);
+}
+
+/**
+ * Checks if we have valid AI credentials.
+ *
+ * @since 0.1.0
+ *
+ * @return bool True if we have valid AI credentials, false otherwise.
+ */
+function has_valid_ai_credentials(): bool {
+	// If we have no AI credentials, return false.
+	if ( ! has_ai_credentials() ) {
+		return false;
+	}
+
+	/**
+	 * Filters whether valid AI credentials are available.
+	 *
+	 * Allows overriding the credentials check, useful for testing.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param bool|null $has_valid_credentials Whether valid credentials are available. Return null to use default check.
+	 * @return bool|null True if valid credentials are available, false otherwise, or null to use default check.
+	 */
+	$valid = apply_filters( 'wpai_pre_has_valid_credentials_check', null );
+	if ( null !== $valid ) {
+		return (bool) $valid;
+	}
+
+	// See if we have credentials that give us access to generate text.
+	try {
+		return wp_ai_client_prompt( 'Test' )->is_supported_for_text_generation();
+	} catch ( Throwable $t ) {
+		return false;
+	}
+}
+
+/**
+ * Returns the AI connectors.
+ *
+ * @since 0.9.0
+ *
+ * @param bool $active_only Whether to only return active connectors.
+ * @return array<string, array<string, mixed>> The AI connectors.
+ */
+function get_ai_connectors( bool $active_only = true ): array {
+	$connectors = array();
+
+	foreach ( (array) wp_get_connectors() as $connector_id => $data ) {
+		if ( ! is_string( $connector_id ) || ! is_array( $data ) ) {
+			continue;
+		}
+
+		if ( ( $data['type'] ?? '' ) !== 'ai_provider' ) {
+			continue;
+		}
+
+		if ( $active_only && ! is_connector_plugin_active( $data ) ) {
+			continue;
+		}
+
+		$connectors[ $connector_id ] = $data;
+	}
+
+	return $connectors;
+}
+
+/**
+ * Checks whether the connector's related plugin is currently active.
+ *
+ * If plugin metadata is not provided for a connector, it is treated as active.
+ *
+ * @since 0.9.0
+ *
+ * @param array<string, mixed> $connector_data Connector metadata.
+ * @return bool True if the connector plugin is active or unknown, false if known inactive.
+ */
+function is_connector_plugin_active( array $connector_data ): bool {
+	if ( empty( $connector_data['plugin'] ) || ! is_array( $connector_data['plugin'] ) ) {
+		return true;
+	}
+
+	$plugin_file = '';
+
+	if ( ! empty( $connector_data['plugin']['file'] ) && is_string( $connector_data['plugin']['file'] ) ) {
+		$plugin_file = $connector_data['plugin']['file'];
+	} elseif ( ! empty( $connector_data['plugin']['plugin_file'] ) && is_string( $connector_data['plugin']['plugin_file'] ) ) {
+		$plugin_file = $connector_data['plugin']['plugin_file'];
+	} elseif ( ! empty( $connector_data['plugin']['pluginFile'] ) && is_string( $connector_data['plugin']['pluginFile'] ) ) {
+		$plugin_file = $connector_data['plugin']['pluginFile'];
+	}
+
+	if ( '' === $plugin_file ) {
+		return true;
+	}
+
+	if ( ! function_exists( 'is_plugin_active' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+
+	if ( is_plugin_active( $plugin_file ) ) {
+		return true;
+	}
+
+	return is_multisite() && function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( $plugin_file );
+}
+
+/**
+ * Returns the minimum content length in characters required for a given feature.
+ *
+ * @since 1.1.0
+ *
+ * @param string $feature_id     The feature identifier (e.g. 'content-resizing', 'content-classification', 'summarization').
+ * @param int    $content_length The default minimum content length in characters for the feature.
+ * @return int The minimum content length in characters.
+ */
+function get_min_content_length( string $feature_id, int $content_length = 250 ): int {
+	/**
+	 * Filters the minimum content length required for a feature.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param int    $content_length The minimum content length in characters for the feature.
+	 * @param string $feature_id     The feature identifier.
+	 */
+	return (int) apply_filters( 'wpai_min_content_length', $content_length, $feature_id );
+}
+
+/**
+ * Gets the default request timeout used by a feature.
+ *
+ * @since 1.2.0
+ *
+ * @param string $feature_id      The ID of the feature.
+ * @param int    $default_timeout The default timeout in seconds.
+ * @return int The request timeout.
+ */
+function get_default_request_timeout( string $feature_id, int $default_timeout = 30 ): int {
+	/**
+	 * Filters the default request timeout for a feature.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param int    $default_timeout The default timeout in seconds.
+	 * @param string $feature_id      The ID of the feature.
+	 */
+	return (int) apply_filters( 'wpai_default_request_timeout', $default_timeout, $feature_id );
+}
+
+/**
+ * Returns the maximum number of items a single bulk action may process.
+ *
+ * @since 1.4.0
+ *
+ * @param string $feature_id The feature identifier (e.g. 'summarization').
+ * @return int The maximum number of items to process, always at least 1.
+ */
+function get_bulk_action_max_items( string $feature_id ): int {
+	/**
+	 * Filters the maximum number of items a single bulk action may process.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param int    $max_items  The maximum number of items per bulk run.
+	 * @param string $feature_id The ID of the feature.
+	 */
+	$max_items = (int) apply_filters( 'wpai_bulk_action_max_items', 100, $feature_id );
+
+	return max( 1, $max_items );
+}
+
+/**
+ * Determines whether a post type supports bulk AI actions for a given feature.
+ *
+ * @since 1.2.0
+ *
+ * @param string $post_type  The post type slug to check.
+ * @param string $feature_id The feature identifier (e.g. 'summarization').
+ * @return bool True if the post type supports bulk AI actions for the feature.
+ */
+function post_type_supports_bulk_action( string $post_type, string $feature_id ): bool {
+	$post_type_obj = get_post_type_object( $post_type );
+
+	// Check if the post type is registered and supports REST API and UI.
+	$base_supported = $post_type_obj
+		&& ! empty( $post_type_obj->show_in_rest )
+		&& ! empty( $post_type_obj->show_ui );
+
+	switch ( $feature_id ) {
+		case Summarization::get_id():
+			return $base_supported && 'attachment' !== $post_type;
+		default:
+			return $base_supported;
+	}
+}
+
+/**
+ * Records a request in the request log.
+ *
+ * @since 1.3.0
+ *
+ * @param array{
+ *     type: string,
+ *     operation: string,
+ *     provider?: string,
+ *     model?: string,
+ *     duration_ms?: int,
+ *     tokens_input?: int,
+ *     tokens_output?: int,
+ *     status: string,
+ *     error_message?: string,
+ *     user_id?: int,
+ *     context?: array<string, mixed>
+ * } $data Log data. The `type` must be one of the values returned by
+ *         {@see AI_Request_Log_Manager::get_types()}.
+ * @return string|false The log identifier on success, false when logging is inactive or the write failed.
+ */
+function log_ai_request( array $data ) {
+	$log_manager = Logging_Integration::get_log_manager();
+
+	if ( ! $log_manager instanceof AI_Request_Log_Manager ) {
+		return false;
+	}
+
+	return $log_manager->log( $data );
+}
+
+/**
+ * Determines whether embedding generation is available in this environment.
+ *
+ * @since 1.3.0
+ *
+ * @return bool True if embeddings can be generated, false otherwise.
+ */
+function supports_embedding_generation(): bool {
+	return class_exists( AiClient::class ) && class_exists( EmbeddingBuilder::class );
+}
+
+/**
+ * Generates embeddings for one or more text inputs.
+ *
+ * @since 1.3.0
+ * @since 1.4.0 Requires a specific model.
+ *
+ * @param string|list<string> $input The text input, or a list of inputs for batch embedding.
+ * @param array<string, mixed> $args {
+ *     Generation options.
+ *
+ *     @type \WordPress\AiClient\Providers\Models\Contracts\ModelInterface|string $model Required. The
+ *                                        embedding model to use, either a model instance or a model
+ *                                        ID. A model ID also requires `$provider`.
+ *     @type string $provider             Required when `$model` is a model ID. The connector/provider
+ *                                        ID or class name that offers the model. Ignored when
+ *                                        `$model` is a model instance.
+ *     @type int    $dimensions           Optional. Requested embedding vector dimensions.
+ * }
+ * @return \WordPress\AiClient\Results\DTO\EmbeddingResult|\WP_Error The result, or WP_Error on failure.
+ */
+function generate_embeddings( $input, array $args = array() ) {
+	if ( ! supports_embedding_generation() ) {
+		return new \WP_Error(
+			'ai_embeddings_unsupported',
+			__( 'Embedding generation is not available in this environment.', 'ai' )
+		);
+	}
+
+	$model = $args['model'] ?? null;
+
+	if ( ! $model instanceof ModelInterface && ( ! is_string( $model ) || '' === trim( $model ) ) ) {
+		return new \WP_Error(
+			'ai_embeddings_missing_model',
+			__( 'An embedding model must be specified. Embeddings are only comparable to other embeddings from the same model, so no model is selected automatically.', 'ai' )
+		);
+	}
+
+	$provider = isset( $args['provider'] ) && is_string( $args['provider'] ) ? trim( $args['provider'] ) : '';
+
+	if ( is_string( $model ) && '' === $provider ) {
+		return new \WP_Error(
+			'ai_embeddings_missing_provider',
+			__( 'A provider must be specified when the embedding model is given as a model ID.', 'ai' )
+		);
+	}
+
+	try {
+		$builder = new EmbeddingBuilder( AiClient::defaultRegistry(), $input );
+
+		if ( $model instanceof ModelInterface ) {
+			$builder->usingModel( $model );
+		} else {
+			$builder->usingProviderModel( $provider, $model );
+		}
+
+		if ( isset( $args['dimensions'] ) ) {
+			$builder->usingDimensions( (int) $args['dimensions'] );
+		}
+
+		return $builder->generateEmbeddingResult();
+	} catch ( Throwable $e ) {
+		return new \WP_Error( 'ai_embeddings_failed', $e->getMessage() );
+	}
+}

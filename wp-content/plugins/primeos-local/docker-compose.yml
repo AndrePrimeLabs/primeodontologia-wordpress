@@ -1,0 +1,148 @@
+services:
+  # ============================================================================
+  # PRIMEOS FRONTEND
+  # ============================================================================
+  primeos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: primeoshub:latest
+    container_name: primeos-app
+    restart: unless-stopped
+    
+    ports:
+      - "8080:80"
+    
+    environment:
+      - NODE_ENV=production
+      - VITE_PRIMEOS_API_URL=http://localhost:5001/api
+    
+    networks:
+      - primeos-net
+    
+    depends_on:
+      primeos-api:
+        condition: service_healthy
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # OMNIOS FRONTEND
+  # ============================================================================
+  omnios:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: omnios-app:latest
+    container_name: omnios-app
+    restart: unless-stopped
+    
+    ports:
+      - "8081:80"
+    
+    environment:
+      - NODE_ENV=production
+      - VITE_PRIMEOS_API_URL=http://localhost:5002/api
+      - VITE_TENANT_ID=omnios
+    
+    networks:
+      - primeos-net
+    
+    depends_on:
+      primeos-api:
+        condition: service_healthy
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # PRIMEOS BACKEND API (Multi-Tenant)
+  # ============================================================================
+  primeos-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    image: primeos-api:latest
+    container_name: primeos-api-server
+    restart: unless-stopped
+    
+    ports:
+      - "5001:5001"
+      - "5002:5002"
+    
+    env_file:
+      - .env.production
+      - .env.omnios
+    
+    environment:
+      - NODE_ENV=production
+      - PORT=5001
+      - OMNIOS_PORT=5002
+    
+    networks:
+      - primeos-net
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  primeos-net:
+    driver: bridge

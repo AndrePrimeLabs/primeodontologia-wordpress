@@ -1,0 +1,411 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Big Sky\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-19T17:22:29+00:00\n"
+"PO-Revision-Date: 2026-09-08 13:57:00+0000\n"
+"Language: sv_SE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:55
+msgid "Are there any changes you would like me to make?"
+msgstr "Finns det några ändringar du vill att jag ska göra?"
+
+#: src/ai/calypso-agent-provider/post-generation-welcome.ts:54
+msgid "Your site is ready! Please click around and check it out."
+msgstr "Din webbplats är klar! Klicka runt och kolla in den."
+
+#: src/easy-mode/components/app.tsx:454
+msgid "Switching to edit mode so you can watch the new design being built."
+msgstr "Växlar till redigeringsläge så att du kan se den nya designen byggas."
+
+#: src/easy-mode/components/topbar.tsx:691
+msgid "Return to WP Admin"
+msgstr "Återvänd till WP Admin"
+
+#: src/easy-mode/hooks/use-save-controller.ts:121
+msgid "Your changes could not be saved. Your work is still here — try saving again."
+msgstr "Dina ändringar kunde inte sparas. Ditt arbete är fortfarande här – försök spara igen."
+
+#: src/easy-mode/hooks/use-save-controller.ts:120
+msgid "Some changes could not be saved. Your work is still here — try saving again."
+msgstr "Vissa ändringar kunde inte sparas. Ditt arbete är fortfarande här – försök spara igen."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:66
+msgid "Save your changes?"
+msgstr "Spara dina ändringar?"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:33
+msgid "You need to save or discard the changes to the current page."
+msgstr "Du måste spara eller ignorera ändringarna på den aktuella sidan."
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:32
+msgid "The preview shows your saved site, so unsaved changes won’t appear there."
+msgstr "Förhandsgranskningen visar din sparade webbplats, så ändringar som inte har sparats visas inte där."
+
+#: src/easy-mode/components/topbar.tsx:756
+msgid "Save draft"
+msgstr "Spara utkast"
+
+#: src/easy-mode/components/topbar.tsx:742
+msgid "Publish"
+msgstr "Publicera"
+
+#: src/easy-mode/components/topbar.tsx:706
+msgid "Redo"
+msgstr "Gör om"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Open in a new tab"
+msgstr "Öppna i en ny flik"
+
+#: src/easy-mode/components/topbar.tsx:69
+msgid "Mode"
+msgstr "Läge"
+
+#. %s: selected device, e.g. Desktop.
+#: src/easy-mode/components/topbar.tsx:736
+msgid "Responsive view: %s"
+msgstr "Responsiv vy: %s"
+
+#: src/easy-mode/components/topbar.tsx:730
+msgid "Responsive view"
+msgstr "Responsiv vy"
+
+#: src/easy-mode/components/topbar.tsx:718
+msgid "Reload preview"
+msgstr "Ladda om förhandsgranskning"
+
+#: src/easy-mode/components/topbar.tsx:689
+msgid "Annotate"
+msgstr "Annotera"
+
+#. %d: number of annotations waiting to be sent.
+#: src/easy-mode/components/topbar.tsx:687
+msgid "Resume annotating, %d pending"
+msgid_plural "Resume annotating, %d pending"
+msgstr[0] "Fortsätt anteckna, %d inväntar granskning"
+msgstr[1] "Fortsätt anteckna, %d inväntar granskning"
+
+#: src/easy-mode/components/topbar.tsx:682
+msgid "Chat is unavailable"
+msgstr "Chatt är inte tillgänglig"
+
+#: src/easy-mode/components/topbar.tsx:57
+msgid "Mobile"
+msgstr "Mobil"
+
+#: src/easy-mode/components/topbar.tsx:56
+msgid "Tablet"
+msgstr "Läsplatta"
+
+#: src/easy-mode/components/topbar.tsx:55
+msgid "Desktop"
+msgstr "Stationär dator"
+
+#: src/easy-mode/components/topbar.tsx:51
+msgid "Preview"
+msgstr "Förhandsvisa"
+
+#: src/easy-mode/components/preview-overlay.tsx:149
+msgid "The site preview could not be loaded."
+msgstr "Det gick inte att ladda förhandsgranskning av webbplatsen."
+
+#: src/easy-mode/components/page-switcher.tsx:116
+msgid "(no title)"
+msgstr "(ingen rubrik)"
+
+#. %s: page title.
+#: src/easy-mode/components/page-switcher.tsx:113
+msgid "%s — Draft"
+msgstr "%s – Utkast"
+
+#. %s: page currently open.
+#: src/easy-mode/components/page-switcher.tsx:99
+msgid "Switch page. Current page: %s"
+msgstr "Byt sida. Aktuell sida: %s"
+
+#: src/easy-mode/components/page-switcher.tsx:76
+msgid "Switch page"
+msgstr "Byt sida"
+
+#: src/easy-mode/components/app.tsx:308
+msgid "Switching to edit mode so you can see the changes."
+msgstr "Växlar till redigeringsläge så att du kan se ändringarna."
+
+#: src/easy-mode/components/app.tsx:307
+msgid "Switching to edit mode so you can approve the changes before saving."
+msgstr "Växlar till redigeringsläge så att du kan godkänna ändringarna innan du sparar."
+
+#: src/easy-mode/annotations/use-editor-annotations.ts:146
+msgid "Annotations could not be sent — the assistant is unavailable."
+msgstr "Anteckningar kunde inte skickas, eftersom assistenten är inte tillgänglig."
+
+#. %d: number of annotations.
+#: src/easy-mode/annotations/prompt.ts:82
+msgid "%d annotation submitted"
+msgid_plural "%d annotations submitted"
+msgstr[0] "%d anteckning skickad"
+msgstr[1] "%d anteckningar skickade"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Annotating"
+msgstr "Anteckning"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Discard annotations"
+msgstr "Ignorera anteckningar"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:22
+msgid "Exit annotation mode"
+msgstr "Avsluta anteckningsläge"
+
+#. %d: number of annotations to send.
+#: src/easy-mode/annotations/annotation-topbar.tsx:21
+msgid "Send %d annotation"
+msgid_plural "Send %d annotations"
+msgstr[0] "Skicka %d anteckning"
+msgstr[1] "Skicka %d anteckningar"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:18
+msgid "Sending…"
+msgstr "Skickar …"
+
+#: src/easy-mode/annotations/annotation-topbar.tsx:14
+msgid "Send"
+msgstr "Skicka"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:566
+msgid "Save annotation"
+msgstr "Spara anteckning"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:565
+msgid "Update annotation"
+msgstr "Uppdatera anteckning"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Delete annotation"
+msgstr "Ta bort anteckning"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Add a comment…"
+msgstr "Lägg till en kommentar …"
+
+#. %s: label of the block being annotated.
+#: src/easy-mode/annotations/annotation-layer.tsx:564
+msgid "Annotate %s"
+msgstr "Anteckna %s"
+
+#: src/easy-mode/annotations/annotation-layer.tsx:445
+msgid "Annotate blocks. Use the arrow keys to move between blocks, Enter to comment, and Escape to exit."
+msgstr "Anteckna block. Använd piltangenterna för att flytta mellan block, Retur för att kommentera och Esc för att avsluta."
+
+#. 1: annotation number, 2: comment text.
+#: src/easy-mode/annotations/annotation-layer.tsx:367
+msgid "Annotation %1$d: %2$s"
+msgstr "Anteckning %1$d: %2$s"
+
+#. 1: block label, 2: position, 3: total count.
+#: src/easy-mode/annotations/annotation-layer.tsx:341
+msgid "%1$s, block %2$d of %3$d"
+msgstr "%1$s, block %2$d av %3$d"
+
+#. Description of the plugin
+#: big-sky.php
+msgid "Your WordPress.com AI agent that helps with site setup, content, design, and more."
+msgstr "Din AI-agent hos WordPress.com som hjälper till med webbplatskonfigurering, innehåll, design med mera."
+
+#. Plugin Name of the plugin
+#: big-sky.php
+msgid "WordPress Agent"
+msgstr "WordPress-agent"
+
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Discard"
+msgstr "Kassera"
+
+#: src/easy-mode/components/topbar.tsx:754
+msgid "Saving…"
+msgstr "Sparar …"
+
+#: src/easy-mode/components/preview-overlay.tsx:157
+#: src/components/index.js:145
+msgid "Retry"
+msgstr "Försök igen"
+
+#: src/abilities/set-styles/index.ts:18
+msgid "Set Styles"
+msgstr "Ställ in stilar"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:82
+msgid "Failed to update styles:"
+msgstr "Misslyckades att uppdatera stilar: "
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:76
+msgid "Failed to update styles. The style variation may be invalid."
+msgstr "Misslyckades att uppdatera stilar. Stilvarianten kan vara ogiltig."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:62
+msgid "Styles updated successfully."
+msgstr "Stilar uppdaterades."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:38
+msgid "Invalid button format. Button must be a string (variation title)."
+msgstr "Ogiltigt knappformat. Knapp måste vara en sträng (rubrik för variant)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:31
+msgid "Invalid font format. Font must be a string (variation title)."
+msgstr "Ogiltigt typsnittsformat. Typsnitt måste vara en sträng (rubrik för variant)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:24
+msgid "Invalid color format. Color must be a string (variation title)."
+msgstr "Ogiltigt färgformat. Färg måste vara en sträng (rubrik för variant)."
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:17
+msgid "Invalid arguments. Provide at least one of: color, font, or button."
+msgstr "Ogiltiga argument. Ange minst ett av följande: färg, typsnitt eller knapp."
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:169
+msgid "Failed to create pages:"
+msgstr "Misslyckades att skapa sidor: "
+
+#: src/abilities/add-pages/use-add-pages-tool.ts:65
+msgid "Invalid pages. Must provide an array of page objects."
+msgstr "Ogiltiga sidor. Måste ange en array av sidobjekt."
+
+#: big-sky.php:207
+msgid "AI-powered site building and navigation abilities."
+msgstr "AI-drivna webbplatsbyggar- och navigeringsfunktioner."
+
+#: src/easy-mode/components/topbar.tsx:52
+msgid "Edit"
+msgstr "Redigera"
+
+#: src/abilities/set-styles/use-set-styles-tool.ts:65
+msgid "Updated:"
+msgstr "Uppdaterad:"
+
+#: big-sky.php:1018
+#: big-sky.php:1019
+msgid "AI Editor"
+msgstr "AI-redigerare"
+
+#. translators: %s is the theme name.
+#: big-sky.php:479
+msgid "The current theme (%s) is a block theme."
+msgstr "Det nuvarande temat (%s) är ett blocktema."
+
+#: big-sky.php:472
+msgid "The current theme is not a block theme. Big Sky requires a block theme to be active."
+msgstr "Det nuvarande temat är inte ett blocktema. Big Sky kräver ett blocktema för att vara aktivt."
+
+#: src/easy-mode/components/preview-overlay.tsx:160
+msgid "Site preview"
+msgstr "Förhandsgranskning av webbplats"
+
+#: src/easy-mode/components/page-switcher.tsx:49
+#: src/components/mosaic.js:634
+#: src/components/mosaic.js:676
+msgid "Pages"
+msgstr "Sidor"
+
+#: src/easy-mode/components/page-switcher.tsx:34
+msgid "Home"
+msgstr "Hem"
+
+#: src/abilities/add-pages/index.ts:17
+msgid "Add Pages"
+msgstr "Lägg till sidor"
+
+#: src/easy-mode/components/topbar.tsx:703
+msgid "Undo"
+msgstr "Ångra"
+
+#: src/easy-mode/components/topbar.tsx:756
+#: src/easy-mode/components/unsaved-changes-dialog.tsx:69
+msgid "Save"
+msgstr "Spara"
+
+#: big-sky.php:561
+msgid "These checks passed:"
+msgstr "Dessa kontroller godkändes:"
+
+#: big-sky.php:547
+msgid "Big Sky detected the following issues with your site:"
+msgstr "Big Sky upptäckte följande problem med din webbplats:"
+
+#. translators: $d is the number of performance issues found.
+#: big-sky.php:546
+msgid "Big Sky is affected by %d issue"
+msgid_plural "Big Sky is affected by %d issues"
+msgstr[0] "Big Sky påverkas av %d problem"
+msgstr[1] "Big Sky påverkas av %d problem"
+
+#: big-sky.php:536
+msgid "Mapbox API key is set."
+msgstr "Mapbox API-nyckel är inställd."
+
+#: big-sky.php:531
+msgid "Mapbox API key is not set. Big Sky requires a Mapbox API key to be set."
+msgstr "Mapbox API-nyckeln är inte inställd. Big Sky kräver att en Mapbox API-nyckel är inställd."
+
+#: big-sky.php:523
+msgid "Jetpack is connected to an admin."
+msgstr "Jetpack är ansluten till en admin."
+
+#: big-sky.php:518
+msgid "Jetpack does not have a connected admin. Big Sky requires Jetpack to be connected to an admin."
+msgstr "Jetpack har ingen ansluten admin. Big Sky kräver att Jetpack är ansluten till en admin."
+
+#: big-sky.php:509
+msgid "Jetpack is connected."
+msgstr "Jetpack är ansluten."
+
+#: big-sky.php:504
+msgid "Jetpack is not connected. Big Sky requires Jetpack to be connected."
+msgstr "Jetpack är inte anslutet. Big Sky kräver att Jetpack är anslutet."
+
+#: big-sky.php:493
+msgid "Jetpack is installed."
+msgstr "Jetpack är installerat."
+
+#: big-sky.php:488
+msgid "Jetpack is not installed. Big Sky requires Jetpack to be installed and active."
+msgstr "Jetpack är inte installerat. Big Sky kräver att Jetpack är installerat och aktivt."
+
+#: big-sky.php:462
+msgid "Big Sky did not find any known issues with your site."
+msgstr "Big Sky hittade inga kända problem med din webbplats."
+
+#: big-sky.php:454
+msgid "Big Sky Checks"
+msgstr "Big Sky-kontroller"
+
+#: big-sky.php:429
+#: big-sky.php:430
+msgid "Big Sky checks"
+msgstr "Big Sky-kontroller"
+
+#: big-sky.php:260
+msgid "AI Features"
+msgstr "AI-funktioner"
+
+#: big-sky.php:252
+msgid "Enable AI-powered site building experience"
+msgstr "Aktivera AI-styrd upplevelse för webbplatsbyggnad"
+
+#. Author of the plugin
+#: big-sky.php
+msgid "Automattic, Inc."
+msgstr "Automattic, Inc."
+
+#: big-sky.php:206
+#: big-sky.php:457
+msgid "Big Sky"
+msgstr "Big Sky"

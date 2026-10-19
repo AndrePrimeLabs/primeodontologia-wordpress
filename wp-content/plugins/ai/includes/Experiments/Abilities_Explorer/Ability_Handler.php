@@ -1,0 +1,456 @@
+<?php
+/**
+ * Ability Handler Class
+ *
+ * Handles fetching and processing abilities from
+ * the WordPress Abilities API.
+ *
+ * @package WordPress\AI\Experiments\Abilities_Explorer
+ * @since 0.2.0
+ */
+
+declare( strict_types=1 );
+
+namespace WordPress\AI\Experiments\Abilities_Explorer;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Ability Handler Class
+ *
+ * Provides methods for retrieving, formatting,
+ * and invoking WordPress abilities.
+ *
+ * @since 0.2.0
+ */
+class Ability_Handler {
+
+	/**
+	 * Get all registered abilities.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @return array<array<string,mixed>> Array of abilities.
+	 */
+	public static function get_all_abilities(): array {
+		return self::format_abilities( wp_get_abilities() );
+	}
+
+	/**
+	 * Get a single ability by slug.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param string $slug Ability slug (name).
+	 * @return array<string,mixed>|null Ability data or null if not found.
+	 */
+	public static function get_ability( string $slug ): ?array {
+		$ability = wp_get_ability( $slug );
+
+		if ( ! $ability ) {
+			return null;
+		}
+
+		return self::format_single_ability( $ability );
+	}
+
+	/**
+	 * Format abilities array.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param array<\WP_Ability> $abilities Raw abilities array (WP_Ability objects).
+	 * @return array<array<string,mixed>> Formatted abilities.
+	 */
+	private static function format_abilities( array $abilities ): array {
+		if ( empty( $abilities ) ) {
+			return array();
+		}
+
+		$formatted = array();
+
+		foreach ( $abilities as $ability ) {
+			$formatted[] = self::format_single_ability( $ability );
+		}
+
+		return $formatted;
+	}
+
+	/**
+	 * Format a single ability.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param \WP_Ability $ability Ability object.
+	 * @return array<string,mixed> Formatted ability data.
+	 */
+	private static function format_single_ability( \WP_Ability $ability ): array {
+		$name = $ability->get_name();
+		$meta = $ability->get_meta();
+
+		return array(
+			'slug'          => $name,
+			'name'          => $ability->get_label(),
+			'description'   => $ability->get_description(),
+			'provider'      => self::detect_provider( $name, $meta ),
+			'origin'        => self::detect_origin( $name ),
+			'category'      => self::get_ability_category( $ability ),
+			'input_schema'  => $ability->get_input_schema(),
+			'output_schema' => $ability->get_output_schema(),
+			'raw_data'      => array(
+				'name'          => $name,
+				'label'         => $ability->get_label(),
+				'description'   => $ability->get_description(),
+				'input_schema'  => $ability->get_input_schema(),
+				'output_schema' => $ability->get_output_schema(),
+				'meta'          => $meta,
+			),
+		);
+	}
+
+	/**
+	 * Get the category for an ability.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param \WP_Ability $ability Ability object.
+	 * @return string Category for the ability.
+	 */
+	public static function get_ability_category( \WP_Ability $ability ): string {
+		$slug          = $ability->get_name();
+		$category_slug = $ability->get_category();
+
+		$category_label = esc_html__( 'Other', 'ai' );
+		if ( ! empty( $category_slug ) ) {
+			$category_obj = wp_get_ability_category( $category_slug );
+			if ( $category_obj ) {
+				$category_label = $category_obj->get_label();
+			}
+		}
+
+		/**
+		 * Filters the final resolved category for a specific ability.
+		 *
+		 * Use this hook to explicitly override the category for a
+		 * specific ability slug.
+		 *
+		 * Example:
+		 *   add_filter( 'wpai_ability_category', function( $category, $slug ) {
+		 *       if ( 'my-plugin/generate-meta-description' === $slug ) {
+		 *           return 'SEO';
+		 *       }
+		 *       return $category;
+		 *   }, 10, 2 );
+		 *
+		 * @since 0.7.0
+		 *
+		 * @param string $category Resolved category for this ability.
+		 * @param string $slug     The full ability slug, e.g. 'my-plugin/do-thing'.
+		 */
+		return (string) apply_filters( 'wpai_ability_category', $category_label, $slug );
+	}
+
+	/**
+	 * Get translatable provider labels keyed by provider slug.
+	 *
+	 * @since 0.4.0
+	 *
+	 * @return array<string,string> Map of provider slug to translated label.
+	 */
+	public static function get_provider_labels(): array {
+		return array(
+			'Core'   => __( 'Core', 'ai' ),
+			'Plugin' => __( 'Plugin', 'ai' ),
+			'Theme'  => __( 'Theme', 'ai' ),
+		);
+	}
+
+	/**
+	 * Get the label for a provider.
+	 *
+	 * @since 0.4.0
+	 *
+	 * @param string $provider Provider slug.
+	 * @return string Provider label.
+	 */
+	public static function get_provider_label( string $provider ): string {
+		return self::get_provider_labels()[ $provider ] ?? $provider;
+	}
+
+	/**
+	 * Detect ability provider (Core, Plugin, or Theme).
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param string $name Ability name (slug).
+	 * @param array<string,mixed>  $meta Ability metadata.
+	 * @return string Provider type.
+	 */
+	private static function detect_provider( string $name, array $meta ): string {
+		// Check if provider is explicitly set in meta.
+		if ( isset( $meta['provider'] ) ) {
+			return $meta['provider'];
+		}
+
+		return self::detect_origin( $name );
+	}
+
+	/**
+	 * Detects the origin (Core, Plugin, or Theme) of an ability from its name.
+	 *
+	 * Unlike the provider, which can be overridden with a custom label via the
+	 * ability's `meta['provider']`, the origin always resolves to one of the
+	 * three known buckets, so it is suitable for aggregate statistics.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @param string $name Ability name (slug).
+	 * @return string Origin type: 'Core', 'Plugin', or 'Theme'.
+	 */
+	private static function detect_origin( string $name ): string {
+		// Detect based on name prefix (namespace/ability format).
+		$parts = explode( '/', $name );
+		if ( count( $parts ) === 2 ) {
+			$namespace = $parts[0];
+
+			// WordPress core abilities.
+			if ( in_array( $namespace, array( 'wordpress', 'wp', 'core' ), true ) ) {
+				return 'Core';
+			}
+
+			// Check if namespace matches active theme.
+			if ( get_stylesheet() === $namespace || get_template() === $namespace ) {
+				return 'Theme';
+			}
+		}
+
+		// Default to Plugin.
+		return 'Plugin';
+	}
+
+	/**
+	 * Invoke an ability.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param string $slug  Ability name.
+	 * @param mixed  $input Input data. May be an array for object schemas or a
+	 *                      scalar for non-object input schemas.
+	 * @return array Result with success status and data/error.
+	 *
+	 * @phpstan-return array{
+	 *   success: bool,
+	 *   code?: int|string,
+	 *   data?: mixed,
+	 *   error?: string,
+	 * }
+	 */
+	public static function invoke_ability( string $slug, $input = null ): array {
+		$ability = wp_get_ability( $slug );
+
+		if ( ! $ability ) {
+			return array(
+				'success' => false,
+				'error'   => sprintf( 'Ability "%s" not found', $slug ),
+			);
+		}
+
+		// If ability has no input schema, invoke without input.
+		$input_schema = $ability->get_input_schema();
+		if ( empty( $input_schema ) ) {
+			$result = $ability->execute();
+		} else {
+			$result = $ability->execute( $input );
+		}
+
+		// Check if result is WP_Error.
+		if ( is_wp_error( $result ) ) {
+			return array(
+				'success' => false,
+				'error'   => $result->get_error_message(),
+				'code'    => $result->get_error_code(),
+				'data'    => $result->get_error_data(),
+			);
+		}
+
+		return array(
+			'success' => true,
+			'data'    => $result,
+		);
+	}
+
+	/**
+	 * Validate input against input schema.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param array<string,mixed> $schema Input schema.
+	 * @param mixed               $input  Input data to validate.
+	 * @return array<string,bool|array<string>> Validation result.
+	 */
+	public static function validate_input( array $schema, $input ): array {
+		$errors = array();
+
+		if ( empty( $schema ) ) {
+			return array(
+				'valid'  => true,
+				'errors' => array(),
+			);
+		}
+
+		// Basic JSON Schema validation.
+		if ( isset( $schema['required'] ) && is_array( $schema['required'] ) ) {
+			foreach ( $schema['required'] as $required_field ) {
+				if ( isset( $input[ $required_field ] ) ) {
+					continue;
+				}
+
+				$errors[] = sprintf( 'Required field "%s" is missing', $required_field );
+			}
+		}
+
+		// Type and constraint validation for properties.
+		if ( isset( $schema['properties'] ) && is_array( $schema['properties'] ) ) {
+			foreach ( $schema['properties'] as $prop_name => $prop_schema ) {
+				if ( ! isset( $input[ $prop_name ] ) || ! is_array( $prop_schema ) ) {
+					continue;
+				}
+
+				$errors = array_merge(
+					$errors,
+					self::validate_property( (string) $prop_name, $input[ $prop_name ], $prop_schema )
+				);
+			}
+		}
+
+		return array(
+			'valid'  => empty( $errors ),
+			'errors' => $errors,
+		);
+	}
+
+	/**
+	 * Validate a property value against a schema.
+	 *
+	 * @since 1.0.2
+	 *
+	 * @param string              $prop_name   Property name.
+	 * @param mixed               $value       Property value.
+	 * @param array<string,mixed> $prop_schema Property schema.
+	 * @return array<string> Validation errors.
+	 */
+	private static function validate_property( string $prop_name, $value, array $prop_schema ): array {
+		$errors = array();
+
+		if ( isset( $prop_schema['type'] ) ) {
+			// A type may also be a list of types, e.g. `array( 'string', 'object' )`, any of which can match.
+			$types = array_filter( (array) $prop_schema['type'], 'is_string' );
+			$valid = false;
+
+			foreach ( $types as $type ) {
+				if ( self::validate_type( $value, $type ) ) {
+					$valid = true;
+					break;
+				}
+			}
+
+			if ( ! $valid ) {
+				return array(
+					sprintf(
+						'Field "%s" should be of type "%s"',
+						$prop_name,
+						implode( '" or "', $types )
+					),
+				);
+			}
+		}
+
+		if ( isset( $prop_schema['enum'] ) && is_array( $prop_schema['enum'] ) && ! in_array( $value, $prop_schema['enum'], true ) ) {
+			$errors[] = sprintf(
+				'Field "%s" must be one of: %s',
+				$prop_name,
+				implode( ', ', $prop_schema['enum'] )
+			);
+		}
+
+		if ( is_numeric( $value ) && isset( $prop_schema['minimum'] ) && $value < $prop_schema['minimum'] ) {
+			$errors[] = sprintf(
+				'Field "%s" must be at least %s',
+				$prop_name,
+				$prop_schema['minimum']
+			);
+		}
+
+		if ( is_numeric( $value ) && isset( $prop_schema['maximum'] ) && $value > $prop_schema['maximum'] ) {
+			$errors[] = sprintf(
+				'Field "%s" must be at most %s',
+				$prop_name,
+				$prop_schema['maximum']
+			);
+		}
+
+		return $errors;
+	}
+
+	/**
+	 * Validate value type.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param mixed  $value         Value to validate.
+	 * @param string $expected_type Expected type.
+	 * @return bool Whether the value matches the expected type.
+	 */
+	private static function validate_type( $value, string $expected_type ): bool {
+		switch ( $expected_type ) {
+			case 'string':
+				return is_string( $value );
+			case 'number':
+				return is_int( $value ) || is_float( $value );
+			case 'integer':
+				return is_int( $value ) || ( is_float( $value ) && floor( $value ) === $value );
+			case 'boolean':
+				return is_bool( $value );
+			case 'array':
+				return is_array( $value );
+			case 'object':
+				return is_object( $value ) || is_array( $value );
+			default:
+				return true;
+		}
+	}
+
+	/**
+	 * Get ability statistics.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @return array<string,int|array<string,int>> Statistics about registered abilities.
+	 */
+	public static function get_statistics(): array {
+		$abilities = self::get_all_abilities();
+
+		$stats = array(
+			'total'       => count( $abilities ),
+			'by_provider' => array(
+				'Core'   => 0,
+				'Plugin' => 0,
+				'Theme'  => 0,
+			),
+		);
+
+		foreach ( $abilities as $ability ) {
+			// Count by origin so abilities with a custom provider label still
+			// land in their Core/Plugin/Theme bucket.
+			if ( ! isset( $ability['origin'], $stats['by_provider'][ $ability['origin'] ] ) ) {
+				continue;
+			}
+
+			++$stats['by_provider'][ $ability['origin'] ];
+		}
+
+		return $stats;
+	}
+}
